@@ -1,0 +1,38 @@
+/*--------------------Google Fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Noto+Serif:wght@400;700&display=swap');
+
+body {
+    text-align: center;
+}
+
+.row {
+    text-align: center;
+    padding: 5px;
+    justify-content: center;
+}
+
+h1,
+h2 {
+    font-family: 'Baskervville', serif;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+  }
+
+.center-content {
+    padding-top: 35vh;
+}
+
+  .landing-page-title {
+    font-size: 5rem;
+  }
+
+  button {
+    margin: 5px;
+  }
+
+  /*https://www.w3schools.com/css/css_align.asp*/
