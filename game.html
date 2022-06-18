@@ -40,11 +40,11 @@
     <div class="container center">
         <div id="game-box">
             <div class="row centered-row collection-view">
-                <img src="assets/images/Bird-outline-example.png">
-                <img src="assets/images/Bird-outline-example.png">
-                <img src="assets/images/Bird-outline-example.png">
-                <img src="assets/images/Bird-outline-example.png">
-                <img src="assets/images/Bird-outline-example.png">
+                <img id="bird-1" src="assets/images/Bird-outline-example.png">
+                <img id="bird-2" src="assets/images/Bird-outline-example.png">
+                <img id="bird-3" src="assets/images/Bird-outline-example.png">
+                <img id="bird-4" src="assets/images/Bird-outline-example.png">
+                <img id="bird-5" src="assets/images/Bird-outline-example.png">
             </div>
             <div id="game-info-box">
                 <div class="row centered-row">
@@ -54,6 +54,9 @@
                     <button type="button" id="start-new-game" button-command="start-new-game" class="btn btn-outline-dark btn-margin">Start Game</button>
                     <button type="button" button-command="instructions" class="btn btn-outline-dark btn-margin">How To Play</button>
                 </div>
+            </div>
+            <div id="game-hidden-box" class="d-none row centered-row">
+                <button type="button" button-command="submit-bird" id="submit-bird" class="btn btn-outline-dark btn-margin disabled">Select</button>
             </div>
         </div>
     </div>

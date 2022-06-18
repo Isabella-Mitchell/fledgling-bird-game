@@ -12,6 +12,8 @@
                     showInstructions();
                 } else if (this.getAttribute("button-command") === "start-new-game")  {
                     startNewGame();
+                } else if (this.getAttribute("button-command") === "submit-bird")  {
+                    submitBird();
                 }
             });
         }
@@ -29,6 +31,7 @@ $(document).ready(function()  {
         $(".bird-select").click(function() {
             $(".bird-select").removeClass("highlight");
             $(this).addClass("highlight");
+            $("#submit-bird").removeClass("disabled");
         });
     }
 
@@ -47,16 +50,15 @@ $(document).ready(function()  {
                     <div class="col-12">
                         <h3>Pick your bird</h3>
                     </div>
-                </div>
-                <div class="row centered-row">
-                    <div class="col-12">
-                        <button type="button" class="btn btn-outline-dark btn-margin">Select</button>
-                    </div>
                 </div>`
                 );
+            $("#game-hidden-box").removeClass("d-none");
             $("#game-box").fadeIn(1000, pickBirdEvent());
         });
     });
+
+    // Start Game Animation
+
 
     // Highlight class for Answer Options
 
@@ -108,7 +110,9 @@ $(document).ready(function()  {
         gameRound: [],
         score: 0,
         turnNumber: 0
-    }
+    };
+
+    let selectedBird;
 
     function resetGame() {
         game.currentBird = [];
@@ -129,25 +133,60 @@ $(document).ready(function()  {
         
     }
 
+    function submitBird() {
+        //can remove console log
+        //use this to add to completed Birds
+        //this can only happen if there is less than or equal to five birds in array - or put this in different function?
+        selectedBird = document.getElementsByClassName('highlight');
+        console.log("The bird selected is", selectedBird[0].id);
+        game.currentBird.push(selectedBird[0].id);
+        console.log(game);
+        gameRound();
+    }
+
     function checkAnswer(){
         //checks answer submitted against object
         //changes icon to green or red
     }
 
     function gameRound(){
-        //replaces screen with game turn options
+        console.log('game round begins');
+        $("#game-box").fadeOut(1000, function(){
+            //for loop to go through questions
+            //set template literals for questions
+            $("#game-box").html(`
+            <div class="container center question-container">
+            <div class="row">
+                <div class="col-md-4 order-md-2 question-image">
+                    <img src="assets/images/Bird-outline-example.png">
+                </div>
+            
+                <div class="col-md-8 order-md-1">
+                    <h3>Question Text Blah Blah Blah</h3>
+                    <div>
+                        <div class="row">
+                            <button type="button" class="answer-btn">Option 1</button>
+                            <button type="button" class="answer-btn">Option 2</button>
+                        </div>
+                        <div class="row">
+                            <button type="button" class="answer-btn">Option 3</button>
+                            <button type="button" class="answer-btn">Option 4</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!--should change to event listener-->
+                        <button type="button" onclick="submitAnswer()" class="btn btn-primary btn-lg">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+                `);
+            $("#game-box").fadeIn(1000);
+        });
         // for loop - goes through four questions - listens for submit - adds selected to an array - 
-            checkAnswer;
+        //checkAnswer;
         // at end add one to game round
-    }
-
-    function pickBird() {
-        //replace screen with bird pick option - listener - submit
-        //use this to add Bird to Bird game object
-        //use this to add to completed Birds
-        //this can only happen if there is less than or equal to five birds in array - or put this in different function?
-        gameRound; 
-    }
+    };
 
     function startNewGame() {
         console.log('start new game');
@@ -158,3 +197,5 @@ $(document).ready(function()  {
     function submitAnswer() {
 
     }
+
+    
