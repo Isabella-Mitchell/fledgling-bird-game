@@ -1,0 +1,71 @@
+body {
+	font-family: 'Roboto', sans-serif;
+ 	background-color: #e1e2e2;
+}
+
+.heading {
+	max-width:1050px;
+	background-color: #e1e2e2;
+	margin: 0 auto;
+	padding: 5px 0;
+}
+
+h2 {
+	font-size: 1em;
+	text-align: left;
+}
+
+p > span {
+	color: green;	
+}
+
+h1{
+	font-size: 2.5em;
+    text-align: center;
+    margin: 10px 0;
+}
+
+p {
+	font-size: .9rem;
+}
+
+#wrapper {
+	box-sizing:border-box;
+	margin-right:auto;
+	margin-left:auto;
+	max-width:1050px;	
+}
+
+.card {
+	margin-top: 10px;
+	padding: 20px;
+	background-color: #fff;
+}
+
+.card-panel {
+	height: 30px;
+	width: 100%;
+	background-color: aqua;
+	border-radius: 5px;
+}
+
+button {
+    box-sizing: border-box;
+    border-radius: 4px;
+    display: block;
+    width: 100%;
+    background-color: rgba(129, 187, 201,.85);
+    text-align: center;
+    padding: 1em .75em;
+    text-decoration: none;
+    color: #fff;
+	font-size: 1em
+}
+
+@media screen and (min-width: 600px) {
+	#wrapper {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-column-gap: 10px;
+	}
+}

@@ -51,6 +51,10 @@ button {
   margin: 5px;
 }
 
+.highlight {
+  border: 10px solid green;
+}
+
 .collection-view img {
   max-width: 120px;
   margin: 6px
