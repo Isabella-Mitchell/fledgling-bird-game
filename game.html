@@ -39,10 +39,10 @@
 
     <div class="container center">
         <div id="game-box">
-            <div class="row centered-row collection-view">
+            <div id="bird-collection" class="row centered-row collection-view">
                 <img id="bird-1" src="assets/images/Bird-outline-example.png">
                 <img id="bird-2" src="assets/images/Bird-outline-example.png">
-                <img id="bird-3" src="assets/images/Bird-outline-example.png">
+                <img id="blackBird" src="assets/images/Bird-outline-example.png">
                 <img id="bird-4" src="assets/images/Bird-outline-example.png">
                 <img id="bird-5" src="assets/images/Bird-outline-example.png">
             </div>
@@ -57,6 +57,29 @@
             </div>
             <div id="game-hidden-box" class="d-none row centered-row">
                 <button type="button" button-command="submit-bird" id="submit-bird" class="btn btn-outline-dark btn-margin disabled">Select</button>
+            </div>
+            <div id="game-hidden-box-1" class="d-none row centered-row">
+                <div class="row">
+                    <div class="col-md-4 order-md-2 question-image">
+                        <img src="assets/images/Bird-outline-example.png">
+                    </div>
+                    <div class="col-md-8 order-md-1">
+                        <h3 id="question-text">Question Text Blah Blah Blah</h3>
+                        <div>
+                            <div class="row">
+                                <button type="button" id="answer-option-1" class="answer-btn">Option 1</button>
+                                <button type="button" id="answer-option-2" class="answer-btn">Option 2</button>
+                            </div>
+                            <div class="row">
+                                <button type="button" id="answer-option-3" class="answer-btn">Option 3</button>
+                                <button type="button" id="answer-option-4" class="answer-btn">Option 4</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <button type="button" button-command="submit-answer" class="btn btn-primary btn-lg">Submit</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

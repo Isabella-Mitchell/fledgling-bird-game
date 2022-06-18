@@ -14,6 +14,8 @@
                     startNewGame();
                 } else if (this.getAttribute("button-command") === "submit-bird")  {
                     submitBird();
+                } else if (this.getAttribute("button-command") === "submit-answer")  {
+                    checkAnswer();
                 }
             });
         }
@@ -57,10 +59,8 @@ $(document).ready(function()  {
         });
     });
 
-    // Start Game Animation
 
-
-    // Highlight class for Answer Options
+    // Highlight class for Answer Options - check not working - I think the issue is that it's a template literal?
 
     $(".answer-btn").on("click", function() {
         $(".answer-btn").removeClass("highlight");
@@ -107,6 +107,7 @@ $(document).ready(function()  {
 
     let game = {
         currentBird: [],
+        currentBirdObject: [],
         gameRound: [],
         score: 0,
         turnNumber: 0
@@ -133,13 +134,20 @@ $(document).ready(function()  {
         
     }
 
+    let currentBird;
+    let currentBirdQuiz;
+
     function submitBird() {
         //can remove console log
         //use this to add to completed Birds
         //this can only happen if there is less than or equal to five birds in array - or put this in different function?
+        //elimainate option to choose completed bird
         selectedBird = document.getElementsByClassName('highlight');
         console.log("The bird selected is", selectedBird[0].id);
         game.currentBird.push(selectedBird[0].id);
+        currentBird = selectedBird[0].id
+        currentBirdQuiz = questionBank[ selectedBird[0].id ];
+        game.currentBirdObject = currentBirdQuiz.quiz;
         console.log(game);
         gameRound();
     }
@@ -149,44 +157,34 @@ $(document).ready(function()  {
         //changes icon to green or red
     }
 
+    let i;
+
     function gameRound(){
         console.log('game round begins');
         $("#game-box").fadeOut(1000, function(){
+            $("#bird-collection").addClass("d-none");
+            $("#game-info-box").addClass("d-none");
+            $("#game-hidden-box").addClass("d-none");
+            console.log("game turn number is", game.turnNumber);
             //for loop to go through questions
-            //set template literals for questions
-            $("#game-box").html(`
-            <div class="container center question-container">
-            <div class="row">
-                <div class="col-md-4 order-md-2 question-image">
-                    <img src="assets/images/Bird-outline-example.png">
-                </div>
-            
-                <div class="col-md-8 order-md-1">
-                    <h3>Question Text Blah Blah Blah</h3>
-                    <div>
-                        <div class="row">
-                            <button type="button" class="answer-btn">Option 1</button>
-                            <button type="button" class="answer-btn">Option 2</button>
-                        </div>
-                        <div class="row">
-                            <button type="button" class="answer-btn">Option 3</button>
-                            <button type="button" class="answer-btn">Option 4</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <!--should change to event listener-->
-                        <button type="button" onclick="submitAnswer()" class="btn btn-primary btn-lg">Submit</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-                `);
-            $("#game-box").fadeIn(1000);
+            //set template literals for questions - should change as much as possible to HTML file so button click things work.
+            //maybe not a loop, maybe a function
+            for (i = 0; i < 4; i++) {
+                    $("#question-text").text(`${game.currentBirdObject[i].question}`);
+                    $("#answer-option-1").text(`${game.currentBirdObject[i].options[0]}`);
+                    $("#answer-option-2").text(`${game.currentBirdObject[i].options[1]}`);
+                    $("#answer-option-3").text(`${game.currentBirdObject[i].options[2]}`);
+                    $("#answer-option-4").text(`${game.currentBirdObject[i].options[3]}`);
+                    $("#game-hidden-box-1").removeClass("d-none");
+                    $("#game-box").fadeIn(1000);
+
+            };
         });
         // for loop - goes through four questions - listens for submit - adds selected to an array - 
         //checkAnswer;
         // at end add one to game round
     };
+
 
     function startNewGame() {
         console.log('start new game');
@@ -194,8 +192,11 @@ $(document).ready(function()  {
         //pickBird;
     }
 
-    function submitAnswer() {
+    function checkAnswer() {
+        console.log("submit-answer");
+        i++;
+        console.log(i);
 
     }
 
-    
+//end of day - up to answers
