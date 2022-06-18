@@ -2,11 +2,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Noto+Serif:wght@400;700&display=swap');
 
-body {
-    text-align: center;
-}
-
-.row {
+.centered-row {
     text-align: center;
     padding: 5px;
     justify-content: center;
@@ -20,19 +16,72 @@ h2 {
 .center {
     display: flex;
     justify-content: center;
-    height: 100vh;
+    height: 90vh;
   }
 
-.center-content {
+.push-down-padding {
     padding-top: 35vh;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-  .landing-page-title {
-    font-size: 5rem;
-  }
+.landing-page-title {
+  font-size: 4em;
+}
 
-  button {
-    margin: 5px;
-  }
+.landing-page-about {
+  font-size: 1.5em;
+}
+
+button {
+  margin: 5px;
+}
 
   /*https://www.w3schools.com/css/css_align.asp*/
+
+
+  /* ----------------------------------------Footer */
+
+footer {
+  background-color: #f2f2f2;
+  color: #232323;
+  min-height: 10vh;
+  margin: 0;
+}
+
+footer .row {
+  padding-top: 20px;
+  text-align: center;
+}
+
+/* class name and css originally from CV CI project */
+.social-links li a i {
+  font-size: 32px;
+  text-align: center;
+  color:#232323;
+  margin: 0;
+  transition: all 0.35s ease-in-out;
+  -moz-transition: all 0.35s ease-in-out;
+  -webkit-transition: all 0.35s ease-in-out;
+  -o-transition: all 0.35s ease-in-out;
+}
+
+.social-links li a i:hover {
+  color: #635422;
+}
+
+  /* ----------------------------------------Media Queries */
+
+  @media(min-width: 768px) {
+    .landing-page-title {
+        font-size: 5em;
+    }
+}
+
+@media(min-width: 768px) {
+  .landing-page-about {
+    font-size: 2em;
+  }
+}
+
+
