@@ -56,6 +56,15 @@ button {
   margin: 6px
 }
 
+.question-image {
+  display:inline-block;
+  max-width: 200px;
+}
+
+.question-image img {
+  max-width: 100%;
+}
+
   /*https://www.w3schools.com/css/css_align.asp*/
 
 
@@ -106,6 +115,12 @@ footer .row {
 @media(min-width: 768px) {
   .collection-view img {
     max-width: 200px;
+  }
+}
+
+@media(min-width: 768px) {
+  .question-image {
+    max-width: 300px;
   }
 }
 
