@@ -2,22 +2,40 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Noto+Serif:wght@400;700&display=swap');
 
+/*--------------------Body */
+
 body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-.centered-row {
-    text-align: center;
-    padding: 5px;
-    justify-content: center;
-    margin: 0 auto;
-}
+/*--------------------Fonts and Sizes */
 
 h1,
-h2 {
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: 'Baskervville', serif;
+}
+
+.landing-page-title {
+  font-size: 4em;
+}
+
+.landing-page-about {
+  font-size: 1.5em;
+}
+
+/*--------------------Padding and Centering */
+
+.centered-row {
+  text-align: center;
+  padding: 5px;
+  justify-content: center;
+  margin: 0 auto;
 }
 
 .center {
@@ -32,28 +50,17 @@ h2 {
   justify-content: center;
 }
 
+/*--------------------Buttons */
 
-.push-down-padding {
-    padding-top: 35vh;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.landing-page-title {
-  font-size: 4em;
-}
-
-.landing-page-about {
-  font-size: 1.5em;
-}
-
-button {
+.btn-margin {
   margin: 5px;
 }
 
 .highlight {
   border: 10px solid green;
 }
+
+/*--------------------Images */
 
 .collection-view img {
   max-width: 120px;

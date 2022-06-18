@@ -1,14 +1,3 @@
-// From Jquery walkthrough
-
-//$(document).ready(function()  {
-
-    // Button listener for Question answers
-
-    //$(".answer-btn").on("click", function() {
-    //    $(".answer-btn").removeClass("highlight");
-    //    $(this).addClass("highlight");
-    //});
-
 // Wait for the DOM to finish loading before running the game
 // Content from maths prooject
 // Get the button elements and add event listeners to them
@@ -28,6 +17,57 @@
         }
 
     });
+
+// From Jquery walkthrough
+
+$(document).ready(function()  {
+
+    // Highlight class for Bird Options
+
+    function pickBirdEvent() {
+        $(".collection-view").children().addClass("bird-select")
+        $(".bird-select").click(function() {
+            $(".bird-select").removeClass("highlight");
+            $(this).addClass("highlight");
+        });
+    }
+
+    // Start Game Animation
+
+    $("#start-new-game").on("click", function() {
+        console.log("fade-jquery")
+        $("#game-box").fadeOut(1000, function(){
+            $("#game-info-box").html(
+                `<div class="row centered-row">
+                    <div class="col-12">
+                        <p>Round 1/5</p>
+                    </div>
+                </div>
+                <div class="row centered-row">
+                    <div class="col-12">
+                        <h3>Pick your bird</h3>
+                    </div>
+                </div>
+                <div class="row centered-row">
+                    <div class="col-12">
+                        <button type="button" class="btn btn-outline-dark btn-margin">Select</button>
+                    </div>
+                </div>`
+                );
+            $("#game-box").fadeIn(1000, pickBirdEvent());
+        });
+    });
+
+    // Highlight class for Answer Options
+
+    $(".answer-btn").on("click", function() {
+        $(".answer-btn").removeClass("highlight");
+        $(this).addClass("highlight");
+    });
+
+
+});
+
 
     const questionBank = {
         blackBird: {
@@ -115,16 +155,6 @@
         //pickBird;
     }
 
-    $("#start-new-game").on("click", function() {
-        console.log("fade-jquery")
-        $("#game-box").fadeOut(1000, function(){
-            $("#game-box").html("<h1>JQUERY</h1>")
-            $("#game-box").fadeIn(1000);
-        })
-    });
-
     function submitAnswer() {
 
     }
-
-//});
