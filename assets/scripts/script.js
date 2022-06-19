@@ -270,7 +270,7 @@ const questionBank = {
             {
                 question: "What size is the bird?",
                 genre: "size",
-                imageSrc: "assets/images/Bird-image-sample-5.png",
+                imageSrc: "assets/images/Bird-image-sample-1.png",
                 options: ["Smaller than 15 cm", "Between 15cm and 30cm", "Between 30cm and 70cm", "Larger than 70cm"],
                 correctAnswer: "Between 15cm and 30cm"
             },
@@ -299,13 +299,13 @@ const questionBank = {
     },
     blackBird2: {
         outlineImageSrc: "assets/images/Bird-outline-example.png",
-        finishedImageSrc: "assets/images/Bird-outline-example.png",
+        finishedImageSrc: "assets/images/Bird-image-sample-5.png",
         funFact: "This is a male blackbirds. Female blackbirds...",
         quiz: [
             {
                 question: "What size is the bird?",
                 genre: "size",
-                imageSrc: "assets/images/Bird-image-sample-5.png",
+                imageSrc: "assets/images/Bird-image-sample-1.png",
                 options: ["Smaller than 15 cm", "Between 15cm and 30cm", "Between 30cm and 70cm", "Larger than 70cm"],
                 correctAnswer: "Between 15cm and 30cm"
             },
@@ -334,13 +334,13 @@ const questionBank = {
     },
     blackBird3: {
         outlineImageSrc: "assets/images/Bird-outline-example.png",
-        finishedImageSrc: "assets/images/Bird-outline-example.png",
+        finishedImageSrc: "assets/images/Bird-image-sample-5.png",
         funFact: "This is a male blackbirds. Female blackbirds...",
         quiz: [
             {
                 question: "What size is the bird?",
                 genre: "size",
-                imageSrc: "assets/images/Bird-image-sample-5.png",
+                imageSrc: "assets/images/Bird-image-sample-1.png",
                 options: ["Smaller than 15 cm", "Between 15cm and 30cm", "Between 30cm and 70cm", "Larger than 70cm"],
                 correctAnswer: "Between 15cm and 30cm"
             },
@@ -369,13 +369,13 @@ const questionBank = {
     },
     blackBird4: {
         outlineImageSrc: "assets/images/Bird-outline-example.png",
-        finishedImageSrc: "assets/images/Bird-outline-example.png",
+        finishedImageSrc: "assets/images/Bird-image-sample-5.png",
         funFact: "This is a male blackbirds. Female blackbirds...",
         quiz: [
             {
                 question: "What size is the bird?",
                 genre: "size",
-                imageSrc: "assets/images/Bird-image-sample-5.png",
+                imageSrc: "assets/images/Bird-image-sample-1.png",
                 options: ["Smaller than 15 cm", "Between 15cm and 30cm", "Between 30cm and 70cm", "Larger than 70cm"],
                 correctAnswer: "Between 15cm and 30cm"
             },
