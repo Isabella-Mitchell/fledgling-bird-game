@@ -22,7 +22,11 @@ document.addEventListener("DOMContentLoaded", function() {
                     alert("please select an answer");
                 }
             } else if (this.getAttribute("button-command") === "start-next-round") {
-                startNewRound();
+                if (game.roundNumber <= 5) {
+                    startNewRound();
+                } else {
+                    showFinalResults();
+                };
             }
         });
     }
@@ -45,50 +49,62 @@ let game = {
     currentBirdObject: [],
     roundNumber: 1,
     score: 0,
+    turnScore: 0,
     turnNumber: 0,
     submittedTurnAnswer: ""
 };
 
 //Global Variables
 
-    let selectedBird;
-    let currentBird;
-    let currentBirdQuiz;
-    let i;
+let selectedBird;
+let currentBird;
+let currentBirdQuiz;
+let i;
 
 //Functions
+
+function showFinalResults() {
+    console.log('Final Results are:', game.score);
+    //Build Out
+}
 
 function showInstructions() {
     console.log('show instructions');
     //Build Out
 }
 
-function showBirdResults() {
+function showTurnResults() {
     $("#game-box").fadeOut(1000, function(){
         $("#questions-box").addClass("d-none");
         $("#turn-results-box").removeClass("d-none");
-        $("#results-text").text("Your score is...");
+        $("#results-text").text(`Your score this round is ${game.turnScore}/4`);
         $("#game-box").fadeIn(500);
         });
 }
 
+function addScore() {
+    game.score = game.score + 1;
+    game.turnScore = game.turnScore + 1;
+}
+
 function checkAnswer(x, y) {
-    //console.log("submit-answer");
-    //console.log("The answer options inner text is", x);
-    //console.log(game.currentBirdObject[y].correctAnswer)
+    console.log("The answer options inner text is", x, "while the correct Answer is :", game.currentBirdObject[y].correctAnswer);
+    let iconColour = (document.getElementById(game.currentBirdObject[y].genre));
     if (x === game.currentBirdObject[y].correctAnswer) {
         console.log("You got it right");
+        $(iconColour).removeClass("black").addClass("green");
+        addScore();
     } else {
         console.log("You got it wrong boo");
+        $(iconColour).removeClass("black").addClass("red");
     };
     game.turnNumber = game.turnNumber + 1
-    //console.log(game.turnNumber)
     if (game.turnNumber < 4) {
         gameRound(game.turnNumber)
     } else {
     console.log("That's all folks");
     game.roundNumber = game.roundNumber + 1
-    showBirdResults();
+    showTurnResults();
     };
     //add changes icon to green or red
 }
@@ -152,11 +168,13 @@ function startNewRound() {
     game.currentBird = [];
     game.currentBirdObject = [];
     game.turnNumber = 0
+    game.turnScore = 0
     //console.log("fade-jquery")
     $("#game-box").fadeOut(1000, function(){
         $("#bird-collection").removeClass("d-none");
         $("#game-info-box").removeClass("d-none");
         $("#turn-box").addClass("d-none");
+        $(".icons").children().removeClass("green").removeClass("red").addClass("black");
         $("#turn-results-box").addClass("d-none");
         $("#game-info-box").html(
             `<div class="row centered-row">
@@ -206,24 +224,28 @@ const questionBank = {
         quiz: [
             {
                 question: "What size is the bird?",
+                genre: "size",
                 imageSrc: "assets/images/Bird-outline-example.png",
                 options: ["Smaller than 15 cm", "Between 15cm and 30cm", "Between 30cm and 70cm", "Larger than 70cm"],
                 correctAnswer: "Between 15cm and 30cm"
             },
             {
                 question: "What colour is the bird?",
+                genre: "colour",
                 imageSrc: "assets/images/Bird-outline-example.png",
                 options: ["Black", "White", "Green", "Blue"],
                 correctAnswer: "Black"
             },
             {
                 question: "Where can you see this bird?",
+                genre: "location",
                 imageSrc: "assets/images/Bird-outline-example.png",
                 options: ["By or in fresh water", "In the Mountains or Highlands", "In a park or garden", "By the coast"],
                 correctAnswer: "In a park or garden"
             },
             {
                 question: "What distinctive feature does this bird have?",
+                genre: "features",
                 imageSrc: "assets/images/Bird-outline-example.png",
                 options: ["A red chest", "A yellow or orange beak", "A spotted back", "Large crest feathers"],
                 correctAnswer: "A yellow or orange beak"
@@ -236,24 +258,28 @@ const questionBank = {
         quiz: [
             {
                 question: "What size is the bird?",
+                genre: "size",
                 imageSrc: "assets/images/Bird-outline-example.png",
                 options: ["Smaller than 15 cm", "Between 15cm and 30cm", "Between 30cm and 70cm", "Larger than 70cm"],
                 correctAnswer: "Between 15cm and 30cm"
             },
             {
                 question: "What colour is the bird?",
+                genre: "colour",
                 imageSrc: "assets/images/Bird-outline-example.png",
                 options: ["Black", "White", "Green", "Blue"],
                 correctAnswer: "Black"
             },
             {
                 question: "Where can you see this bird?",
+                genre: "location",
                 imageSrc: "assets/images/Bird-outline-example.png",
                 options: ["By or in fresh water", "In the Mountains or Highlands", "In a park or garden", "By the coast"],
                 correctAnswer: "In a park or garden"
             },
             {
                 question: "What distinctive feature does this bird have?",
+                genre: "features",
                 imageSrc: "assets/images/Bird-outline-example.png",
                 options: ["A red chest", "A yellow or orange beak", "A spotted back", "Large crest feathers"],
                 correctAnswer: "A yellow or orange beak"
@@ -266,24 +292,28 @@ const questionBank = {
         quiz: [
             {
                 question: "What size is the bird?",
+                genre: "size",
                 imageSrc: "assets/images/Bird-outline-example.png",
                 options: ["Smaller than 15 cm", "Between 15cm and 30cm", "Between 30cm and 70cm", "Larger than 70cm"],
                 correctAnswer: "Between 15cm and 30cm"
             },
             {
                 question: "What colour is the bird?",
+                genre: "colour",
                 imageSrc: "assets/images/Bird-outline-example.png",
                 options: ["Black", "White", "Green", "Blue"],
                 correctAnswer: "Black"
             },
             {
                 question: "Where can you see this bird?",
+                genre: "location",
                 imageSrc: "assets/images/Bird-outline-example.png",
                 options: ["By or in fresh water", "In the Mountains or Highlands", "In a park or garden", "By the coast"],
                 correctAnswer: "In a park or garden"
             },
             {
                 question: "What distinctive feature does this bird have?",
+                genre: "features",
                 imageSrc: "assets/images/Bird-outline-example.png",
                 options: ["A red chest", "A yellow or orange beak", "A spotted back", "Large crest feathers"],
                 correctAnswer: "A yellow or orange beak"
@@ -296,24 +326,28 @@ const questionBank = {
         quiz: [
             {
                 question: "What size is the bird?",
+                genre: "size",
                 imageSrc: "assets/images/Bird-outline-example.png",
                 options: ["Smaller than 15 cm", "Between 15cm and 30cm", "Between 30cm and 70cm", "Larger than 70cm"],
                 correctAnswer: "Between 15cm and 30cm"
             },
             {
                 question: "What colour is the bird?",
+                genre: "colour",
                 imageSrc: "assets/images/Bird-outline-example.png",
                 options: ["Black", "White", "Green", "Blue"],
                 correctAnswer: "Black"
             },
             {
                 question: "Where can you see this bird?",
+                genre: "location",
                 imageSrc: "assets/images/Bird-outline-example.png",
                 options: ["By or in fresh water", "In the Mountains or Highlands", "In a park or garden", "By the coast"],
                 correctAnswer: "In a park or garden"
             },
             {
                 question: "What distinctive feature does this bird have?",
+                genre: "features",
                 imageSrc: "assets/images/Bird-outline-example.png",
                 options: ["A red chest", "A yellow or orange beak", "A spotted back", "Large crest feathers"],
                 correctAnswer: "A yellow or orange beak"
@@ -326,24 +360,28 @@ const questionBank = {
         quiz: [
             {
                 question: "What size is the bird?",
+                genre: "size",
                 imageSrc: "assets/images/Bird-outline-example.png",
                 options: ["Smaller than 15 cm", "Between 15cm and 30cm", "Between 30cm and 70cm", "Larger than 70cm"],
                 correctAnswer: "Between 15cm and 30cm"
             },
             {
                 question: "What colour is the bird?",
+                genre: "colour",
                 imageSrc: "assets/images/Bird-outline-example.png",
                 options: ["Black", "White", "Green", "Blue"],
                 correctAnswer: "Black"
             },
             {
                 question: "Where can you see this bird?",
+                genre: "location",
                 imageSrc: "assets/images/Bird-outline-example.png",
                 options: ["By or in fresh water", "In the Mountains or Highlands", "In a park or garden", "By the coast"],
                 correctAnswer: "In a park or garden"
             },
             {
                 question: "What distinctive feature does this bird have?",
+                genre: "features",
                 imageSrc: "assets/images/Bird-outline-example.png",
                 options: ["A red chest", "A yellow or orange beak", "A spotted back", "Large crest feathers"],
                 correctAnswer: "A yellow or orange beak"
