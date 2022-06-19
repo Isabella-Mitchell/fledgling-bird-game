@@ -95,12 +95,13 @@ function checkAnswer(x, y) {
 
 function gameRound(i){
         console.log('game round begins');
+        console.log(game)
         $(".answer-btn").removeClass("highlight-answer-option");
         $("#game-box").fadeOut(500, function(){
             //could do with splitting out into own function to stop repeating
             $("#bird-collection").addClass("d-none");
             $("#game-info-box").addClass("d-none");
-            $("#game-hidden-box").addClass("d-none");
+            $("#submit-bird-button-box").addClass("d-none");
             //console.log("game turn number is", game.turnNumber);
             $("#question-text").text(`${game.currentBirdObject[i].question}`);
             $("#answer-option-1").text(`${game.currentBirdObject[i].options[0]}`);
@@ -108,7 +109,7 @@ function gameRound(i){
             $("#answer-option-3").text(`${game.currentBirdObject[i].options[2]}`);
             $("#answer-option-4").text(`${game.currentBirdObject[i].options[3]}`);
             $("#questions-box").removeClass("d-none");
-            $("#game-hidden-box-1").removeClass("d-none");
+            $("#turn-box").removeClass("d-none");
             $("#game-box").fadeIn(500);
         });
 };
@@ -148,11 +149,15 @@ function pickBirdEvent() {
 // Start new round Animation - loads birds
 
 function startNewRound() {
+    game.currentBird = [];
+    game.currentBirdObject = [];
+    game.turnNumber = 0
     //console.log("fade-jquery")
     $("#game-box").fadeOut(1000, function(){
         $("#bird-collection").removeClass("d-none");
         $("#game-info-box").removeClass("d-none");
-        $("#game-hidden-box-1").addClass("d-none");
+        $("#turn-box").addClass("d-none");
+        $("#turn-results-box").addClass("d-none");
         $("#game-info-box").html(
             `<div class="row centered-row">
                 <div class="col-12">
@@ -165,7 +170,7 @@ function startNewRound() {
                 </div>
             </div>`
             );
-        $("#game-hidden-box").removeClass("d-none");
+        $("#submit-bird-button-box").removeClass("d-none");
         $("#game-box").fadeIn(1000, pickBirdEvent());
     });
     //edit so that completed birds cannot be picked
@@ -196,6 +201,126 @@ function startNewGame() {
 
 const questionBank = {
     blackBird: {
+        outlineImageSrc: "assets/images/Bird-outline-example.png",
+        funFact: "This is a male blackbirds. Female blackbirds...",
+        quiz: [
+            {
+                question: "What size is the bird?",
+                imageSrc: "assets/images/Bird-outline-example.png",
+                options: ["Smaller than 15 cm", "Between 15cm and 30cm", "Between 30cm and 70cm", "Larger than 70cm"],
+                correctAnswer: "Between 15cm and 30cm"
+            },
+            {
+                question: "What colour is the bird?",
+                imageSrc: "assets/images/Bird-outline-example.png",
+                options: ["Black", "White", "Green", "Blue"],
+                correctAnswer: "Black"
+            },
+            {
+                question: "Where can you see this bird?",
+                imageSrc: "assets/images/Bird-outline-example.png",
+                options: ["By or in fresh water", "In the Mountains or Highlands", "In a park or garden", "By the coast"],
+                correctAnswer: "In a park or garden"
+            },
+            {
+                question: "What distinctive feature does this bird have?",
+                imageSrc: "assets/images/Bird-outline-example.png",
+                options: ["A red chest", "A yellow or orange beak", "A spotted back", "Large crest feathers"],
+                correctAnswer: "A yellow or orange beak"
+            }
+        ],
+    },
+    blackBird1: {
+        outlineImageSrc: "assets/images/Bird-outline-example.png",
+        funFact: "This is a male blackbirds. Female blackbirds...",
+        quiz: [
+            {
+                question: "What size is the bird?",
+                imageSrc: "assets/images/Bird-outline-example.png",
+                options: ["Smaller than 15 cm", "Between 15cm and 30cm", "Between 30cm and 70cm", "Larger than 70cm"],
+                correctAnswer: "Between 15cm and 30cm"
+            },
+            {
+                question: "What colour is the bird?",
+                imageSrc: "assets/images/Bird-outline-example.png",
+                options: ["Black", "White", "Green", "Blue"],
+                correctAnswer: "Black"
+            },
+            {
+                question: "Where can you see this bird?",
+                imageSrc: "assets/images/Bird-outline-example.png",
+                options: ["By or in fresh water", "In the Mountains or Highlands", "In a park or garden", "By the coast"],
+                correctAnswer: "In a park or garden"
+            },
+            {
+                question: "What distinctive feature does this bird have?",
+                imageSrc: "assets/images/Bird-outline-example.png",
+                options: ["A red chest", "A yellow or orange beak", "A spotted back", "Large crest feathers"],
+                correctAnswer: "A yellow or orange beak"
+            }
+        ],
+    },
+    blackBird2: {
+        outlineImageSrc: "assets/images/Bird-outline-example.png",
+        funFact: "This is a male blackbirds. Female blackbirds...",
+        quiz: [
+            {
+                question: "What size is the bird?",
+                imageSrc: "assets/images/Bird-outline-example.png",
+                options: ["Smaller than 15 cm", "Between 15cm and 30cm", "Between 30cm and 70cm", "Larger than 70cm"],
+                correctAnswer: "Between 15cm and 30cm"
+            },
+            {
+                question: "What colour is the bird?",
+                imageSrc: "assets/images/Bird-outline-example.png",
+                options: ["Black", "White", "Green", "Blue"],
+                correctAnswer: "Black"
+            },
+            {
+                question: "Where can you see this bird?",
+                imageSrc: "assets/images/Bird-outline-example.png",
+                options: ["By or in fresh water", "In the Mountains or Highlands", "In a park or garden", "By the coast"],
+                correctAnswer: "In a park or garden"
+            },
+            {
+                question: "What distinctive feature does this bird have?",
+                imageSrc: "assets/images/Bird-outline-example.png",
+                options: ["A red chest", "A yellow or orange beak", "A spotted back", "Large crest feathers"],
+                correctAnswer: "A yellow or orange beak"
+            }
+        ],
+    },
+    blackBird3: {
+        outlineImageSrc: "assets/images/Bird-outline-example.png",
+        funFact: "This is a male blackbirds. Female blackbirds...",
+        quiz: [
+            {
+                question: "What size is the bird?",
+                imageSrc: "assets/images/Bird-outline-example.png",
+                options: ["Smaller than 15 cm", "Between 15cm and 30cm", "Between 30cm and 70cm", "Larger than 70cm"],
+                correctAnswer: "Between 15cm and 30cm"
+            },
+            {
+                question: "What colour is the bird?",
+                imageSrc: "assets/images/Bird-outline-example.png",
+                options: ["Black", "White", "Green", "Blue"],
+                correctAnswer: "Black"
+            },
+            {
+                question: "Where can you see this bird?",
+                imageSrc: "assets/images/Bird-outline-example.png",
+                options: ["By or in fresh water", "In the Mountains or Highlands", "In a park or garden", "By the coast"],
+                correctAnswer: "In a park or garden"
+            },
+            {
+                question: "What distinctive feature does this bird have?",
+                imageSrc: "assets/images/Bird-outline-example.png",
+                options: ["A red chest", "A yellow or orange beak", "A spotted back", "Large crest feathers"],
+                correctAnswer: "A yellow or orange beak"
+            }
+        ],
+    },
+    blackBird4: {
         outlineImageSrc: "assets/images/Bird-outline-example.png",
         funFact: "This is a male blackbirds. Female blackbirds...",
         quiz: [
