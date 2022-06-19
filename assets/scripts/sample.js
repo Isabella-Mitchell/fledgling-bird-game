@@ -13,3 +13,15 @@ $(document).ready(function()  {
     });
     
 });
+
+function gameTurnListeners(){
+    $(".answer-btn").on("click", function() {
+        $(".answer-btn").removeClass("highlight");
+        $(this).addClass("highlight");
+    });
+}
+
+// From Jquery walkthrough - event listeners - removed as scripts at end?
+
+$(document).ready(function()  {
+});

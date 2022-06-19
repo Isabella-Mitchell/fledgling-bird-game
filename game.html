@@ -63,7 +63,7 @@
                     <div class="col-md-4 order-md-2 question-image">
                         <img src="assets/images/Bird-outline-example.png">
                     </div>
-                    <div class="col-md-8 order-md-1">
+                    <div id="questions-box" class="col-md-8 order-md-1">
                         <h3 id="question-text">Question Text Blah Blah Blah</h3>
                         <div>
                             <div class="row">
@@ -77,6 +77,12 @@
                         </div>
                         <div class="row">
                             <button type="button" button-command="submit-answer" class="btn btn-primary btn-lg">Submit</button>
+                        </div>
+                    </div>
+                    <div id="turn-results-box" class="col-md-8 order-md-1 d-none">
+                        <h3 id="results-text">Results Text Example</h3>
+                        <div class="row">
+                            <button type="button" button-command="start-next-round" class="btn btn-primary btn-lg">Start Next Round</button>
                         </div>
                     </div>
                 </div>
