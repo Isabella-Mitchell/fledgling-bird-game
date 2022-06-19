@@ -73,6 +73,10 @@ function showInstructions() {
     //Build Out
 }
 
+function removeCompletedBird() {
+    $(".highlight").removeClass('bird-select').removeClass('highlight');
+}
+
 function showTurnResults() {
     $("#game-box").fadeOut(1000, function(){
         $("#questions-box").addClass("d-none");
@@ -80,6 +84,7 @@ function showTurnResults() {
         $("#results-text").text(`Your score this round is ${game.turnScore}/4`);
         $("#game-box").fadeIn(500);
         });
+    removeCompletedBird();
 }
 
 function addScore() {
@@ -154,11 +159,14 @@ function submitBird() {
 // Highlight class for Bird Options
 
 function pickBirdEvent() {
-    $(".collection-view").children().addClass("bird-select")
     $(".bird-select").click(function() {
-        $(".bird-select").removeClass("highlight");
-        $(this).addClass("highlight");
-        $("#submit-bird").removeClass("disabled");
+        if ($(this).hasClass("bird-select")) {
+            $(".bird-select").removeClass("highlight");
+            $(this).addClass("highlight");
+            $("#submit-bird").removeClass("disabled");
+        } else {
+            alert('Please select an active bird');
+        }
     });
 }
 
@@ -213,6 +221,7 @@ function startNewGame() {
     console.log('start new game');
     resetGame();
     startNewRound();
+    $(".collection-view").children().addClass("bird-select");
 }
 
 //Question Bank
