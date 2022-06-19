@@ -79,6 +79,7 @@ function removeCompletedBird() {
 
 function showTurnResults() {
     $("#game-box").fadeOut(1000, function(){
+        //$("#question-image").html(`<img src="${game.currentBirdObject[i].imageSrc}">`);
         $("#questions-box").addClass("d-none");
         $("#turn-results-box").removeClass("d-none");
         $("#results-text").text(`Your score this round is ${game.turnScore}/4`);
@@ -124,6 +125,7 @@ function gameRound(i){
             $("#game-info-box").addClass("d-none");
             $("#submit-bird-button-box").addClass("d-none");
             //console.log("game turn number is", game.turnNumber);
+            $("#question-image").html(`<img src="${game.currentBirdObject[i].imageSrc}">`);
             $("#question-text").text(`${game.currentBirdObject[i].question}`);
             $("#answer-option-1").text(`${game.currentBirdObject[i].options[0]}`);
             $("#answer-option-2").text(`${game.currentBirdObject[i].options[1]}`);
@@ -229,33 +231,34 @@ function startNewGame() {
 const questionBank = {
     blackBird: {
         outlineImageSrc: "assets/images/Bird-outline-example.png",
+        finishedImageSrc: "assets/images/Bird-image-sample-5.png",
         funFact: "This is a male blackbirds. Female blackbirds...",
         quiz: [
             {
                 question: "What size is the bird?",
                 genre: "size",
-                imageSrc: "assets/images/Bird-outline-example.png",
+                imageSrc: "assets/images/Bird-image-sample-1.png",
                 options: ["Smaller than 15 cm", "Between 15cm and 30cm", "Between 30cm and 70cm", "Larger than 70cm"],
                 correctAnswer: "Between 15cm and 30cm"
             },
             {
                 question: "What colour is the bird?",
                 genre: "colour",
-                imageSrc: "assets/images/Bird-outline-example.png",
+                imageSrc: "assets/images/Bird-image-sample-2.png",
                 options: ["Black", "White", "Green", "Blue"],
                 correctAnswer: "Black"
             },
             {
                 question: "Where can you see this bird?",
                 genre: "location",
-                imageSrc: "assets/images/Bird-outline-example.png",
+                imageSrc: "assets/images/Bird-image-sample-3.png",
                 options: ["By or in fresh water", "In the Mountains or Highlands", "In a park or garden", "By the coast"],
                 correctAnswer: "In a park or garden"
             },
             {
                 question: "What distinctive feature does this bird have?",
                 genre: "features",
-                imageSrc: "assets/images/Bird-outline-example.png",
+                imageSrc: "assets/images/Bird-image-sample-4.png",
                 options: ["A red chest", "A yellow or orange beak", "A spotted back", "Large crest feathers"],
                 correctAnswer: "A yellow or orange beak"
             }
@@ -263,33 +266,34 @@ const questionBank = {
     },
     blackBird1: {
         outlineImageSrc: "assets/images/Bird-outline-example.png",
+        finishedImageSrc: "assets/images/Bird-image-sample-5.png",
         funFact: "This is a male blackbirds. Female blackbirds...",
         quiz: [
             {
                 question: "What size is the bird?",
                 genre: "size",
-                imageSrc: "assets/images/Bird-outline-example.png",
+                imageSrc: "assets/images/Bird-image-sample-5.png",
                 options: ["Smaller than 15 cm", "Between 15cm and 30cm", "Between 30cm and 70cm", "Larger than 70cm"],
                 correctAnswer: "Between 15cm and 30cm"
             },
             {
                 question: "What colour is the bird?",
                 genre: "colour",
-                imageSrc: "assets/images/Bird-outline-example.png",
+                imageSrc: "assets/images/Bird-image-sample-2.png",
                 options: ["Black", "White", "Green", "Blue"],
                 correctAnswer: "Black"
             },
             {
                 question: "Where can you see this bird?",
                 genre: "location",
-                imageSrc: "assets/images/Bird-outline-example.png",
+                imageSrc: "assets/images/Bird-image-sample-3.png",
                 options: ["By or in fresh water", "In the Mountains or Highlands", "In a park or garden", "By the coast"],
                 correctAnswer: "In a park or garden"
             },
             {
                 question: "What distinctive feature does this bird have?",
                 genre: "features",
-                imageSrc: "assets/images/Bird-outline-example.png",
+                imageSrc: "assets/images/Bird-image-sample-4.png",
                 options: ["A red chest", "A yellow or orange beak", "A spotted back", "Large crest feathers"],
                 correctAnswer: "A yellow or orange beak"
             }
@@ -297,33 +301,34 @@ const questionBank = {
     },
     blackBird2: {
         outlineImageSrc: "assets/images/Bird-outline-example.png",
+        finishedImageSrc: "assets/images/Bird-outline-example.png",
         funFact: "This is a male blackbirds. Female blackbirds...",
         quiz: [
             {
                 question: "What size is the bird?",
                 genre: "size",
-                imageSrc: "assets/images/Bird-outline-example.png",
+                imageSrc: "assets/images/Bird-image-sample-5.png",
                 options: ["Smaller than 15 cm", "Between 15cm and 30cm", "Between 30cm and 70cm", "Larger than 70cm"],
                 correctAnswer: "Between 15cm and 30cm"
             },
             {
                 question: "What colour is the bird?",
                 genre: "colour",
-                imageSrc: "assets/images/Bird-outline-example.png",
+                imageSrc: "assets/images/Bird-image-sample-2.png",
                 options: ["Black", "White", "Green", "Blue"],
                 correctAnswer: "Black"
             },
             {
                 question: "Where can you see this bird?",
                 genre: "location",
-                imageSrc: "assets/images/Bird-outline-example.png",
+                imageSrc: "assets/images/Bird-image-sample-3.png",
                 options: ["By or in fresh water", "In the Mountains or Highlands", "In a park or garden", "By the coast"],
                 correctAnswer: "In a park or garden"
             },
             {
                 question: "What distinctive feature does this bird have?",
                 genre: "features",
-                imageSrc: "assets/images/Bird-outline-example.png",
+                imageSrc: "assets/images/Bird-image-sample-4.png",
                 options: ["A red chest", "A yellow or orange beak", "A spotted back", "Large crest feathers"],
                 correctAnswer: "A yellow or orange beak"
             }
@@ -331,33 +336,34 @@ const questionBank = {
     },
     blackBird3: {
         outlineImageSrc: "assets/images/Bird-outline-example.png",
+        finishedImageSrc: "assets/images/Bird-outline-example.png",
         funFact: "This is a male blackbirds. Female blackbirds...",
         quiz: [
             {
                 question: "What size is the bird?",
                 genre: "size",
-                imageSrc: "assets/images/Bird-outline-example.png",
+                imageSrc: "assets/images/Bird-image-sample-5.png",
                 options: ["Smaller than 15 cm", "Between 15cm and 30cm", "Between 30cm and 70cm", "Larger than 70cm"],
                 correctAnswer: "Between 15cm and 30cm"
             },
             {
                 question: "What colour is the bird?",
                 genre: "colour",
-                imageSrc: "assets/images/Bird-outline-example.png",
+                imageSrc: "assets/images/Bird-image-sample-2.png",
                 options: ["Black", "White", "Green", "Blue"],
                 correctAnswer: "Black"
             },
             {
                 question: "Where can you see this bird?",
                 genre: "location",
-                imageSrc: "assets/images/Bird-outline-example.png",
+                imageSrc: "assets/images/Bird-image-sample-3.png",
                 options: ["By or in fresh water", "In the Mountains or Highlands", "In a park or garden", "By the coast"],
                 correctAnswer: "In a park or garden"
             },
             {
                 question: "What distinctive feature does this bird have?",
                 genre: "features",
-                imageSrc: "assets/images/Bird-outline-example.png",
+                imageSrc: "assets/images/Bird-image-sample-4.png",
                 options: ["A red chest", "A yellow or orange beak", "A spotted back", "Large crest feathers"],
                 correctAnswer: "A yellow or orange beak"
             }
@@ -365,33 +371,34 @@ const questionBank = {
     },
     blackBird4: {
         outlineImageSrc: "assets/images/Bird-outline-example.png",
+        finishedImageSrc: "assets/images/Bird-outline-example.png",
         funFact: "This is a male blackbirds. Female blackbirds...",
         quiz: [
             {
                 question: "What size is the bird?",
                 genre: "size",
-                imageSrc: "assets/images/Bird-outline-example.png",
+                imageSrc: "assets/images/Bird-image-sample-5.png",
                 options: ["Smaller than 15 cm", "Between 15cm and 30cm", "Between 30cm and 70cm", "Larger than 70cm"],
                 correctAnswer: "Between 15cm and 30cm"
             },
             {
                 question: "What colour is the bird?",
                 genre: "colour",
-                imageSrc: "assets/images/Bird-outline-example.png",
+                imageSrc: "assets/images/Bird-image-sample-2.png",
                 options: ["Black", "White", "Green", "Blue"],
                 correctAnswer: "Black"
             },
             {
                 question: "Where can you see this bird?",
                 genre: "location",
-                imageSrc: "assets/images/Bird-outline-example.png",
+                imageSrc: "assets/images/Bird-image-sample-3.png",
                 options: ["By or in fresh water", "In the Mountains or Highlands", "In a park or garden", "By the coast"],
                 correctAnswer: "In a park or garden"
             },
             {
                 question: "What distinctive feature does this bird have?",
                 genre: "features",
-                imageSrc: "assets/images/Bird-outline-example.png",
+                imageSrc: "assets/images/Bird-image-sample-4.png",
                 options: ["A red chest", "A yellow or orange beak", "A spotted back", "Large crest feathers"],
                 correctAnswer: "A yellow or orange beak"
             }

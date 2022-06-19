@@ -71,12 +71,12 @@ h6 {
   margin: 6px
 }
 
-.question-image {
+#question-image {
   display:inline-block;
   max-width: 200px;
 }
 
-.question-image img {
+#question-image img {
   max-width: 100%;
 }
 

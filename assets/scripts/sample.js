@@ -25,3 +25,20 @@ function gameTurnListeners(){
 
 $(document).ready(function()  {
 });
+
+$("#start-new-game").on("click", startNewRound());
+
+function submitBird() {
+    selectedBird = document.getElementsByClassName('highlight');
+    console.log("The bird selected is", selectedBird[0].id);
+    game.currentBird.push(selectedBird[0].id);
+    currentBird = selectedBird[0].id
+    currentBirdQuiz = questionBank[ selectedBird[0].id ];
+    game.currentBirdObject = currentBirdQuiz.quiz;
+    console.log(game);
+    gameRound(game.turnNumber);
+    //can remove console log
+    //use this to add to completed Birds
+    //this can only happen if there is less than or equal to five birds in array - or put this in different function?
+    //elimainate option to choose completed bird
+}
