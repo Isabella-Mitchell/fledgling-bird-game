@@ -60,6 +60,10 @@ h6 {
   border: 10px solid green;
 }
 
+.highlight-answer-option {
+  border: 5px solid blue;
+}
+
 /*--------------------Images */
 
 .collection-view img {
