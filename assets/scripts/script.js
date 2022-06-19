@@ -57,8 +57,8 @@ let game = {
 //Global Variables
 
 let selectedBird;
-let currentBird;
-let currentBirdQuiz;
+//let currentBird;
+//let currentBirdQuiz;
 let i;
 
 //Functions
@@ -74,12 +74,12 @@ function showInstructions() {
 }
 
 function removeCompletedBird() {
-    $(".highlight").removeClass('bird-select').removeClass('highlight');
+    $(".highlight").removeClass('bird-select').removeClass('highlight').attr("src", game.currentBird.finishedImageSrc);
 }
 
 function showTurnResults() {
     $("#game-box").fadeOut(1000, function(){
-        //$("#question-image").html(`<img src="${game.currentBirdObject[i].imageSrc}">`);
+        $("#question-image").html(`<img src="${game.currentBird.finishedImageSrc}">`);
         $("#questions-box").addClass("d-none");
         $("#turn-results-box").removeClass("d-none");
         $("#results-text").text(`Your score this round is ${game.turnScore}/4`);
@@ -144,10 +144,8 @@ function gameRound(i){
 function submitBird() {
     selectedBird = document.getElementsByClassName('highlight');
     console.log("The bird selected is", selectedBird[0].id);
-    game.currentBird.push(selectedBird[0].id);
-    currentBird = selectedBird[0].id
-    currentBirdQuiz = questionBank[ selectedBird[0].id ];
-    game.currentBirdObject = currentBirdQuiz.quiz;
+    game.currentBird = questionBank[ selectedBird[0].id ];
+    game.currentBirdObject = questionBank[ selectedBird[0].id ].quiz;
     console.log(game);
     gameRound(game.turnNumber);
     //can remove console log
