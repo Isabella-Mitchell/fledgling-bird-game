@@ -42,3 +42,11 @@ function submitBird() {
     //this can only happen if there is less than or equal to five birds in array - or put this in different function?
     //elimainate option to choose completed bird
 }
+
+if (this.getAttribute("button-command") === "instructions") {
+    showInstructions();
+
+    function showInstructions() {
+        console.log('show instructions');
+        //Build Out
+    }

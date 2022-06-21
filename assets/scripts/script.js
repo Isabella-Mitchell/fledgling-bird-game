@@ -7,9 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     for (let button of buttons) {
         button.addEventListener("click", function() {
-            if (this.getAttribute("button-command") === "instructions") {
-                showInstructions();
-            } else if (this.getAttribute("button-command") === "start-new-game")  {
+            if (this.getAttribute("button-command") === "start-new-game")  {
                 startNewGame();
             } else if (this.getAttribute("button-command") === "submit-bird")  {
                 submitBird();
@@ -96,11 +94,6 @@ function showFinalResults() {
         $("#sightings-button-box").removeClass("d-none");
         $("#game-box").fadeIn(1000, pickBirdEvent());
     });
-}
-
-function showInstructions() {
-    console.log('show instructions');
-    //Build Out
 }
 
 function removeCompletedBird() {
@@ -225,6 +218,7 @@ function startNewRound() {
     game.turnNumber = 0
     game.turnScore = 0
     $("#game-box").fadeOut(1000, function(){
+        $("#how-to-play-box").removeClass("d-none");
         $("#bird-collection").removeClass("d-none");
         $("#game-info-box").removeClass("d-none");
         $("#turn-box").addClass("d-none");
