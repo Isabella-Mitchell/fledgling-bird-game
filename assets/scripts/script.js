@@ -65,7 +65,37 @@ let i;
 
 function showFinalResults() {
     console.log('Final Results are:', game.score);
-    //Build Out
+    let finalResultsFeedback;
+    if (game.score >= 15) {
+        finalResultsFeedback = "Congratualtions, you can now identify these common birds";
+    }
+    else if (game.score >= 10 && game.score <= 14) {
+        finalResultsFeedback = "Well done, you have a good chance of being able to identify these common birds";
+    }
+    else if (game.score <= 9) {
+        finalResultsFeedback = "Comiserations. Have another go to improve your bird identiftying skills";
+    }
+    $("#game-box").fadeOut(1000, function(){
+        $("#bird-collection").removeClass("d-none");
+        $("#game-info-box").removeClass("d-none");
+        $("#turn-box").addClass("d-none");
+        $(".icons").children().removeClass("green").removeClass("red").addClass("black");
+        $("#turn-results-box").addClass("d-none");
+        $("#game-info-box").html(
+            `<div class="row centered-row">
+                <div class="col-12">
+                    <h3>Your final score is ${game.score}/20</h3>
+                </div>
+            </div>
+            <div class="row centered-row">
+                <div class="col-12">
+                    <p>${finalResultsFeedback}/p>
+                </div>
+            </div>`
+            );
+        $("#sightings-button-box").removeClass("d-none");
+        $("#game-box").fadeIn(1000, pickBirdEvent());
+    });
 }
 
 function showInstructions() {
@@ -182,7 +212,7 @@ function pickBirdEvent() {
             $(this).addClass("highlight");
             $("#submit-bird").removeClass("disabled");
         } else {
-            alert('Please select an active bird');
+            $("#submit-bird").addClass("disabled");
         }
     });
 }
@@ -194,7 +224,6 @@ function startNewRound() {
     game.currentBirdObject = [];
     game.turnNumber = 0
     game.turnScore = 0
-    //console.log("fade-jquery")
     $("#game-box").fadeOut(1000, function(){
         $("#bird-collection").removeClass("d-none");
         $("#game-info-box").removeClass("d-none");
