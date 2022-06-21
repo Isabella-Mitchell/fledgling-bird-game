@@ -77,12 +77,29 @@ function removeCompletedBird() {
     $(".highlight").removeClass('bird-select').removeClass('highlight').attr("src", game.currentBird.finishedImageSrc);
 }
 
+function giveFeedback(a, b) {
+    if (a >= 4) {
+        $("#feedback").text(`Congratulations, you correctly idenfied a ${b}`);
+    }
+    else if (a === 3) {
+        $("#feedback").text(`Well done, it's quite likely what you saw was a ${b}`);
+    }
+    else if (a === 2) {
+        $("#feedback").text(`Hmmm, it's possible what you saw was a ${b}`);
+    }
+    else {
+        $("#feedback").text(`You didn't manage to identify the bird. Better luck next time! The bird you saw was a ${b}`);
+    }
+}
+
 function showTurnResults() {
     $("#game-box").fadeOut(1000, function(){
         $("#question-image").html(`<img src="${game.currentBird.finishedImageSrc}">`);
         $("#questions-box").addClass("d-none");
         $("#turn-results-box").removeClass("d-none");
         $("#results-text").text(`Your score this round is ${game.turnScore}/4`);
+        $("#bird-fact").text(`${game.currentBird.funFact}`);
+        giveFeedback(game.turnScore, game.currentBird.birdName);
         $("#game-box").fadeIn(500);
         });
     removeCompletedBird();
@@ -228,6 +245,7 @@ function startNewGame() {
 
 const questionBank = {
     blackBird: {
+        birdName: "Blackbird",
         outlineImageSrc: "assets/images/Bird-outline-example.png",
         finishedImageSrc: "assets/images/Bird-image-sample-5.png",
         funFact: "This is a male blackbirds. Female blackbirds...",
@@ -263,6 +281,7 @@ const questionBank = {
         ],
     },
     blackBird1: {
+        birdName: "Blackbird",
         outlineImageSrc: "assets/images/Bird-outline-example.png",
         finishedImageSrc: "assets/images/Bird-image-sample-5.png",
         funFact: "This is a male blackbirds. Female blackbirds...",
@@ -298,6 +317,7 @@ const questionBank = {
         ],
     },
     blackBird2: {
+        birdName: "Blackbird",
         outlineImageSrc: "assets/images/Bird-outline-example.png",
         finishedImageSrc: "assets/images/Bird-image-sample-5.png",
         funFact: "This is a male blackbirds. Female blackbirds...",
@@ -333,6 +353,7 @@ const questionBank = {
         ],
     },
     blackBird3: {
+        birdName: "Blackbird",
         outlineImageSrc: "assets/images/Bird-outline-example.png",
         finishedImageSrc: "assets/images/Bird-image-sample-5.png",
         funFact: "This is a male blackbirds. Female blackbirds...",
@@ -368,6 +389,7 @@ const questionBank = {
         ],
     },
     blackBird4: {
+        birdName: "Blackbird",
         outlineImageSrc: "assets/images/Bird-outline-example.png",
         finishedImageSrc: "assets/images/Bird-image-sample-5.png",
         funFact: "This is a male blackbirds. Female blackbirds...",
