@@ -25,7 +25,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 } else {
                     showFinalResults();
                 };
-            }
+            } else if (this.getAttribute("button-command") === "play-again") {
+                $("#game-box").fadeOut(1000, function(){
+                    // Move this out only needs to apply if player chooses to play again
+                    $("#end-game-box").addClass("d-none");
+                    resetImages();
+                });
+            };
         });
     }
 
@@ -44,7 +50,7 @@ $(".answer-btn").on("click", function() {
 
 let game = {
     currentBird: [],
-    currentBirdObject: [],
+    currentBirdQuiz: [],
     roundNumber: 1,
     score: 0,
     turnScore: 0,
@@ -91,7 +97,7 @@ function showFinalResults() {
                 </div>
             </div>`
             );
-        $("#sightings-button-box").removeClass("d-none");
+        $("#end-game-box").removeClass("d-none");
         $("#game-box").fadeIn(1000, pickBirdEvent());
     });
 }
@@ -134,9 +140,9 @@ function addScore() {
 }
 
 function checkAnswer(x, y) {
-    console.log("The answer options inner text is", x, "while the correct Answer is :", game.currentBirdObject[y].correctAnswer);
-    let iconColour = (document.getElementById(game.currentBirdObject[y].genre));
-    if (x === game.currentBirdObject[y].correctAnswer) {
+    console.log("The answer options inner text is", x, "while the correct Answer is :", game.currentBirdQuiz[y].correctAnswer);
+    let iconColour = (document.getElementById(game.currentBirdQuiz[y].genre));
+    if (x === game.currentBirdQuiz[y].correctAnswer) {
         console.log("You got it right");
         $(iconColour).removeClass("black").addClass("green");
         addScore();
@@ -165,12 +171,12 @@ function gameRound(i){
             $("#game-info-box").addClass("d-none");
             $("#submit-bird-button-box").addClass("d-none");
             //console.log("game turn number is", game.turnNumber);
-            $("#question-image").html(`<img src="${game.currentBirdObject[i].imageSrc}">`);
-            $("#question-text").text(`${game.currentBirdObject[i].question}`);
-            $("#answer-option-1").text(`${game.currentBirdObject[i].options[0]}`);
-            $("#answer-option-2").text(`${game.currentBirdObject[i].options[1]}`);
-            $("#answer-option-3").text(`${game.currentBirdObject[i].options[2]}`);
-            $("#answer-option-4").text(`${game.currentBirdObject[i].options[3]}`);
+            $("#question-image").html(`<img src="${game.currentBirdQuiz[i].imageSrc}">`);
+            $("#question-text").text(`${game.currentBirdQuiz[i].question}`);
+            $("#answer-option-1").text(`${game.currentBirdQuiz[i].options[0]}`);
+            $("#answer-option-2").text(`${game.currentBirdQuiz[i].options[1]}`);
+            $("#answer-option-3").text(`${game.currentBirdQuiz[i].options[2]}`);
+            $("#answer-option-4").text(`${game.currentBirdQuiz[i].options[3]}`);
             $("#questions-box").removeClass("d-none");
             $("#turn-box").removeClass("d-none");
             $("#game-box").fadeIn(500);
@@ -185,7 +191,7 @@ function submitBird() {
     selectedBird = document.getElementsByClassName('highlight');
     console.log("The bird selected is", selectedBird[0].id);
     game.currentBird = questionBank[ selectedBird[0].id ];
-    game.currentBirdObject = questionBank[ selectedBird[0].id ].quiz;
+    game.currentBirdQuiz = questionBank[ selectedBird[0].id ].quiz;
     console.log(game);
     gameRound(game.turnNumber);
     //can remove console log
@@ -213,14 +219,17 @@ function pickBirdEvent() {
 // Start new round Animation - loads birds
 
 function startNewRound() {
+    console.log("New round is started");
     game.currentBird = [];
-    game.currentBirdObject = [];
+    game.currentBirdQuiz = [];
     game.turnNumber = 0
     game.turnScore = 0
     $("#game-box").fadeOut(1000, function(){
         $("#how-to-play-box").removeClass("d-none");
         $("#bird-collection").removeClass("d-none");
         $("#game-info-box").removeClass("d-none");
+        // Move this out only needs to apply if player chooses to play again
+        $("#end-game-box").addClass("d-none");
         $("#turn-box").addClass("d-none");
         $(".icons").children().removeClass("green").removeClass("red").addClass("black");
         $("#turn-results-box").addClass("d-none");
@@ -244,15 +253,29 @@ function startNewRound() {
 
 //----end of start game functions---//
 
+//----re-factor so better---//
+function resetImages() {
+    $("#blackBird").attr("src", questionBank.blackBird.outlineImageSrc);
+    $("#blackBird1").attr("src", questionBank.blackBird1.outlineImageSrc);
+    $("#blackBird2").attr("src", questionBank.blackBird2.outlineImageSrc);
+    $("#blackBird3").attr("src", questionBank.blackBird3.outlineImageSrc);
+    $("#blackBird4").attr("src", questionBank.blackBird4.outlineImageSrc);
+    console.log("Images are reset");
+    startNewGame();
+}
+
 //function runs when run new game is called to reset game object
 
 function resetGame() {
     game.currentBird = [];
-    game.currentBirdObject = [];
+    game.currentBirdQuiz = [];
     game.score = 0;
-    turnNumber = 0;
-    roundNumber = 1;
-    submittedTurnAnswer = "";
+    game.turnNumber = 0;
+    game.roundNumber = 1;
+    game.submittedTurnAnswer = "";
+    console.log("Game is reset");
+    startNewRound();
+    //can I make this a callback?
 }
 
 //function runs when run new game is called
@@ -260,7 +283,6 @@ function resetGame() {
 function startNewGame() {
     console.log('start new game');
     resetGame();
-    startNewRound();
     $(".collection-view").children().addClass("bird-select");
 }
 
