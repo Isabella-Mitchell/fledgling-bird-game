@@ -32,7 +32,7 @@ h6,
 }
 
 .navbar-brand {
-  font-size: 24px;
+  font-size: xx-large;
 }
 
 /*--------------------Padding and Centering */
@@ -81,25 +81,16 @@ h6,
   margin: 10px;
 }
 
-/*--------------------Buttons */
-
-.btn-margin {
-  margin: 5px;
-}
-
-.highlight {
-  border: 10px solid green;
-}
-
-.highlight-answer-option {
-  border: 1px solid orange;
+#results-text {
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
 
 /*--------------------Images */
 
 .collection-view img {
   max-width: 120px;
-  margin: 6px
+  margin: 6px;
 }
 
 #question-image {
@@ -123,12 +114,32 @@ h6,
   color: red
 }
 
-.icons {
+/*.icons {
   font-size: xx-large;
-}
+}*/
 
   /*https://www.w3schools.com/css/css_align.asp*/
 
+  /*--------------------Buttons */
+
+.btn-margin {
+  margin: 5px;
+}
+
+.highlight {
+  border: 1px solid orange;
+}
+
+.highlight-answer-option {
+  border: 1px solid orange;
+}
+
+.btn-success.focus, .btn-success:focus {
+  color: #fff;
+  background-color: #218838;
+  border-color: #1e7e34;
+  box-shadow: 0 0 0 0
+}
 
   /* ----------------------------------------Footer */
 

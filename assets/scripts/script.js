@@ -117,7 +117,7 @@ function giveFeedback(a, b) {
         $("#feedback").text(`Hmmm, it's possible what you saw was a ${b}`);
     }
     else {
-        $("#feedback").text(`You didn't manage to identify the bird. Better luck next time! The bird you saw was a ${b}`);
+        $("#feedback").text(`Better luck next time! This is a ${b}`);
     }
 }
 
