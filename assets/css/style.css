@@ -8,6 +8,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
 /*--------------------Fonts and Sizes */
@@ -17,7 +18,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+.navbar-brand {
     font-family: 'Baskervville', serif;
 }
 
@@ -27,6 +29,10 @@ h6 {
 
 .landing-page-about {
   font-size: 1.5em;
+}
+
+.navbar-brand {
+  font-size: 24px;
 }
 
 /*--------------------Padding and Centering */
@@ -50,6 +56,31 @@ h6 {
   justify-content: center;
 }
 
+/*--------------------Game */
+
+#question-text{
+  margin: 10px;
+}
+
+.answer-btn {
+  margin: 10px;
+  max-width: 200px;
+  min-width: 200px;
+  border-radius: 5px;
+  background-color: white;
+  border: 0.5px solid black;
+  padding: 10px;
+}
+
+.submit-btn {
+  margin: 10px;
+}
+
+.icons span {
+  font-size: 24px;
+  margin: 10px;
+}
+
 /*--------------------Buttons */
 
 .btn-margin {
@@ -61,7 +92,7 @@ h6 {
 }
 
 .highlight-answer-option {
-  border: 5px solid blue;
+  border: 1px solid orange;
 }
 
 /*--------------------Images */
@@ -73,7 +104,7 @@ h6 {
 
 #question-image {
   display:inline-block;
-  max-width: 200px;
+  max-width: 400px;
 }
 
 #question-image img {

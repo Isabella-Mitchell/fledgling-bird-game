@@ -38,18 +38,17 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">fledgling</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
         
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">
+            <ul class="navbar-nav">
                 <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                    <button type="button" class="btn btn-outline-dark btn-margin" data-toggle="modal" data-target="#exampleModal">
+                        View Sightings Near You
+                    </button>
                 </li>
                 <li class="nav-item d-none" id="how-to-play-box">
                     <button type="button" class="btn btn-outline-dark btn-margin" data-toggle="modal" data-target="#exampleModal">
@@ -64,7 +63,7 @@
     <div class="container center">
         <div id="game-box">
             <div id="bird-collection" class="row centered-row collection-view">
-                <img id="blackBird" src="assets/images/Bird-outline-example.png">
+                <img id="blackBird" src="assets/images/bb-outline.png">
                 <img id="blackBird1" src="assets/images/Bird-outline-example.png">
                 <img id="blackBird2" src="assets/images/Bird-outline-example.png">
                 <img id="blackBird3" src="assets/images/Bird-outline-example.png">
@@ -90,35 +89,39 @@
                 <button type="button" button-command="play-again" class="btn btn-outline-dark btn-margin">Start New Game</button>
             </div>
             <div id="turn-box" class="d-none row centered-row">
-                <div class="row">
-                    <div class="col-md-4 order-md-2">
+                <div class="row centered-row d-flex align-items-center">
+                    <div class="col-lg-5 order-lg-2">
                         <div id="question-image">
                         </div>
                         <div class="icons">
                             <span id="size" class="black"><i class="fa-solid fa-ruler-horizontal"></i></span><span id="colour" class="black"><i class="fa-solid fa-palette"></i></span><span id="location" class="black"><i class="fa-solid fa-location-dot"></i></span><span id="features" class="black"><i class="fa-solid fa-magnifying-glass"></i></span>
                         </div>
                     </div>
-                    <div id="questions-box" class="col-md-8 order-md-1">
-                        <h3 id="question-text">Question Text Blah Blah Blah</h3>
+                    <div id="questions-box" class="col-lg-7 order-lg-1">
+                        <div class="row justify-content-center justify-content-lg-start">
+                            <h3 id="question-text">Question Text Blah Blah Blah</h3>
+                        </div>
                         <div>
-                            <div class="row">
+                            <div class="row justify-content-center justify-content-lg-start">
                                 <button type="button" id="answer-option-1" class="answer-btn">Option 1</button>
                                 <button type="button" id="answer-option-2" class="answer-btn">Option 2</button>
                             </div>
-                            <div class="row">
+                            <div class="row justify-content-center justify-content-lg-start">
                                 <button type="button" id="answer-option-3" class="answer-btn">Option 3</button>
                                 <button type="button" id="answer-option-4" class="answer-btn">Option 4</button>
                             </div>
                         </div>
-                        <div class="row">
-                            <button type="button" button-command="submit-answer" class="btn btn-primary btn-lg">Submit</button>
+                        <div class="row justify-content-center justify-content-lg-start">
+                            <button type="button" button-command="submit-answer" class="btn btn-success btn-lg submit-btn">Submit</button>
                         </div>
                     </div>
-                    <div id="turn-results-box" class="col-md-8 order-md-1 d-none">
-                        <h3 id="results-text">Results Text Example</h3>
-                        <p id="feedback">Feedback text example</p>
-                        <p id="bird-fact">Bird fact example</p>
-                        <div class="row">
+                    <div id="turn-results-box" class="col-lg-7 order-lg-1 d-none">
+                        <div class="row justify-content-center justify-content-lg-start">
+                            <h3 id="results-text">Results Text Example</h3>
+                            <p id="feedback">Feedback text example</p>
+                            <p id="bird-fact">Bird fact example</p>
+                        </div>
+                        <div class="row justify-content-center justify-content-lg-start">
                             <button type="button" button-command="start-next-round" class="btn btn-primary btn-lg">Continue</button>
                         </div>
                     </div>
