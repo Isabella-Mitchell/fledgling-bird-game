@@ -71,13 +71,13 @@ function showFinalResults() {
     console.log('Final Results are:', game.score);
     let finalResultsFeedback;
     if (game.score >= 15) {
-        finalResultsFeedback = "Congratualtions, you can now identify these common birds";
+        finalResultsFeedback = "Congratulations, you can now identify these common birds";
     }
     else if (game.score >= 10 && game.score <= 14) {
         finalResultsFeedback = "Well done, you have a good chance of being able to identify these common birds";
     }
     else if (game.score <= 9) {
-        finalResultsFeedback = "Comiserations. Have another go to improve your bird identiftying skills";
+        finalResultsFeedback = "Commiserations. Why not have another go to improve your bird identifying skills?";
     }
     $("#game-box").fadeOut(1000, function(){
         $("#bird-collection").removeClass("d-none");
@@ -334,7 +334,7 @@ const questionBank = {
             {
                 question: "What size is the bird?",
                 genre: "size",
-                imageSrc: "assets/images/Bird-image-sample-1.png",
+                imageSrc: "assets/images/bt-size.png",
                 options: ["Smaller than 20 cm", "Between 20cm and 30cm", "Between 30cm and 50cm", "Larger than 50cm"],
                 correctAnswer: "Smaller than 20 cm"
             },
@@ -348,9 +348,9 @@ const questionBank = {
             {
                 question: "What is the bird doing?",
                 genre: "location",
-                imageSrc: "assets/images/Bird-image-sample-3.png",
-                options: ["Moving through a dense bush", "Building a nest beside water", "Flying high above a field", "Perched on a feeder with a flock"],
-                correctAnswer: "Perched on a feeder with a flock"
+                imageSrc: "assets/images/bt-action.png",
+                options: ["Moving through a dense bush", "Building a nest beside water", "Flying high above a field", "Perching on a feeder with a flock"],
+                correctAnswer: "Perching on a feeder with a flock"
             },
             {
                 question: "What distinctive feature does this bird have?",
@@ -370,7 +370,7 @@ const questionBank = {
             {
                 question: "What size is the bird?",
                 genre: "size",
-                imageSrc: "assets/images/Bird-image-sample-1.png",
+                imageSrc: "assets/images/cm-size.png",
                 options: ["Smaller than 30 cm", "Between 30cm and 50cm", "Between 80cm and 100cm", "Larger than 100cm"],
                 correctAnswer: "Between 80cm and 100cm"
             },
@@ -384,14 +384,14 @@ const questionBank = {
             {
                 question: "What is the bird doing?",
                 genre: "location",
-                imageSrc: "assets/images/Bird-image-sample-3.png",
+                imageSrc: "assets/images/cm-action.png",
                 options: ["Perching on a feeder", "Perching on a rooftop", "Perching beside water", "Perching in a tree"],
-                correctAnswer: "Perched beside water"
+                correctAnswer: "Perching beside water"
             },
             {
                 question: "What distinctive feature does this bird have?",
                 genre: "features",
-                imageSrc: "assets/images/Bird-image-sample-4.png",
+                imageSrc: "assets/images/cm-feature.png",
                 options: ["A fan shaped tail", "A wing-outstretched posture", "A short chunky beak", "A one-legged stance"],
                 correctAnswer: "A wing-outstretched posture"
             }
@@ -406,7 +406,7 @@ const questionBank = {
             {
                 question: "What size is the bird?",
                 genre: "size",
-                imageSrc: "assets/images/Bird-image-sample-1.png",
+                imageSrc: "assets/images/mp-size.png",
                 options: ["Smaller than 30 cm", "Between 30cm and 50cm", "Between 80cm and 100cm", "Larger than 100cm"],
                 correctAnswer: "Between 30cm and 50cm"
             },
@@ -420,14 +420,14 @@ const questionBank = {
             {
                 question: "What is the bird doing?",
                 genre: "location",
-                imageSrc: "assets/images/Bird-image-sample-3.png",
+                imageSrc: "assets/images/mp-action.png",
                 options: ["Perching beside water", "Swimming in a pond", "Flying out of a tree", "Flying above the sea"],
                 correctAnswer: "Flying out of a tree"
             },
             {
                 question: "What distinctive feature does this bird have?",
                 genre: "features",
-                imageSrc: "assets/images/Bird-image-sample-4.png",
+                imageSrc: "assets/images/mp-feature.png",
                 options: ["Iridescent blue-green tail feathers", "A blue head with a black eye stripe", "A black head and a red breast", "A long hooked beak"],
                 correctAnswer: "Iridescent blue-green tail feathers"
             }
@@ -442,7 +442,7 @@ const questionBank = {
             {
                 question: "What size is the bird?",
                 genre: "size",
-                imageSrc: "assets/images/Bird-image-sample-1.png",
+                imageSrc: "assets/images/gf-size.png",
                 options: ["Smaller than 20 cm", "Between 20cm and 30cm", "Between 30cm and 50cm", "Larger than 50cm"],
                 correctAnswer: "Smaller than 20 cm"
             },
@@ -456,14 +456,14 @@ const questionBank = {
             {
                 question: "What is the bird doing?",
                 genre: "location",
-                imageSrc: "assets/images/Bird-image-sample-3.png",
+                imageSrc: "assets/images/gf-action.png",
                 options: ["Perching on a rooftop", "Perching beside water", "Feeding on the ground", "Hiding in a reedbed"],
                 correctAnswer: "Perching on a rooftop"
             },
             {
                 question: "What distinctive feature does this bird have?",
                 genre: "features",
-                imageSrc: "assets/images/Bird-image-sample-4.png",
+                imageSrc: "assets/images/gf-feature.png",
                 options: ["A short forked tail", "A golden eye ring", "A long black neck", "A bright red face"],
                 correctAnswer: "A bright red face"
             }
