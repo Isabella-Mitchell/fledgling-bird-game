@@ -108,10 +108,10 @@ function removeCompletedBird() {
 
 function giveFeedback(a, b) {
     if (a >= 4) {
-        $("#feedback").text(`Congratulations, you correctly idenfied a ${b}`);
+        $("#feedback").text(`Congratulations, you correctly identified a ${b}`);
     }
     else if (a === 3) {
-        $("#feedback").text(`Well done, it's quite likely what you saw was a ${b}`);
+        $("#feedback").text(`Well done, it's quite likely you saw a ${b}`);
     }
     else if (a === 2) {
         $("#feedback").text(`Hmmm, it's possible what you saw was a ${b}`);
@@ -255,11 +255,11 @@ function startNewRound() {
 
 //----re-factor so better---//
 function resetImages() {
-    $("#blackBird").attr("src", questionBank.blackBird.outlineImageSrc);
-    $("#blackBird1").attr("src", questionBank.blackBird1.outlineImageSrc);
-    $("#blackBird2").attr("src", questionBank.blackBird2.outlineImageSrc);
-    $("#blackBird3").attr("src", questionBank.blackBird3.outlineImageSrc);
-    $("#blackBird4").attr("src", questionBank.blackBird4.outlineImageSrc);
+    $("#blackbird").attr("src", questionBank.blackbird.outlineImageSrc);
+    $("#blueTit").attr("src", questionBank.blueTit.outlineImageSrc);
+    $("#cormorant").attr("src", questionBank.cormorant.outlineImageSrc);
+    $("#magpie").attr("src", questionBank.magpie.outlineImageSrc);
+    $("#goldfinch").attr("src", questionBank.goldfinch.outlineImageSrc);
     console.log("Images are reset");
     startNewGame();
 }
@@ -289,18 +289,18 @@ function startNewGame() {
 //Question Bank
 
 const questionBank = {
-    blackBird: {
+    blackbird: {
         birdName: "Blackbird",
         outlineImageSrc: "assets/images/bb-outline.png",
         finishedImageSrc: "assets/images/bb-final.png",
-        funFact: "This is a male blackbirds. Female blackbirds...",
+        funFact: "Did you know... Male blackbirds (such as this one) live up to their name but, confusingly, female blackbirds are brown with a yellow-brownish beak",
         quiz: [
             {
                 question: "What size is the bird?",
                 genre: "size",
                 imageSrc: "assets/images/bb-size.png",
-                options: ["Smaller than 15 cm", "Between 15cm and 30cm", "Between 30cm and 70cm", "Larger than 70cm"],
-                correctAnswer: "Between 15cm and 30cm"
+                options: ["Smaller than 20 cm", "Between 20cm and 30cm", "Between 30cm and 50cm", "Larger than 50cm"],
+                correctAnswer: "Between 20cm and 30cm"
             },
             {
                 question: "What colour is the bird?",
@@ -310,14 +310,14 @@ const questionBank = {
                 correctAnswer: "Black"
             },
             {
-                question: "Where can you see this bird?",
+                question: "What is the bird doing?",
                 genre: "location",
                 imageSrc: "assets/images/bb-action.png",
-                options: ["By or in fresh water", "In the Mountains or Highlands", "In a park or garden", "By the coast"],
-                correctAnswer: "In a park or garden"
+                options: ["Clinging to a tree trunk", "Wading through shallow water", "Feeding on the ground", "Flying in a flock"],
+                correctAnswer: "Feeding on the ground"
             },
             {
-                question: "What distinctive feature does this bird have?",
+                question: "What distinctive feature does the bird have?",
                 genre: "features",
                 imageSrc: "assets/images/bb-feature.png",
                 options: ["A red chest", "A yellow or orange beak", "A spotted back", "Large crest feathers"],
@@ -325,147 +325,147 @@ const questionBank = {
             }
         ],
     },
-    blackBird1: {
-        birdName: "Blackbird",
-        outlineImageSrc: "assets/images/Bird-outline-example.png",
-        finishedImageSrc: "assets/images/Bird-image-sample-5.png",
-        funFact: "This is a male blackbirds. Female blackbirds...",
+    blueTit: {
+        birdName: "Blue Tit",
+        outlineImageSrc: "assets/images/bt-outline.png",
+        finishedImageSrc: "assets/images/bt-final.png",
+        funFact: "Did you know... Blue tits are extremely social birds. They can be spotted in flocks of up to 20 strong and are happy to feed alongside other bird species.",
         quiz: [
             {
                 question: "What size is the bird?",
                 genre: "size",
                 imageSrc: "assets/images/Bird-image-sample-1.png",
-                options: ["Smaller than 15 cm", "Between 15cm and 30cm", "Between 30cm and 70cm", "Larger than 70cm"],
-                correctAnswer: "Between 15cm and 30cm"
+                options: ["Smaller than 20 cm", "Between 20cm and 30cm", "Between 30cm and 50cm", "Larger than 50cm"],
+                correctAnswer: "Smaller than 20 cm"
             },
             {
                 question: "What colour is the bird?",
                 genre: "colour",
-                imageSrc: "assets/images/Bird-image-sample-2.png",
-                options: ["Black", "White", "Green", "Blue"],
-                correctAnswer: "Black"
+                imageSrc: "assets/images/bt-colour.png",
+                options: ["Red, Brown and Yellow", "Brown, Blue and White", "Blue, Green and Yellow", "Red, Grey and Black"],
+                correctAnswer: "Blue, Green and Yellow"
             },
             {
-                question: "Where can you see this bird?",
+                question: "What is the bird doing?",
                 genre: "location",
                 imageSrc: "assets/images/Bird-image-sample-3.png",
-                options: ["By or in fresh water", "In the Mountains or Highlands", "In a park or garden", "By the coast"],
-                correctAnswer: "In a park or garden"
+                options: ["Moving through a dense bush", "Building a nest beside water", "Flying high above a field", "Perched on a feeder with a flock"],
+                correctAnswer: "Perched on a feeder with a flock"
             },
             {
                 question: "What distinctive feature does this bird have?",
                 genre: "features",
-                imageSrc: "assets/images/Bird-image-sample-4.png",
-                options: ["A red chest", "A yellow or orange beak", "A spotted back", "Large crest feathers"],
-                correctAnswer: "A yellow or orange beak"
+                imageSrc: "assets/images/bt-feature.png",
+                options: ["A blue head with a black eye stripe", "Long red legs and a red beak", "A grey head and an orange breast", "Iridescent blue-green tail feathers"],
+                correctAnswer: "A blue head with a black eye stripe"
             }
         ],
     },
-    blackBird2: {
-        birdName: "Blackbird",
-        outlineImageSrc: "assets/images/Bird-outline-example.png",
-        finishedImageSrc: "assets/images/Bird-image-sample-5.png",
-        funFact: "This is a male blackbirds. Female blackbirds...",
+    cormorant: {
+        birdName: "Cormorant",
+        outlineImageSrc: "assets/images/cm-outline.png",
+        finishedImageSrc: "assets/images/cm-final.png",
+        funFact: "Fun fact... Cormorants dive underwater to catch food. That's why you'll often see them standing like this, to dry their wings out after diving.",
         quiz: [
             {
                 question: "What size is the bird?",
                 genre: "size",
                 imageSrc: "assets/images/Bird-image-sample-1.png",
-                options: ["Smaller than 15 cm", "Between 15cm and 30cm", "Between 30cm and 70cm", "Larger than 70cm"],
-                correctAnswer: "Between 15cm and 30cm"
+                options: ["Smaller than 30 cm", "Between 30cm and 50cm", "Between 80cm and 100cm", "Larger than 100cm"],
+                correctAnswer: "Between 80cm and 100cm"
             },
             {
                 question: "What colour is the bird?",
                 genre: "colour",
-                imageSrc: "assets/images/Bird-image-sample-2.png",
-                options: ["Black", "White", "Green", "Blue"],
-                correctAnswer: "Black"
+                imageSrc: "assets/images/cm-colour.png",
+                options: ["Black, Brown and White", "Yellow, Green and Grey", "Brown, White and Red", "Blue, Yellow and Green"],
+                correctAnswer: "Black, Brown and White"
             },
             {
-                question: "Where can you see this bird?",
+                question: "What is the bird doing?",
                 genre: "location",
                 imageSrc: "assets/images/Bird-image-sample-3.png",
-                options: ["By or in fresh water", "In the Mountains or Highlands", "In a park or garden", "By the coast"],
-                correctAnswer: "In a park or garden"
+                options: ["Perching on a feeder", "Perching on a rooftop", "Perching beside water", "Perching in a tree"],
+                correctAnswer: "Perched beside water"
             },
             {
                 question: "What distinctive feature does this bird have?",
                 genre: "features",
                 imageSrc: "assets/images/Bird-image-sample-4.png",
-                options: ["A red chest", "A yellow or orange beak", "A spotted back", "Large crest feathers"],
-                correctAnswer: "A yellow or orange beak"
+                options: ["A fan shaped tail", "A wing-outstretched posture", "A short chunky beak", "A one-legged stance"],
+                correctAnswer: "A wing-outstretched posture"
             }
         ],
     },
-    blackBird3: {
-        birdName: "Blackbird",
-        outlineImageSrc: "assets/images/Bird-outline-example.png",
-        finishedImageSrc: "assets/images/Bird-image-sample-5.png",
-        funFact: "This is a male blackbirds. Female blackbirds...",
+    magpie: {
+        birdName: "Magpie",
+        outlineImageSrc: "assets/images/mp-outline.png",
+        finishedImageSrc: "assets/images/mp-final.png",
+        funFact: "Fun fact... Magpies possess an extremely long tail. In fact, a magpie’s tail is often roughly the same length as its entire body.",
         quiz: [
             {
                 question: "What size is the bird?",
                 genre: "size",
                 imageSrc: "assets/images/Bird-image-sample-1.png",
-                options: ["Smaller than 15 cm", "Between 15cm and 30cm", "Between 30cm and 70cm", "Larger than 70cm"],
-                correctAnswer: "Between 15cm and 30cm"
+                options: ["Smaller than 30 cm", "Between 30cm and 50cm", "Between 80cm and 100cm", "Larger than 100cm"],
+                correctAnswer: "Between 30cm and 50cm"
             },
             {
                 question: "What colour is the bird?",
                 genre: "colour",
-                imageSrc: "assets/images/Bird-image-sample-2.png",
-                options: ["Black", "White", "Green", "Blue"],
-                correctAnswer: "Black"
+                imageSrc: "assets/images/mp-colour.png",
+                options: ["Brown, White and Red", "Yellow, Red and Brown", "Brown, Black and White", "Black, Blue and White"],
+                correctAnswer: "Black, Blue and White"
             },
             {
-                question: "Where can you see this bird?",
+                question: "What is the bird doing?",
                 genre: "location",
                 imageSrc: "assets/images/Bird-image-sample-3.png",
-                options: ["By or in fresh water", "In the Mountains or Highlands", "In a park or garden", "By the coast"],
-                correctAnswer: "In a park or garden"
+                options: ["Perching beside water", "Swimming in a pond", "Flying out of a tree", "Flying above the sea"],
+                correctAnswer: "Flying out of a tree"
             },
             {
                 question: "What distinctive feature does this bird have?",
                 genre: "features",
                 imageSrc: "assets/images/Bird-image-sample-4.png",
-                options: ["A red chest", "A yellow or orange beak", "A spotted back", "Large crest feathers"],
-                correctAnswer: "A yellow or orange beak"
+                options: ["Iridescent blue-green tail feathers", "A blue head with a black eye stripe", "A black head and a red breast", "A long hooked beak"],
+                correctAnswer: "Iridescent blue-green tail feathers"
             }
         ],
     },
-    blackBird4: {
-        birdName: "Blackbird",
-        outlineImageSrc: "assets/images/Bird-outline-example.png",
-        finishedImageSrc: "assets/images/Bird-image-sample-5.png",
-        funFact: "This is a male blackbirds. Female blackbirds...",
+    goldfinch: {
+        birdName: "Goldfinch",
+        outlineImageSrc: "assets/images/gf-outline.png",
+        finishedImageSrc: "assets/images/gf-final.png",
+        funFact: "Did you know... The collective name for these highly colourful birds is a 'charm', is derived from old English and refers to the goldfinches’ twittering song.",
         quiz: [
             {
                 question: "What size is the bird?",
                 genre: "size",
                 imageSrc: "assets/images/Bird-image-sample-1.png",
-                options: ["Smaller than 15 cm", "Between 15cm and 30cm", "Between 30cm and 70cm", "Larger than 70cm"],
-                correctAnswer: "Between 15cm and 30cm"
+                options: ["Smaller than 20 cm", "Between 20cm and 30cm", "Between 30cm and 50cm", "Larger than 50cm"],
+                correctAnswer: "Smaller than 20 cm"
             },
             {
                 question: "What colour is the bird?",
                 genre: "colour",
-                imageSrc: "assets/images/Bird-image-sample-2.png",
-                options: ["Black", "White", "Green", "Blue"],
-                correctAnswer: "Black"
+                imageSrc: "assets/images/gf-colour.png",
+                options: ["White, Brown, Yellow and Green", "Black, Grey, White and Brown", "Black, Brown, White and Yellow", "Blue-Grey, Red and Brown"],
+                correctAnswer: "Black, Brown, White and Yellow"
             },
             {
-                question: "Where can you see this bird?",
+                question: "What is the bird doing?",
                 genre: "location",
                 imageSrc: "assets/images/Bird-image-sample-3.png",
-                options: ["By or in fresh water", "In the Mountains or Highlands", "In a park or garden", "By the coast"],
-                correctAnswer: "In a park or garden"
+                options: ["Perching on a rooftop", "Perching beside water", "Feeding on the ground", "Hiding in a reedbed"],
+                correctAnswer: "Perching on a rooftop"
             },
             {
                 question: "What distinctive feature does this bird have?",
                 genre: "features",
                 imageSrc: "assets/images/Bird-image-sample-4.png",
-                options: ["A red chest", "A yellow or orange beak", "A spotted back", "Large crest feathers"],
-                correctAnswer: "A yellow or orange beak"
+                options: ["A short forked tail", "A golden eye ring", "A long black neck", "A bright red face"],
+                correctAnswer: "A bright red face"
             }
         ],
     }
