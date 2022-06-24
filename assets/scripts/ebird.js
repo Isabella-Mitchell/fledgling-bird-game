@@ -32,13 +32,25 @@ function getData(lat, lng, cb) {
     };
 }
 
+
+
 //eBird builds table - from star wars walk through
 function getTableHeaders(obj) {
     var tableHeaders = [];
 
-    Object.keys(obj).forEach(function (key){
-        tableHeaders.push(`<td>${key}</td>`);
-    });
+    console.log("The comn name is", Object.keys(obj)[1]);
+    console.log("The location is", Object.keys(obj)[4]);
+    console.log("The observation date is", Object.keys(obj)[5]);
+    console.log("How many", Object.keys(obj)[6]);
+
+    tableHeaders.push(`<tr>${Object.keys(obj)[1]}</tr>`)
+    tableHeaders.push(`<tr>${Object.keys(obj)[4]}</tr>`)
+    tableHeaders.push(`<tr>${Object.keys(obj)[5]}</tr>`)
+    tableHeaders.push(`<tr>${Object.keys(obj)[6]}</tr>`)
+    //commented out - makes table header for all columns
+    //Object.keys(obj).forEach(function (key){
+    //    tableHeaders.push(`<td>${key}</td>`);
+    //});
 
     return `<tr>${tableHeaders}</tr>`;
 }
