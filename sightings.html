@@ -5,13 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="assets/scripts/ebird.js"></script>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous" />
+    <script src="https://kit.fontawesome.com/e4ffee1eee.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
 </head>
 <body>
-    <button onclick="writeToDocument('GB-ENG-CON')">GB-ENG-CON</button>
-    <button onclick="writeToDocument('lat=51.58&lng=-0.10')">lat = 51.58, lng = -0.10</button>
-    <div id="data"></div>
+    <div class="container">
+        <h2 id="text-center">Enter Location</h2>
+        <form id="location-form">
+            <input type="text" id="location-input" class="form-control form-control-lg">
+            <br>
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </form>
+        <div id="formatted-address"></div>
+        <div id="geometry"></div>
+        <div id="data"></div>
+    </div>
 </body>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="assets/scripts/ebird.js"></script>
 </html>
 
 

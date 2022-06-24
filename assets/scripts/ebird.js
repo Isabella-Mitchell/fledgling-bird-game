@@ -1,16 +1,27 @@
-//test code
+//From GMAPs youtube Tutorial - setting up event listener for event
+var locationForm = document.getElementById('location-form');
+
+//listen for submit
+locationForm.addEventListener('submit', geocode);
+
+//Variables for input 
+    let locationLat;
+    let locationLng;
+
+
+    //From GMAPs youtube Tutorial - G Maps GeoCode function. Added in Maths Floor to round to 2 decimal places
+//credit https://www.youtube.com/watch?v=pRiQeo17u6c
+
+
+//eBird API code - from star wars walk through
 const baseURL = "https://api.ebird.org/v2/data/obs/geo/recent?";
 const apiKey = "&key=u5345apoosps";
 
-//original code
-//const baseURL = "https://api.ebird.org/v2/data/obs/";
-//const apiKey = "/recent/?key=u5345apoosps";
-
-
-function getData(type, cb) {
+//eBird function to get data - from star wars walk through
+function getData(lat, lng, cb) {
     let xhr = new XMLHttpRequest();
 
-    xhr.open("GET", baseURL + type + apiKey);
+    xhr.open("GET", baseURL + "lat=" + lat + "&lng=" + lng + apiKey);
     xhr.send();
 
 
@@ -21,6 +32,7 @@ function getData(type, cb) {
     };
 }
 
+//eBird builds table - from star wars walk through
 function getTableHeaders(obj) {
     var tableHeaders = [];
 
@@ -31,11 +43,11 @@ function getTableHeaders(obj) {
     return `<tr>${tableHeaders}</tr>`;
 }
 
-function writeToDocument(type) {
+function writeToDocument(lat, lng) {
     var el = document.getElementById("data");
     el.innerHTML = "";
 
-    getData(type, function(data) {
+    getData(lat, lng, function(data) {
 
         if (data.length > 100) {
             console.log("data length is greater than 100");
@@ -60,3 +72,55 @@ function writeToDocument(type) {
         el.innerHTML = `<table>${tableHeaders}${tableRows}</table>`.replace(/,/g, "");
     })
 }
+
+function geocode(e) {
+    //prevent actual submit
+        e.preventDefault();
+    
+        var location = document.getElementById('location-input').value;
+        axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+            params:{
+                address: location,
+                key:'AIzaSyBoEklUcMdWIgoqZw1hY09NGnBUW9hzTVQ'                    
+            }
+        })
+        .then(function(response){
+            locationLat = response.data.results[0].geometry.location.lat;
+            locationLng = response.data.results[0].geometry.location.lng;
+            console.log(response);
+            console.log(response.data.results[0].formatted_address)
+            console.log(locationLat);
+            console.log(locationLng);
+            locationLat = Math.floor(locationLat * 100) / 100
+            locationLng = Math.floor(locationLng * 100) / 100
+            console.log(locationLat);
+            console.log(locationLng);
+            writeToDocument(locationLat, locationLng);
+    
+
+            //formatted address
+            var formattedAddress = response.data.results[0].formatted_address
+            var formattedAddressOutput = `
+                <ul class="list-group">
+                    <li class="list-group-item">${formattedAddress}</li>
+                </ul>
+            `;
+    
+            //geometry
+            var lat = response.data.results[0].geometry.location.lat
+            var lng = response.data.results[0].geometry.location.lng
+            var geometryOutput = `
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Latitude</strong>:${lat}</li>
+                    <li class="list-group-item"><strong>Longitude</strong>:${lng}</li>
+                </ul>
+            `;
+    
+            //output to app
+            document.getElementById('formatted-address').innerHTML = formattedAddressOutput;
+            document.getElementById('geometry').innerHTML = geometryOutput;
+        })
+        .catch(function(error){
+            console.log(error);
+        })
+    }
