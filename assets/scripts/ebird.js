@@ -75,6 +75,8 @@ function writeToDocument(lat, lng) {
 
             Object.keys(item).forEach(function(key){
                 var rowData = item[key].toString();
+                //added below to check how to only pull out certain colomns
+                console.log(rowData);
                 var truncatedData = rowData.substring(0, 15);
                 dataRow.push(`<td>${truncatedData}</td>`);
             });
