@@ -1,3 +1,8 @@
+//test code
+//const baseURL = "https://api.ebird.org/v2/data/obs/geo/recent/";
+//const apiKey = "/?key=u5345apoosps";
+
+//original code
 const baseURL = "https://api.ebird.org/v2/data/obs/";
 const apiKey = "/recent/?key=u5345apoosps";
 
