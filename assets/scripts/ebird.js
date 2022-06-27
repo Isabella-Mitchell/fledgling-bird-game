@@ -134,7 +134,8 @@ function geocode(e) {
             document.getElementById('formatted-address').innerHTML = formattedAddressOutput;
             document.getElementById('geometry').innerHTML = geometryOutput;
         })
-        .catch(function(error){
-            console.log(error);
-        })
+        //
+        //.catch(function(error){
+        //    console.log(error);
+        //})
     }
