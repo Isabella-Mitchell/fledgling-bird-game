@@ -18,10 +18,10 @@ const baseURL = "https://api.ebird.org/v2/data/obs/geo/recent?";
 const apiKey = "&key=u5345apoosps";
 
 //eBird function to get data - from star wars walk through
-function getData(lat, lng, cb) {
+function getData(lat, lng, dist, cb) {
     let xhr = new XMLHttpRequest();
 
-    xhr.open("GET", baseURL + "lat=" + lat + "&lng=" + lng + apiKey);
+    xhr.open("GET", baseURL + "lat=" + lat + "&lng=" + lng + "&dist=" + dist + apiKey);
     xhr.send();
 
 
@@ -60,11 +60,11 @@ function getTableHeaders(obj) {
     return `<tr>${tableHeaders}</tr>`;
 }
 
-function writeToDocument(lat, lng) {
+function writeToDocument(lat, lng, distance) {
     var el = document.getElementById("data");
     el.innerHTML = "";
 
-    getData(lat, lng, function(data) {
+    getData(lat, lng, distance, function(data) {
 
         if (data.length > 100) {
             console.log("data length is greater than 100");
@@ -95,7 +95,7 @@ function writeToDocument(lat, lng) {
             //tableRows.push(`<tr>${dataRow}</tr>`);
 
             var rowData = item.locName.toString();
-            var truncatedData = rowData.substring(0, 30);
+            var truncatedData = rowData.substring(0, 50);
             dataRow.push(`<td>${truncatedData}</td>`);
            
 
@@ -137,7 +137,14 @@ function geocode(e) {
             locationLng = Math.floor(locationLng * 100) / 100
             console.log(locationLat);
             console.log(locationLng);
-            writeToDocument(locationLat, locationLng);
+            //distance
+            //var distance = document.getElementById("distance-select").input;
+            //console.log(distance);
+            //console.log(document.getElementById("distance-select").value);
+            var selectDistance = document.getElementById('distance-select');
+            var distance = selectDistance.options[selectDistance.selectedIndex].value;
+            console.log("The selected distance is", distance); 
+            writeToDocument(locationLat, locationLng, distance);
     
 
             //formatted address
