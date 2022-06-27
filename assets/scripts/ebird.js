@@ -43,10 +43,15 @@ function getTableHeaders(obj) {
     console.log("The observation date is", Object.keys(obj)[5]);
     console.log("How many", Object.keys(obj)[6]);
 
-    tableHeaders.push(`<tr>${Object.keys(obj)[1]}</tr>`)
-    tableHeaders.push(`<tr>${Object.keys(obj)[4]}</tr>`)
-    tableHeaders.push(`<tr>${Object.keys(obj)[5]}</tr>`)
-    tableHeaders.push(`<tr>${Object.keys(obj)[6]}</tr>`)
+    //commented out - replaced with nicer words
+    //tableHeaders.push(`<td>"${Object.keys(obj)[1]}"</td>`)
+    //tableHeaders.push(`<td>${Object.keys(obj)[4]}</td>`)
+    //tableHeaders.push(`<td>${Object.keys(obj)[5]}</td>`)
+    //tableHeaders.push(`<td>${Object.keys(obj)[6]}</td>`)
+    tableHeaders.push(`<td>Bird Observed (Common Name)</td>`)
+    tableHeaders.push(`<td>Location Observed</td>`)
+    tableHeaders.push(`<td>Date Observed</td>`)
+    tableHeaders.push(`<td>How Many Observed</td>`)
     //commented out - makes table header for all columns
     //Object.keys(obj).forEach(function (key){
     //    tableHeaders.push(`<td>${key}</td>`);
@@ -73,13 +78,36 @@ function writeToDocument(lat, lng) {
         data.forEach(function(item){
             var dataRow = [];
 
-            Object.keys(item).forEach(function(key){
-                var rowData = item[key].toString();
+            //console.log(item);
+            //console.log(item.comName);
+
+            var rowData = item.comName.toString();
+            var truncatedData = rowData.substring(0, 30);
+            dataRow.push(`<td>${truncatedData}</td>`);
+
+            //Object.keys(item).forEach(function(key){
+            //    var rowData = item[key].toString();
                 //added below to check how to only pull out certain colomns
-                console.log(rowData);
-                var truncatedData = rowData.substring(0, 15);
-                dataRow.push(`<td>${truncatedData}</td>`);
-            });
+            //    console.log(rowData);
+            //    var truncatedData = rowData.substring(0, 15);
+            //    dataRow.push(`<td>${truncatedData}</td>`);
+            //});
+            //tableRows.push(`<tr>${dataRow}</tr>`);
+
+            var rowData = item.locName.toString();
+            var truncatedData = rowData.substring(0, 30);
+            dataRow.push(`<td>${truncatedData}</td>`);
+           
+
+            var rowData = item.obsDt.toString();
+            var truncatedData = rowData.substring(0, 30);
+            dataRow.push(`<td>${truncatedData}</td>`);
+           
+
+            var rowData = item.howMany
+            var truncatedData = rowData
+            dataRow.push(`<td>${truncatedData}</td>`);
+
             tableRows.push(`<tr>${dataRow}</tr>`);
         });
 
@@ -134,8 +162,8 @@ function geocode(e) {
             document.getElementById('formatted-address').innerHTML = formattedAddressOutput;
             document.getElementById('geometry').innerHTML = geometryOutput;
         })
-        //
-        //.catch(function(error){
-        //    console.log(error);
-        //})
+        
+        .catch(function(error){
+            console.log(error);
+        })
     }
