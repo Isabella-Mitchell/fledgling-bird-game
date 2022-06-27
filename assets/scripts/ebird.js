@@ -138,9 +138,6 @@ function geocode(e) {
             console.log(locationLat);
             console.log(locationLng);
             //distance
-            //var distance = document.getElementById("distance-select").input;
-            //console.log(distance);
-            //console.log(document.getElementById("distance-select").value);
             var selectDistance = document.getElementById('distance-select');
             var distance = selectDistance.options[selectDistance.selectedIndex].value;
             console.log("The selected distance is", distance); 
