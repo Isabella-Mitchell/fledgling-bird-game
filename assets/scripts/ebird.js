@@ -66,10 +66,6 @@ function writeToDocument(lat, lng, distance) {
 
     getData(lat, lng, distance, function(data) {
 
-        if (data.length > 100) {
-            console.log("data length is greater than 100");
-            //contine pagination
-        }
         var tableRows = [];
         //delete console log below when ready
         console.dir(data);
@@ -112,6 +108,7 @@ function writeToDocument(lat, lng, distance) {
         });
 
         el.innerHTML = `<table>${tableHeaders}${tableRows}</table>`.replace(/,/g, "");
+
     })
 }
 
