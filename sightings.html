@@ -1,43 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="author" content="" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous" />
-    <script src="https://kit.fontawesome.com/e4ffee1eee.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
-</head>
-<body>
-    <div class="container">
-        <h2 id="text-center">Enter Location</h2>
-        <form id="location-form">
-            <input type="text" id="location-input" class="form-control form-control-lg">
-            <div class="form-group">
-                <label for="distance-select">Distance select (KM)</label>
-                <select class="form-control" id="distance-select">
-                  <option value="5">5</option>
-                  <option value="10">10</option>
-                  <option value="15">15</option>
-                  <option value="25">25</option>
-                  <option value="50">50</option>
-                </select>
-              </div>
-            <br>
-            <button type="submit" class="btn btn-primary btn-block">Submit</button>
-        </form>
-        <div id="formatted-address"></div>
-        <div id="geometry"></div>
-        <div id="data"></div>
-        <div id="error"></div>
-    </div>
-</body>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="assets/scripts/ebird.js"></script>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="author" content="" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous" />
+        <script src="https://kit.fontawesome.com/e4ffee1eee.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
+    </head>
+    <body>
+        <div class="container">
+            <h2 id="text-center">Enter Location</h2>
+            <form id="location-form">
+                <input type="text" id="location-input" class="form-control form-control-lg">
+                <div class="form-group">
+                    <label for="distance-select">Distance select (KM)</label>
+                    <select class="form-control" id="distance-select">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    </select>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+            </form>
+            <div id="formatted-address"></div>
+            <div id="geometry"></div>
+            <div id="data"></div>
+            <div id="error"></div>
+        </div>
+        <footer class="mt-auto d-flex align-self-end">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 text-sm-left">
+                        <h3>
+                            fledgling
+                        </h3>
+                        <p class="small mb-md-2">
+                            An interactive website designed to engage people in birdwatching
+                        </p>
+                    </div>
+                    <div class="col-sm-6 text-sm-right">
+                        <ul class="list-inline social-links">
+                            <li class="list-inline-item">
+                                <a target="_blank" href="https://www.facebook.com">
+                                    <i class="fa-brands fa-facebook-square" aria-hidden="true"></i>
+                                    <span class="sr-only">Facebook</span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a target="_blank" href="https://twitter.com">
+                                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                                    <span class="sr-only">Twitter</span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a target="_blank" href="https://www.instagram.com">
+                                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                                    <span class="sr-only">Instagram</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6 text-sm-left">
+                        <p class="small">
+                            Copyright © 2022 fledgling
+                        </p>
+                    </div>    
+                </div>
+            </div>
+        </footer>
+        <!--Script for Geocoding-->
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <!--Bootstrap scripts-->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+        <!--My script-->
+        <script src="assets/scripts/ebird.js"></script>
+    </body>
 </html>
 
 
