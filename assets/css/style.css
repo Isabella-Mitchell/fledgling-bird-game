@@ -147,6 +147,30 @@ h6,
   box-shadow: 0 0 0 0
 }
 
+/* ---------------------------------------- Sightings */
+
+table {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+th {
+  padding: 10px;
+}
+
+td {
+  padding: 5px;
+}
+
   /* ----------------------------------------Footer */
 
 footer {

@@ -48,10 +48,10 @@ function getTableHeaders(obj) {
     //tableHeaders.push(`<td>${Object.keys(obj)[4]}</td>`)
     //tableHeaders.push(`<td>${Object.keys(obj)[5]}</td>`)
     //tableHeaders.push(`<td>${Object.keys(obj)[6]}</td>`)
-    tableHeaders.push(`<td>Bird Observed (Common Name)</td>`)
-    tableHeaders.push(`<td>Location Observed</td>`)
-    tableHeaders.push(`<td>Date Observed</td>`)
-    tableHeaders.push(`<td>How Many Observed</td>`)
+    tableHeaders.push(`<th>Bird Observed (Common Name)</th>`)
+    tableHeaders.push(`<th>Location Observed</th>`)
+    tableHeaders.push(`<th>Number Observed</th>`)
+    tableHeaders.push(`<th>Date Observed</th>`)
     //commented out - makes table header for all columns
     //Object.keys(obj).forEach(function (key){
     //    tableHeaders.push(`<td>${key}</td>`);
@@ -93,17 +93,15 @@ function writeToDocument(lat, lng, distance) {
             var rowData = item.locName.toString();
             var truncatedData = rowData.substring(0, 50);
             dataRow.push(`<td>${truncatedData}</td>`);
-           
-
-            var rowData = item.obsDt.toString();
-            var truncatedData = rowData.substring(0, 30);
-            dataRow.push(`<td>${truncatedData}</td>`);
-           
 
             var rowData = item.howMany
             var truncatedData = rowData
             dataRow.push(`<td>${truncatedData}</td>`);
-
+           
+            var rowData = item.obsDt.toString();
+            var truncatedData = rowData.substring(0, 30);
+            dataRow.push(`<td>${truncatedData}</td>`);
+           
             tableRows.push(`<tr>${dataRow}</tr>`);
         });
 
