@@ -222,7 +222,7 @@ footer .row {
 }
 
 @media(min-width: 768px) {
-  .collection-view img {
+  .collection-view div img {
     max-width: 200px;
   }
 }

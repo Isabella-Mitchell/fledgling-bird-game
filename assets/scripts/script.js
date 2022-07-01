@@ -283,7 +283,7 @@ function resetGame() {
 function startNewGame() {
     console.log('start new game');
     resetGame();
-    $(".collection-view").children().addClass("bird-select");
+    $(".collection-view").children("div").children().addClass("bird-select");
 }
 
 //Question Bank
