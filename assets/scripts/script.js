@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     //console.log(game.submittedTurnAnswer);
                     checkAnswer(game.submittedTurnAnswer, game.turnNumber);
                 } else {
-                    alert("please select an answer");
+                    alert("Please select an answer.");
                 }
             } else if (this.getAttribute("button-command") === "start-next-round") {
                 if (game.roundNumber <= 5) {
@@ -71,10 +71,10 @@ function showFinalResults() {
     console.log('Final Results are:', game.score);
     let finalResultsFeedback;
     if (game.score >= 15) {
-        finalResultsFeedback = "Congratulations, you can now identify these common birds";
+        finalResultsFeedback = "Congratulations, you can now identify these common British birds";
     }
     else if (game.score >= 10 && game.score <= 14) {
-        finalResultsFeedback = "Well done, you have a good chance of being able to identify these common birds";
+        finalResultsFeedback = "Well done, you have a good chance of being able to identify these common British birds";
     }
     else if (game.score <= 9) {
         finalResultsFeedback = "Commiserations. Why not have another go to improve your bird identifying skills?";
@@ -93,7 +93,7 @@ function showFinalResults() {
             </div>
             <div class="row centered-row">
                 <div class="col-12">
-                    <p>${finalResultsFeedback}/p>
+                    <p>${finalResultsFeedback}</p>
                 </div>
             </div>`
             );
@@ -320,8 +320,8 @@ const questionBank = {
                 question: "What distinctive feature does the bird have?",
                 genre: "features",
                 imageSrc: "assets/images/bb-feature.png",
-                options: ["A red chest", "A yellow or orange beak", "A spotted back", "Large crest feathers"],
-                correctAnswer: "A yellow or orange beak"
+                options: ["A red chest", "An orange-yellow beak", "A spotted back", "Large crest feathers"],
+                correctAnswer: "An orange-yellow beak"
             }
         ],
     },
@@ -356,7 +356,7 @@ const questionBank = {
                 question: "What distinctive feature does this bird have?",
                 genre: "features",
                 imageSrc: "assets/images/bt-feature.png",
-                options: ["A blue head with a black eye stripe", "Long red legs and a red beak", "A grey head and an orange breast", "Iridescent blue-green tail feathers"],
+                options: ["A blue head with a black eye stripe", "Long red legs and a red beak", "A grey head and an orange breast", "A long hooked beak"],
                 correctAnswer: "A blue head with a black eye stripe"
             }
         ],
@@ -378,8 +378,8 @@ const questionBank = {
                 question: "What colour is the bird?",
                 genre: "colour",
                 imageSrc: "assets/images/cm-colour.png",
-                options: ["Black, Brown and White", "Yellow, Green and Grey", "Brown, White and Red", "Blue, Yellow and Green"],
-                correctAnswer: "Black, Brown and White"
+                options: ["Blacky-Brown and White", "Yellow, Green and Grey", "Brown, White and Red", "Bluey-Yellow and White"],
+                correctAnswer: "Blacky-Brown and White"
             },
             {
                 question: "What is the bird doing?",
@@ -414,7 +414,7 @@ const questionBank = {
                 question: "What colour is the bird?",
                 genre: "colour",
                 imageSrc: "assets/images/mp-colour.png",
-                options: ["Brown, White and Red", "Yellow, Red and Brown", "Brown, Black and White", "Black, Blue and White"],
+                options: ["Brown, White and Red", "Yellow, Red and Brown", "Brown, Black and Grey", "Black, Blue and White"],
                 correctAnswer: "Black, Blue and White"
             },
             {
@@ -428,8 +428,8 @@ const questionBank = {
                 question: "What distinctive feature does this bird have?",
                 genre: "features",
                 imageSrc: "assets/images/mp-feature.png",
-                options: ["Iridescent blue-green tail feathers", "A blue head with a black eye stripe", "A black head and a red breast", "A long hooked beak"],
-                correctAnswer: "Iridescent blue-green tail feathers"
+                options: ["Long iridescent blue-green tail feathers", "A green head with a black eye stripe", "A black head and a red breast", "An orange-yellow beak"],
+                correctAnswer: "Long iridescent blue-green tail feathers"
             }
         ],
     },
@@ -450,21 +450,21 @@ const questionBank = {
                 question: "What colour is the bird?",
                 genre: "colour",
                 imageSrc: "assets/images/gf-colour.png",
-                options: ["White, Brown, Yellow and Green", "Black, Grey, White and Brown", "Black, Brown, White and Yellow", "Blue-Grey, Red and Brown"],
+                options: ["Green, White, Brown, and Yellow", "Black, Grey, White and Brown", "Black, Brown, White and Yellow", "Blue-Grey, Red and Brown"],
                 correctAnswer: "Black, Brown, White and Yellow"
             },
             {
                 question: "What is the bird doing?",
                 genre: "location",
                 imageSrc: "assets/images/gf-action.png",
-                options: ["Perching on a rooftop", "Perching beside water", "Feeding on the ground", "Hiding in a reedbed"],
-                correctAnswer: "Perching on a rooftop"
+                options: ["Singing on a rooftop", "Nesting beside water", "Feeding on the ground", "Hiding in a reedbed"],
+                correctAnswer: "Singing on a rooftop"
             },
             {
                 question: "What distinctive feature does this bird have?",
                 genre: "features",
                 imageSrc: "assets/images/gf-feature.png",
-                options: ["A short forked tail", "A golden eye ring", "A long black neck", "A bright red face"],
+                options: ["A wing-outstretched posture", "A golden eye ring", "A long black neck", "A bright red face"],
                 correctAnswer: "A bright red face"
             }
         ],
