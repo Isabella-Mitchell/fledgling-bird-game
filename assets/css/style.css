@@ -1,6 +1,6 @@
 /*--------------------Google Fonts */
 
-@import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Noto+Serif:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Lato:wght@300;400&display=swap');
 
 /*--------------------Body */
 
@@ -9,6 +9,7 @@ body {
   display: flex;
   flex-direction: column;
   text-align: center;
+  font-family: Verdana, Helvetica, sans-serif;
 }
 
 /*--------------------Fonts and Sizes */
@@ -68,12 +69,15 @@ h6,
   min-width: 200px;
   border-radius: 5px;
   background-color: white;
-  border: 0.5px solid black;
+  border-width: 0.5px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.2);
   padding: 10px;
 }
 
 .submit-btn {
   margin: 10px;
+  padding: 10px 20px 10px 20px;
 }
 
 .icons span {
@@ -119,11 +123,11 @@ h6,
 }
 
 .green {
-  color: green
+  color: #6eaf74
 }
 
 .red {
-  color: red
+  color: #eb534c
 }
 
 /*.icons {
@@ -139,18 +143,25 @@ h6,
 }
 
 .highlight {
-  border: 1px solid orange;
+  border: 1px solid #9ee1a3;
 }
 
 .highlight-answer-option {
-  border: 1px solid orange;
+  border: 0.5px solid black;
 }
 
-.btn-success.focus, .btn-success:focus {
-  color: #fff;
-  background-color: #218838;
-  border-color: #1e7e34;
-  box-shadow: 0 0 0 0
+
+.btn-success, .btn-success:hover, .btn-success.focus, .btn-success:focus {
+  color: #000;
+  background-color: #9ee1a3;
+  border-color: #9ee1a3;
+  box-shadow: 0 0 0 0rem;
+}
+
+.btn-success:not(:disabled):not(.disabled).active, .btn-success:not(:disabled):not(.disabled):active, .show>.btn-success.dropdown-toggle {
+  color: #000;
+  background-color: #9ee1a3;
+  border-color: #9ee1a3;
 }
 
 /* ---------------------------------------- Sightings */
