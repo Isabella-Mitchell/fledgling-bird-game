@@ -56,51 +56,48 @@
     </nav>
 
         <div class="container">
-              <div class="col-12 text-sm-left">
-                <form id="location-form">
-                    <div class="form-row">
-                        <div class="form-group col-md-8">
-                            <label for="location-input">Enter An Address</label>
-                            <input type="text" id="location-input" class="form-control form-control-lg">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <div class="form-group">
-                                <label for="distance-select">Select a Distance (KM)</label>
-                                <select class="form-control form-control-lg" id="distance-select">
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                                <option value="15">15</option>
-                                <option value="25">25</option>
-                                <option value="50">50</option>
-                                </select>
+            <div class="row">
+                <div class="col-12 text-sm-left">
+                    <form id="location-form" class="pt-5">
+                        <div class="form-row">
+                            <div class="form-group col-lg-6">
+                                <label for="location-input">Enter An Address</label>
+                                <input type="text" id="location-input" class="form-control">
+                            </div>
+                            <div class="form-group col-md-6 col-lg-3">
+                                    <label for="distance-select">Select a Radius (KM)</label>
+                                    <select class="form-control" id="distance-select">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    </select>
+                            </div>
+                            <div class="form-group col-md-6 col-lg-3">
+                                <label for="see-sightings">View Recent Sightings</label>
+                                <button type="submit" class="btn btn-success btn-block" id="see-sightings">Submit</button>
                             </div>
                         </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
-                </form>
+                    </form>
+                </div>
             </div>
 
-            <!--
-            <form id="location-form">
-                <input type="text" id="location-input" class="form-control form-control-lg">
-                <div class="form-group">
-                    <label for="distance-select">Distance select (KM)</label>
-                    <select class="form-control" id="distance-select">
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="15">15</option>
-                    <option value="25">25</option>
-                    <option value="50">50</option>
-                    </select>
+            <div class="row">
+                <div class="col-12">
+                    <div id="formatted-address" class="user-input-box"></div>
                 </div>
-                <br>
-                <button type="submit" class="btn btn-primary btn-block">Submit</button>
-            </form>
-            -->
-            <div id="formatted-address"></div>
-            <div id="geometry"></div>
-            <div id="data"></div>
-            <div id="error"></div>
+                <div class="col-12">
+                    <div id="geometry" class="user-input-box"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div id="data" class="user-input-box"></div>
+                </div>
+            </div>
+
         </div>
         <footer class="mt-auto d-flex align-self-end">
             <div class="container">

@@ -48,9 +48,9 @@ function getTableHeaders(obj) {
     //tableHeaders.push(`<td>${Object.keys(obj)[4]}</td>`)
     //tableHeaders.push(`<td>${Object.keys(obj)[5]}</td>`)
     //tableHeaders.push(`<td>${Object.keys(obj)[6]}</td>`)
-    tableHeaders.push(`<th>Bird Observed (Common Name)</th>`)
+    tableHeaders.push(`<th>Bird Observed</th>`)
     tableHeaders.push(`<th>Location Observed</th>`)
-    tableHeaders.push(`<th>Number Observed</th>`)
+    tableHeaders.push(`<th>No. Observed</th>`)
     tableHeaders.push(`<th>Date Observed</th>`)
     //commented out - makes table header for all columns
     //Object.keys(obj).forEach(function (key){
@@ -91,7 +91,7 @@ function writeToDocument(lat, lng, distance) {
             //tableRows.push(`<tr>${dataRow}</tr>`);
 
             var rowData = item.locName.toString();
-            var truncatedData = rowData.substring(0, 50);
+            var truncatedData = rowData.substring(0, 30);
             dataRow.push(`<td>${truncatedData}</td>`);
 
             var rowData = item.howMany
@@ -143,7 +143,7 @@ function geocode(e) {
             var formattedAddress = response.data.results[0].formatted_address
             var formattedAddressOutput = `
                 <ul class="list-group">
-                    <li class="list-group-item">${formattedAddress}</li>
+                    <li class="list-group-item"><strong>Address Entered: </strong>${formattedAddress}</li>
                 </ul>
             `;
     
@@ -152,14 +152,13 @@ function geocode(e) {
             var lng = response.data.results[0].geometry.location.lng
             var geometryOutput = `
                 <ul class="list-group">
-                    <li class="list-group-item"><strong>Latitude</strong>:${lat}</li>
-                    <li class="list-group-item"><strong>Longitude</strong>:${lng}</li>
+                    <li class="list-group-item"><strong>Latitude</strong>:${lat} & <strong>Longitude</strong>:${lng}</li>
                 </ul>
             `;
     
             //output to app
             document.getElementById('formatted-address').innerHTML = formattedAddressOutput;
-            document.getElementById('geometry').innerHTML = geometryOutput;
+            //document.getElementById('geometry').innerHTML = geometryOutput;
         })
         
         .catch(function(error){

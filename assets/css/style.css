@@ -170,8 +170,8 @@ table {
   display: block;
   overflow-x: auto;
   white-space: nowrap;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 th, td {
@@ -185,6 +185,10 @@ th {
 }
 
 td {
+  padding: 5px;
+}
+
+.user-input-box {
   padding: 5px;
 }
 
@@ -243,4 +247,15 @@ footer .row {
     max-width: 300px;
   }
 }
+
+@media(min-width: 1024px) {
+  table {
+    display: inline-block;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
 
