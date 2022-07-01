@@ -64,12 +64,13 @@ h6,
 }
 
 .answer-btn {
+  color: black;
   margin: 10px;
   max-width: 200px;
   min-width: 200px;
   border-radius: 5px;
   background-color: white;
-  border-width: 0.5px;
+  border-width: 1px;
   border-style: solid;
   border-color: rgba(0, 0, 0, 0.2);
   padding: 10px;
@@ -119,7 +120,7 @@ h6,
 }
 
 .black {
-  color: black
+  color: #343a40
 }
 
 .green {
@@ -147,7 +148,7 @@ h6,
 }
 
 .highlight-answer-option {
-  border: 0.5px solid black;
+  border: 1px solid black;
 }
 
 
