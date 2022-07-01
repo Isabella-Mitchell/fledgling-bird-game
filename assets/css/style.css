@@ -99,7 +99,8 @@ h6,
   margin-bottom: -20px;
 }
 
-.collection-view img {
+/*-Added div to test ipad stretching-*/
+.collection-view div img {
   max-width: 120px;
   margin: 6px;
 }
