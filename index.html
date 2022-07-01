@@ -13,10 +13,20 @@
     <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
 </head>
 <body>
+
+    <!--testing stretch on ipad - image outside of flex container-->
+    <img src="assets/images/robin-gif-new-compressed.gif">
             <div class="container center">
                 <div>
                     <div class="row centered-row title-image">
-                        <img src="assets/images/robin-gif-new-compressed.gif">
+                        <!--testing stretch on ipad - image wrapped in div-->
+                        <div>
+                            <img src="assets/images/robin-gif-new-compressed.gif">
+                        </div>
+                    </div>
+                    <div class="row centered-row title-image">
+                        <!--testing stretch on ipad - with style display block-->
+                        <img style="display: block" src="assets/images/robin-gif-new-compressed.gif">
                     </div>
                     <div class="row centered-row">
                         <h1 class="landing-page-title">fledgling</h1>
