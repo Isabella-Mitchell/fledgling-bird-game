@@ -167,6 +167,10 @@ h6,
 
 /* ---------------------------------------- Sightings */
 
+.sightings-title {
+  font-size: large;
+}
+
 table {
   display: block;
   overflow-x: auto;
@@ -258,5 +262,12 @@ footer .row {
     margin-bottom: 20px;
   }
 }
+
+@media(min-width: 768px) {
+  .sightings-title {
+    font-size: x-large;
+  }
+}
+
 
 

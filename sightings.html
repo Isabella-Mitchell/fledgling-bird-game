@@ -20,17 +20,51 @@
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel-1">Modal title</h5>
+            <h5 class="modal-title" id="exampleModalLabel-1">Learn More</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
             </div>
-            <div class="modal-body">
-            How To Play blah blah blah
+            <div class="modal-body text-left">
+                <ul>
+                    <li>
+                    Find bird sightings near you (or any address in the world). You can search by street address, town, city or region.
+                    </li>
+                    <li>
+                    If there is no data for your search query, then please expand the radius or try again with a different address.
+                    </li>
+                </ul>
+                <h5>
+                    About eBird
+                </h5>
+                <ul>
+                    <li>
+                    eBird is an online database of bird observations. It was launched 2002 by the Cornell Lab of Ornithology at Cornell University.
+                    </li>
+                    <li>
+                    eBird is among the world’s largest biodiversity-related science projects, with more than 100 million bird sightings contributed annually by eBirders around the world
+                    </li>
+                    <li>
+                    This website uses the eBird API to retrieve data from the <a href="https://ebird.org/home" target="_blank">eBird website.</a> 
+                    </li>
+                </ul>
+                <h5>
+                    Further Bird Watching Resources
+                </h5>
+                <ul>
+                    </li>
+                    <li>
+                    <a href="https://www.rspb.org.uk/birds-and-wildlife/wildlife-guides/bird-a-z/" target="_blank">RSPB A-Z Bird Guide</a> - 
+                    Browse and Search UK birds by name to find pictures and more information.
+                    </li>
+                    <li>
+                    <a href="https://www.rspb.org.uk/birds-and-wildlife/wildlife-guides/identify-a-bird/"  target="_blank">RSPB Bird Identifier</a> - 
+                    An interactive bird identifier to help you work out what bird you've seen.
+                    </li>
+                </ul>
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
         </div>
@@ -47,7 +81,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item" id="how-to-play-box">
                     <button type="button" class="btn btn-outline-dark btn-margin" data-toggle="modal" data-target="#exampleModal-1">
-                        How It Works
+                        Learn More
                     </button>
                 </li>
             </ul>
@@ -56,9 +90,19 @@
     </nav>
 
         <div class="container">
+            <div class="row centered-row pt-4 pt-md-5">
+                <div class="col-12">
+                    <h2 class="sightings-title">
+                        Find recent bird sightings near you (or anywhere in the world)
+                    </h2>
+                    <h3 class="sightings-title">
+                        Data is provided by <a href="https://ebird.org/home" target="_blank">eBird</a>
+                    </h3>
+                </div> 
+            </div> 
             <div class="row">
                 <div class="col-12 text-sm-left">
-                    <form id="location-form" class="pt-5">
+                    <form id="location-form" class="pt-3 pt-lg-4">
                         <div class="form-row">
                             <div class="form-group col-lg-6">
                                 <label for="location-input">Enter An Address</label>
