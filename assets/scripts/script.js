@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function() {
             } else if (this.getAttribute("button-command") === "submit-answer")  {
                 if ($(".highlight-answer-option").text()) {
                     game.submittedTurnAnswer = $(".highlight-answer-option").text();
-                    //console.log(game.submittedTurnAnswer);
                     checkAnswer(game.submittedTurnAnswer, game.turnNumber);
                 } else {
                     alert("Please select an answer.");
@@ -27,7 +26,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 };
             } else if (this.getAttribute("button-command") === "play-again") {
                 $("#game-box").fadeOut(1000, function(){
-                    // Move this out only needs to apply if player chooses to play again
                     $("#end-game-box").addClass("d-none");
                     resetImages();
                 });
@@ -36,7 +34,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 });
-
 
 // Highlight class for Answer Options
 
@@ -61,12 +58,11 @@ let game = {
 //Global Variables
 
 let selectedBird;
-//let currentBird;
-//let currentBirdQuiz;
 let i;
 
 //Functions
 
+/** Shows the user's final results at end of game in the end game box*/
 function showFinalResults() {
     console.log('Final Results are:', game.score);
     let finalResultsFeedback;
@@ -102,10 +98,12 @@ function showFinalResults() {
     });
 }
 
+/** Removes a class from the bird image. Stops the user being able to select the same bird twice*/
 function removeCompletedBird() {
     $(".highlight").removeClass('bird-select').removeClass('highlight').attr("src", game.currentBird.finishedImageSrc);
 }
 
+/** Provides the end of round feedback based on score from 4 turns. Takes turn score and current bird as parameters*/
 function giveFeedback(a, b) {
     if (a >= 4) {
         $("#feedback").text(`Congratulations, you correctly identified a ${b}`);
@@ -121,6 +119,7 @@ function giveFeedback(a, b) {
     }
 }
 
+/** Changes the Game Box to the end of turn screen and displays the round score, finished bird image and fun fact.*/
 function showTurnResults() {
     $("#game-box").fadeOut(1000, function(){
         $("#question-image").html(`<img src="${game.currentBird.finishedImageSrc}">`);
@@ -134,43 +133,47 @@ function showTurnResults() {
     removeCompletedBird();
 }
 
+/** Prompted by check answer. Counts turn number, calls gameRound or calls showTurnResults after 4 questions.*/
+function callNextTurn(){
+    game.turnNumber = game.turnNumber + 1
+    if (game.turnNumber < 4) {
+        gameRound(game.turnNumber)
+    } else {
+    game.roundNumber = game.roundNumber + 1
+    showTurnResults();
+    };
+};
+
+/** Adds the score to the Turn score (out of 4) and the game score (out of 20) */
 function addScore() {
     game.score = game.score + 1;
     game.turnScore = game.turnScore + 1;
 }
 
+/** Prompted by button click. Checks user answer against bird object. Changes score indicator icon colour, calls addScore if correct. 
+ * Calls callNextTurn function
+ * Counts turn number, calls showTurnResults after 4 questions.
+ * */
 function checkAnswer(x, y) {
-    console.log("The answer options inner text is", x, "while the correct Answer is :", game.currentBirdQuiz[y].correctAnswer);
+    //Variable to select score success indicicator icon relevant to turn question 
     let iconColour = (document.getElementById(game.currentBirdQuiz[y].genre));
     if (x === game.currentBirdQuiz[y].correctAnswer) {
-        console.log("You got it right");
         $(iconColour).removeClass("black").addClass("green");
         addScore();
     } else {
-        console.log("You got it wrong boo");
         $(iconColour).removeClass("black").addClass("red");
     };
-    game.turnNumber = game.turnNumber + 1
-    if (game.turnNumber < 4) {
-        gameRound(game.turnNumber)
-    } else {
-    console.log("That's all folks");
-    game.roundNumber = game.roundNumber + 1
-    showTurnResults();
-    };
-    //add changes icon to green or red
+    //split the below out
+    callNextTurn()
 }
 
+/** Round of the game. Shows turn questions and changes image for each turn.*/
 function gameRound(i){
-        console.log('game round begins');
-        console.log(game)
         $(".answer-btn").removeClass("highlight-answer-option");
         $("#game-box").fadeOut(500, function(){
-            //could do with splitting out into own function to stop repeating
             $("#bird-collection").addClass("d-none");
             $("#game-info-box").addClass("d-none");
             $("#submit-bird-button-box").addClass("d-none");
-            //console.log("game turn number is", game.turnNumber);
             $("#question-image").html(`<img src="${game.currentBirdQuiz[i].imageSrc}">`);
             $("#question-text").text(`${game.currentBirdQuiz[i].question}`);
             $("#answer-option-1").text(`${game.currentBirdQuiz[i].options[0]}`);
@@ -183,27 +186,15 @@ function gameRound(i){
         });
 };
 
-//--- prompted by button run - starts questions ---//
-
-//function run after submitbird button clicked
-
+/** function run after submitbird button clicked. Gets ID of bird selected and puts content into Game Object. Calls initial gameRound function*/
 function submitBird() {
     selectedBird = document.getElementsByClassName('highlight');
-    console.log("The bird selected is", selectedBird[0].id);
     game.currentBird = questionBank[ selectedBird[0].id ];
     game.currentBirdQuiz = questionBank[ selectedBird[0].id ].quiz;
-    console.log(game);
     gameRound(game.turnNumber);
-    //can remove console log
-    //use this to add to completed Birds
-    //this can only happen if there is less than or equal to five birds in array - or put this in different function?
-    //elimainate option to choose completed bird
 }
 
-//--- end of start new round/ bird select sequence---//
-
-// Highlight class for Bird Options
-
+/** Allows user to select a bird. Will only allow to select one bird, and must select a bird to be able to proceed.*/
 function pickBirdEvent() {
     $(".bird-select").click(function() {
         if ($(this).hasClass("bird-select")) {
@@ -216,10 +207,8 @@ function pickBirdEvent() {
     });
 }
 
-// Start new round Animation - loads birds
-
+/** Start new round Animation - loads birds*/
 function startNewRound() {
-    console.log("New round is started");
     game.currentBird = [];
     game.currentBirdQuiz = [];
     game.turnNumber = 0
@@ -228,8 +217,6 @@ function startNewRound() {
         $("#how-to-play-box").removeClass("d-none");
         $("#bird-collection").removeClass("d-none");
         $("#game-info-box").removeClass("d-none");
-        // Move this out only needs to apply if player chooses to play again
-        $("#end-game-box").addClass("d-none");
         $("#turn-box").addClass("d-none");
         $(".icons").children().removeClass("green").removeClass("red").addClass("black");
         $("#turn-results-box").addClass("d-none");
@@ -248,24 +235,20 @@ function startNewRound() {
         $("#submit-bird-button-box").removeClass("d-none");
         $("#game-box").fadeIn(1000, pickBirdEvent());
     });
-    //edit so that completed birds cannot be picked
 };
 
-//----end of start game functions---//
 
-//----re-factor so better---//
+/** Resets images if user chooses to play again Calls start new game*/
 function resetImages() {
     $("#blackbird").attr("src", questionBank.blackbird.outlineImageSrc);
     $("#blueTit").attr("src", questionBank.blueTit.outlineImageSrc);
     $("#cormorant").attr("src", questionBank.cormorant.outlineImageSrc);
     $("#magpie").attr("src", questionBank.magpie.outlineImageSrc);
     $("#goldfinch").attr("src", questionBank.goldfinch.outlineImageSrc);
-    console.log("Images are reset");
     startNewGame();
 }
 
-//function runs when run new game is called to reset game object
-
+/** Resets Game object. Is called by start new Game.*/
 function resetGame() {
     game.currentBird = [];
     game.currentBirdQuiz = [];
@@ -273,15 +256,11 @@ function resetGame() {
     game.turnNumber = 0;
     game.roundNumber = 1;
     game.submittedTurnAnswer = "";
-    console.log("Game is reset");
     startNewRound();
-    //can I make this a callback?
 }
 
-//function runs when run new game is called
-
+/** Starts new game. Adds select class to all images*/
 function startNewGame() {
-    console.log('start new game');
     resetGame();
     $(".collection-view").children("div").children().addClass("bird-select");
 }
