@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Sightings | fledgling</title>
-        <meta name="description" content="Find bird sightings near you using the eBird API."/>
+        <meta name="description" content="Find bird sightings near you using the eBird API." />
         <meta name="keywords" content="bird, birdwatching, bird game, eBird, bird sightings, bird identification game" />
         <meta name="author" content="fledgling" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous" />
@@ -13,110 +13,101 @@
         <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
     </head>
     <body>
-
-     <!--Bootstap Modal-->
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal-1" tabindex="-1" aria-labelledby="exampleModalLabel-1" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel-1">Learn More</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            <div class="modal-body text-left">
-                <ul>
-                    <li>
-                    Find bird sightings near you (or any address in the world). You can search by street address, town, city or region.
-                    </li>
-                    <li>
-                    If there is no data for your search query, then please expand the radius or try again with a different address.
-                    </li>
-                </ul>
-                <h5>
-                    About eBird
-                </h5>
-                <ul>
-                    <li>
-                    eBird is an online database of bird observations. It was launched 2002 by the Cornell Lab of Ornithology at Cornell University.
-                    </li>
-                    <li>
-                    eBird is among the world’s largest biodiversity-related science projects, with more than 100 million bird sightings contributed annually by eBirders around the world
-                    </li>
-                    <li>
-                    This website uses the eBird API to retrieve data from the <a href="https://ebird.org/home" target="_blank">eBird website.</a> 
-                    </li>
-                </ul>
-                <h5>
-                    Further Bird Watching Resources
-                </h5>
-                <ul>
-                    </li>
-                    <li>
-                    <a href="https://www.rspb.org.uk/birds-and-wildlife/wildlife-guides/bird-a-z/" target="_blank">RSPB A-Z Bird Guide</a> - 
-                    Browse and Search UK birds by name to find pictures and more information.
-                    </li>
-                    <li>
-                    <a href="https://www.rspb.org.uk/birds-and-wildlife/wildlife-guides/identify-a-bird/"  target="_blank">RSPB Bird Identifier</a> - 
-                    An interactive bird identifier to help you work out what bird you've seen.
-                    </li>
-                </ul>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <!--Modal- Sourced from Bootstrap Library-->
+        <div class="modal fade" id="learnMoreModal" tabindex="-1" aria-labelledby="learnMoreModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="learnMoreModalLabel">Learn More</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-left">
+                        <ul>
+                            <li>
+                                Find bird sightings near you (or any address in the world). You can search by street address, town, city or region.
+                            </li>
+                            <li>
+                                If there is no data for your search query, then please expand the radius or try again with a different address.
+                            </li>
+                        </ul>
+                        <h5>
+                            About eBird
+                        </h5>
+                        <ul>
+                            <li>
+                                eBird is an online database of bird observations. It was launched 2002 by the Cornell Lab of Ornithology at Cornell University.
+                            </li>
+                            <li>
+                                eBird is among the world’s largest biodiversity-related science projects, with more than 100 million bird sightings contributed annually by eBirders around the world
+                            </li>
+                            <li>This website uses the eBird API to retrieve data from the <a href="https://ebird.org/home" target="_blank">eBird website.</a></li>
+                        </ul>
+                        <h5>
+                            Further Bird Watching Resources
+                        </h5>
+                        <ul>
+                            <li><a href="https://www.rspb.org.uk/birds-and-wildlife/wildlife-guides/bird-a-z/" target="_blank">RSPB A-Z Bird Guide</a> - Browse and Search UK birds by name to find pictures and more information.</li>
+                            <li><a href="https://www.rspb.org.uk/birds-and-wildlife/wildlife-guides/identify-a-bird/" target="_blank">RSPB Bird Identifier</a> - An interactive bird identifier to help you work out what bird you've seen.</li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
             </div>
         </div>
-        </div>
-    </div>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">fledgling</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-        
-            <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">
-            <ul class="navbar-nav">
-                <li class="nav-item" id="how-to-play-box">
-                    <button type="button" class="btn btn-outline-dark btn-margin" data-toggle="modal" data-target="#exampleModal-1">
-                        Learn More
-                    </button>
-                </li>
-            </ul>
+        <!--Nav - Sourced From Bootstrap Library-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">fledgling</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav">
+                        <li class="nav-item" id="how-to-play-box">
+                            <button type="button" class="btn btn-outline-dark btn-margin" data-toggle="modal" data-target="#learnMoreModal">
+                                Learn More
+                            </button>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
+        <!--Find Recent Sightings Container-->
         <div class="container">
             <div class="row centered-row pt-4 pt-md-5">
                 <div class="col-12">
                     <h2 class="sightings-title">
                         Find recent bird sightings near you (or anywhere in the world)
                     </h2>
-                    <h3 class="sightings-title">
-                        Data is provided by <a href="https://ebird.org/home" target="_blank">eBird</a>
-                    </h3>
-                </div> 
-            </div> 
+                    <h3 class="sightings-title">Data is provided by <a href="https://ebird.org/home" target="_blank">eBird</a></h3>
+                </div>
+            </div>
+
+            <!--Find Recent Sightings Form-->
             <div class="row">
                 <div class="col-12 text-sm-left">
                     <form id="location-form" class="pt-3 pt-lg-4">
                         <div class="form-row">
                             <div class="form-group col-lg-6">
                                 <label for="location-input">Enter An Address</label>
-                                <input type="text" id="location-input" class="form-control">
+                                <input type="text" id="location-input" class="form-control" />
                             </div>
                             <div class="form-group col-md-6 col-lg-3">
-                                    <label for="distance-select">Select a Radius (KM)</label>
-                                    <select class="form-control" id="distance-select">
+                                <label for="distance-select">Select a Radius (KM)</label>
+                                <select class="form-control" id="distance-select">
                                     <option value="5">5</option>
                                     <option value="10">10</option>
                                     <option value="15">15</option>
                                     <option value="25">25</option>
                                     <option value="50">50</option>
-                                    </select>
+                                </select>
                             </div>
                             <div class="form-group col-md-6 col-lg-3">
                                 <label for="see-sightings">View Recent Sightings</label>
@@ -127,22 +118,28 @@
                 </div>
             </div>
 
+            <!--Address Provided Feedback-->
             <div class="row">
                 <div class="col-12">
                     <div id="formatted-address" class="user-input-box"></div>
                 </div>
+                <!--
                 <div class="col-12">
                     <div id="geometry" class="user-input-box"></div>
                 </div>
+                -->
             </div>
 
+            <!--Sighting Table Data-->
             <div class="row">
                 <div class="col-12">
                     <div id="data" class="user-input-box"></div>
                 </div>
             </div>
-
         </div>
+
+        <!--Footer-->
+        <!--social-links ul originally taken from Code Institute's CV project-->
         <footer class="mt-auto d-flex align-self-end">
             <div class="container">
                 <div class="row">
@@ -180,10 +177,11 @@
                         <p class="small">
                             Copyright © 2022 fledgling
                         </p>
-                    </div>    
+                    </div>
                 </div>
             </div>
         </footer>
+
         <!--Script for Geocoding-->
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <!--Bootstrap scripts-->
@@ -193,5 +191,3 @@
         <script src="assets/scripts/ebird.js"></script>
     </body>
 </html>
-
-
