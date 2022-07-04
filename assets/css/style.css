@@ -57,6 +57,12 @@ h6,
   justify-content: center;
 }
 
+/*--------------------Nav Bar */
+
+nav {
+  background-color: #f2f2f2;
+}
+
 /*--------------------Game */
 
 #question-text{
@@ -104,7 +110,6 @@ h6,
   margin-bottom: -20px;
 }
 
-/*-Added div to test ipad stretching-*/
 .collection-view div img {
   max-width: 120px;
   margin: 6px;
@@ -119,6 +124,8 @@ h6,
   max-width: 100%;
 }
 
+/*--------------------Icon colours */
+
 .black {
   color: #343a40
 }
@@ -130,12 +137,6 @@ h6,
 .red {
   color: #eb534c
 }
-
-/*.icons {
-  font-size: xx-large;
-}*/
-
-  /*https://www.w3schools.com/css/css_align.asp*/
 
   /*--------------------Buttons */
 
