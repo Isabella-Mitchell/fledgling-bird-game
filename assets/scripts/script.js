@@ -62,7 +62,6 @@ let i;
 
 /** Shows the user's final results at end of game in the end game box*/
 function showFinalResults() {
-    console.log("Final Results are:", game.score);
     let finalResultsFeedback;
     if (game.score >= 15) {
         finalResultsFeedback = "Congratulations, you can now identify these common British birds";
