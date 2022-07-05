@@ -70,7 +70,7 @@ function showFinalResults() {
     } else if (game.score <= 9) {
         finalResultsFeedback = "Commiserations. Why not have another go to improve your bird identifying skills?";
     }
-    $("#game-box").fadeOut(1000, function () {
+    $("#game-box").fadeOut(500, function () {
         $("#bird-collection").removeClass("d-none");
         $("#game-info-box").removeClass("d-none");
         $("#turn-box").addClass("d-none");
@@ -113,14 +113,14 @@ function giveFeedback(a, b) {
 
 /** Changes the Game Box to the end of turn screen and displays the round score, finished bird image and fun fact.*/
 function showTurnResults() {
-    $("#game-box").fadeOut(1000, function () {
+    $("#game-box").fadeOut(500, function () {
         $("#question-image").html(`<img src="${game.currentBird.finishedImageSrc}">`);
         $("#questions-box").addClass("d-none");
         $("#turn-results-box").removeClass("d-none");
         $("#results-text").text(`Your score this round is ${game.turnScore}/4`);
         $("#bird-fact").text(`${game.currentBird.funFact}`);
         giveFeedback(game.turnScore, game.currentBird.birdName);
-        $("#game-box").fadeIn(500);
+        $("#game-box").fadeIn(1000);
     });
     removeCompletedBird();
 }
@@ -174,7 +174,7 @@ function gameRound(i) {
         $("#answer-option-4").text(`${game.currentBirdQuiz[i].options[3]}`);
         $("#questions-box").removeClass("d-none");
         $("#turn-box").removeClass("d-none");
-        $("#game-box").fadeIn(500);
+        $("#game-box").fadeIn(1000);
     });
 }
 
@@ -205,7 +205,7 @@ function startNewRound() {
     game.currentBirdQuiz = [];
     game.turnNumber = 0;
     game.turnScore = 0;
-    $("#game-box").fadeOut(1000, function () {
+    $("#game-box").fadeOut(500, function () {
         $("#how-to-play-box").removeClass("d-none");
         $("#bird-collection").removeClass("d-none");
         $("#game-info-box").removeClass("d-none");
