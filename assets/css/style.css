@@ -10,6 +10,7 @@ body {
   flex-direction: column;
   text-align: center;
   font-family: Verdana, Helvetica, sans-serif;
+  color: #212529
 }
 
 /*--------------------Fonts and Sizes */
@@ -63,6 +64,11 @@ nav {
   background-color: #f2f2f2;
 }
 
+#navbar-logo {
+  color: #343a40;
+  text-decoration: none;
+}
+
 /*--------------------Game */
 
 #question-text{
@@ -70,7 +76,7 @@ nav {
 }
 
 .answer-btn {
-  color: black;
+  color: #212529;
   margin: 10px;
   max-width: 200px;
   min-width: 200px;
@@ -138,7 +144,19 @@ nav {
   color: #eb534c
 }
 
-  /*--------------------Buttons */
+/*-------------------Links */
+
+a {
+  color: #38613D;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+a:hover {
+  color: #212529;
+}
+
+/*--------------------Buttons */
 
 .btn-margin {
   margin: 5px;
@@ -149,19 +167,25 @@ nav {
 }
 
 .highlight-answer-option {
-  border: 1px solid black;
+  border: 1px solid #212529;
+}
+
+.btn-secondary {
+  color: #212529;
+  background-color: #9ee1a3;
+  border: 1px solid #9ee1a3;
 }
 
 
 .btn-success, .btn-success:hover, .btn-success.focus, .btn-success:focus {
-  color: #000;
+  color: #212529;
   background-color: #9ee1a3;
   border-color: #9ee1a3;
   box-shadow: 0 0 0 0rem;
 }
 
 .btn-success:not(:disabled):not(.disabled).active, .btn-success:not(:disabled):not(.disabled):active, .show>.btn-success.dropdown-toggle {
-  color: #000;
+  color: #212529;
   background-color: #9ee1a3;
   border-color: #9ee1a3;
 }
@@ -181,7 +205,7 @@ table {
 }
 
 th, td {
-  border: 1px solid black;
+  border: 1px solid #212529;
   border-collapse: collapse;
   text-align: left;
 }
@@ -202,7 +226,7 @@ td {
 
 footer {
   background-color: #f2f2f2;
-  color: #232323;
+  color: #343a40;
   min-height: 10vh;
   width: 100%;
 }
@@ -216,7 +240,7 @@ footer .row {
 .social-links li a i {
   font-size: 32px;
   text-align: center;
-  color:#232323;
+  color:#343a40;
   margin: 0;
   transition: all 0.35s ease-in-out;
   -moz-transition: all 0.35s ease-in-out;
@@ -225,7 +249,7 @@ footer .row {
 }
 
 .social-links li a i:hover {
-  color: #635422;
+  color: #6eaf74;
 }
 
   /* ----------------------------------------Media Queries */
