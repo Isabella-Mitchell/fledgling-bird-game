@@ -201,8 +201,7 @@ let selectedBird;
 
 //Functions
 
-/** Shows the user's final results at end of game in the end game box*/
-function showFinalResults() {
+function giveGameFeedback() {
     let finalResultsFeedback;
     if (game.score >= 15) {
         finalResultsFeedback = "Congratulations, you can now identify these common British birds";
@@ -211,26 +210,24 @@ function showFinalResults() {
     } else if (game.score <= 9) {
         finalResultsFeedback = "Commiserations. Why not have another go to improve your bird identifying skills?";
     }
-    $("#game-box").fadeOut(500, function () {
-        $("#bird-collection").removeClass("d-none");
-        $("#game-info-box").removeClass("d-none");
-        $("#turn-box").addClass("d-none");
-        $(".icons").children().removeClass("green").removeClass("red").addClass("black");
-        $("#turn-results-box").addClass("d-none");
-        $("#game-info-box").html(
-            `<div class="row centered-row">
-                <div class="col-12">
-                    <h3>Your final score is ${game.score}/20</h3>
-                </div>
-            </div>
-            <div class="row centered-row">
-                <div class="col-12">
-                    <p>${finalResultsFeedback}</p>
-                </div>
-            </div>`
-        );
-        $("#end-game-box").removeClass("d-none");
-        $("#game-box").fadeIn(1000, pickBirdEvent());
+    return finalResultsFeedback;
+}
+
+function setFinalResultsScreen() {
+    $("#bird-collection").removeClass("d-none");
+    $("#end-game-screen").removeClass("d-none");
+    hideQuestionAnswerScreen() 
+    $("#final-game-score").text(game.score);
+    $("#final-results-feedback").text(giveGameFeedback());
+    $("#end-game-button-box").removeClass("d-none");
+}
+
+
+/** Shows the user's final results at end of game in the end game box*/
+function showFinalResults() {
+    $("#game-box").fadeOut(500, function() {
+        setFinalResultsScreen();
+        $("#game-box").fadeIn(1000);
     });
 }
 
@@ -240,7 +237,7 @@ function removeCompletedBird() {
 }
 
 /** Provides the end of round feedback based on score from 4 turns. Takes turn score and current bird as parameters*/
-function giveFeedback(a, b) {
+function giveRoundFeedback(a, b) {
     if (a >= 4) {
         $("#feedback").text(`Congratulations, you correctly identified a ${b}`);
     } else if (a === 3) {
@@ -252,28 +249,32 @@ function giveFeedback(a, b) {
     }
 }
 
+function setRoundResults() {
+    $("#question-image").html(`<img src="${game.currentBird.finishedImageSrc}">`);
+    $("#questions-box").addClass("d-none");
+    $("#round-results-box").removeClass("d-none");
+    $("#results-text").text(`${game.turnScore}`);
+    $("#bird-fact").text(`${game.currentBird.funFact}`);
+    giveRoundFeedback(game.turnScore, game.currentBird.birdName);
+}
+
 /** Changes the Game Box to the end of turn screen and displays the round score, finished bird image and fun fact.*/
-function showTurnResults() {
+function showRoundResults() {
     $("#game-box").fadeOut(500, function () {
-        $("#question-image").html(`<img src="${game.currentBird.finishedImageSrc}">`);
-        $("#questions-box").addClass("d-none");
-        $("#turn-results-box").removeClass("d-none");
-        $("#results-text").text(`Your score this round is ${game.turnScore}/4`);
-        $("#bird-fact").text(`${game.currentBird.funFact}`);
-        giveFeedback(game.turnScore, game.currentBird.birdName);
+        setRoundResults();
         $("#game-box").fadeIn(1000);
     });
     removeCompletedBird();
 }
 
-/** Prompted by check answer. Counts turn number, calls gameRound or calls showTurnResults after 4 questions.*/
+/** Prompted by check answer. Counts turn number, calls gameRound or calls showRoundResults after 4 questions.*/
 function callNextTurn() {
     game.turnNumber = game.turnNumber + 1;
     if (game.turnNumber < 4) {
         gameRound(game.turnNumber);
     } else {
         game.roundNumber = game.roundNumber + 1;
-        showTurnResults();
+        showRoundResults();
     }
 }
 
@@ -285,9 +286,9 @@ function addScore() {
 
 /** Prompted by button click. Checks user answer against bird object. Changes score indicator icon colour, calls addScore if correct.
  * Calls callNextTurn function
- * Counts turn number, calls showTurnResults after 4 questions.
+ * Counts turn number, calls showRoundResults after 4 questions.
  * */
-function checkAnswer(x, y) {
+function checkTurnAnswer(x, y) {
     //Variable to select score success indicicator icon relevant to turn question
     let iconColour = document.getElementById(game.currentBirdQuiz[y].genre);
     if (x === game.currentBirdQuiz[y].correctAnswer) {
@@ -302,12 +303,13 @@ function checkAnswer(x, y) {
 
 function showQuestionAnswersScreen() {
     $("#questions-box").removeClass("d-none");
-    $("#turn-box").removeClass("d-none");
+    $("#round-box").removeClass("d-none");
 }
 
 function setQuestionAnswers(i) {
     //move below out into own function?
     $(".answer-btn").removeClass("highlight-answer-option");
+    $("#answer-submit-alert").addClass("d-none")
     $("#question-image").html(`<img src="${game.currentBirdQuiz[i].imageSrc}">`);
     $("#question-text").text(`${game.currentBirdQuiz[i].question}`);
     $("#answer-option-1").text(`${game.currentBirdQuiz[i].options[0]}`);
@@ -327,6 +329,7 @@ function gameRound(i) {
     $("#game-box").fadeOut(500, function () {
         hideBirdCollectionScreen();
         setQuestionAnswers(i);
+        //the below doesn't need to be done every turn
         showQuestionAnswersScreen();
         //watch out if the below loads ok
         $("#game-box").fadeIn(1000);
@@ -360,9 +363,9 @@ function hideHowToPlayBox() {
 }
 
 function hideQuestionAnswerScreen() {
-    $("#turn-box").addClass("d-none");
+    $("#round-box").addClass("d-none");
     $(".icons").children().removeClass("green").removeClass("red").addClass("black");
-    $("#turn-results-box").addClass("d-none");
+    $("#round-results-box").addClass("d-none");
 }
 
 function showBirdCollectionScreen(){
@@ -420,7 +423,7 @@ function resetGame() {
 }
 
 function playAgain() {
-    $("#end-game-box").addClass("d-none");
+    $("#end-game-button-box").addClass("d-none");
     resetImages();
     //removed startNewgame from reset images function. Refactor so this function is not needed?
     startNewGame();
@@ -456,10 +459,10 @@ function addCorrectButtonAction(buttonClicked) {
     } else if (buttonClicked.getAttribute("button-command") === "submit-answer") {
         if ($(".highlight-answer-option").text()) {
             game.submittedTurnAnswer = $(".highlight-answer-option").text();
-            checkAnswer(game.submittedTurnAnswer, game.turnNumber);
+            checkTurnAnswer(game.submittedTurnAnswer, game.turnNumber);
         } else {
             //change alert
-            alert("Please select an answer.");
+            $("#answer-submit-alert").removeClass("d-none")
         }
     } else if (buttonClicked.getAttribute("button-command") === "start-next-round") {
         if (game.roundNumber <= 5) {
