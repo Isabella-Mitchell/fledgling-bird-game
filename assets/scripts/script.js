@@ -1,49 +1,187 @@
-// Wait for the DOM to finish loading before running the game
-// Content from maths prooject
-// Get the button elements and add event listeners to them
+//Question Bank
 
-document.addEventListener("DOMContentLoaded", function () {
-    let buttons = document.getElementsByTagName("button");
-
-    for (let button of buttons) {
-        button.addEventListener("click", function () {
-            if (this.getAttribute("button-command") === "start-new-game") {
-                startNewGame();
-            } else if (this.getAttribute("button-command") === "submit-bird") {
-                if ($(".bird-select").hasClass("highlight")) {
-                    submitBird();
-                } else {
-                    alert("Please select a bird.");
-                }
-            } else if (this.getAttribute("button-command") === "submit-answer") {
-                if ($(".highlight-answer-option").text()) {
-                    game.submittedTurnAnswer = $(".highlight-answer-option").text();
-                    checkAnswer(game.submittedTurnAnswer, game.turnNumber);
-                } else {
-                    alert("Please select an answer.");
-                }
-            } else if (this.getAttribute("button-command") === "start-next-round") {
-                if (game.roundNumber <= 5) {
-                    startNewRound();
-                } else {
-                    showFinalResults();
-                }
-            } else if (this.getAttribute("button-command") === "play-again") {
-                $("#game-box").fadeOut(1000, function () {
-                    $("#end-game-box").addClass("d-none");
-                    resetImages();
-                });
-            }
-        });
-    }
-});
-
-// Highlight class for Answer Options
-
-$(".answer-btn").on("click", function () {
-    $(".answer-btn").removeClass("highlight-answer-option");
-    $(this).addClass("highlight-answer-option");
-});
+const questionBank = {
+    blackbird: {
+        birdName: "Blackbird",
+        outlineImageSrc: "assets/images/bb-outline.png",
+        finishedImageSrc: "assets/images/bb-final.png",
+        funFact: "Did you know... Male blackbirds (such as this one) live up to their name but, confusingly, female blackbirds are brown with a yellow-brownish beak",
+        quiz: [
+            {
+                question: "What size is the bird?",
+                genre: "size",
+                imageSrc: "assets/images/bb-size.png",
+                options: ["Smaller than 20 cm", "Between 20cm and 30cm", "Between 30cm and 50cm", "Larger than 50cm"],
+                correctAnswer: "Between 20cm and 30cm",
+            },
+            {
+                question: "What colour is the bird?",
+                genre: "colour",
+                imageSrc: "assets/images/bb-colour.png",
+                options: ["Black", "White", "Green", "Blue"],
+                correctAnswer: "Black",
+            },
+            {
+                question: "What is the bird doing?",
+                genre: "location",
+                imageSrc: "assets/images/bb-action.png",
+                options: ["Clinging to a tree trunk", "Wading through shallow water", "Feeding on the ground", "Flying in a flock"],
+                correctAnswer: "Feeding on the ground",
+            },
+            {
+                question: "What distinctive feature does the bird have?",
+                genre: "features",
+                imageSrc: "assets/images/bb-feature.png",
+                options: ["A red chest", "An orange-yellow beak", "A spotted back", "Large crest feathers"],
+                correctAnswer: "An orange-yellow beak",
+            },
+        ],
+    },
+    blueTit: {
+        birdName: "Blue Tit",
+        outlineImageSrc: "assets/images/bt-outline.png",
+        finishedImageSrc: "assets/images/bt-final.png",
+        funFact: "Did you know... Blue tits are extremely social birds. They can be spotted in flocks of up to 20 strong and are happy to feed alongside other bird species.",
+        quiz: [
+            {
+                question: "What size is the bird?",
+                genre: "size",
+                imageSrc: "assets/images/bt-size.png",
+                options: ["Smaller than 20 cm", "Between 20cm and 30cm", "Between 30cm and 50cm", "Larger than 50cm"],
+                correctAnswer: "Smaller than 20 cm",
+            },
+            {
+                question: "What colour is the bird?",
+                genre: "colour",
+                imageSrc: "assets/images/bt-colour.png",
+                options: ["Red, Brown and Yellow", "Brown, Blue and White", "Blue, Green and Yellow", "Red, Grey and Black"],
+                correctAnswer: "Blue, Green and Yellow",
+            },
+            {
+                question: "What is the bird doing?",
+                genre: "location",
+                imageSrc: "assets/images/bt-action.png",
+                options: ["Moving through a dense bush", "Building a nest beside water", "Flying high above a field", "Perching on a feeder with a flock"],
+                correctAnswer: "Perching on a feeder with a flock",
+            },
+            {
+                question: "What distinctive feature does this bird have?",
+                genre: "features",
+                imageSrc: "assets/images/bt-feature.png",
+                options: ["A blue head with a black eye stripe", "Long red legs and a red beak", "A grey head and an orange breast", "A long hooked beak"],
+                correctAnswer: "A blue head with a black eye stripe",
+            },
+        ],
+    },
+    cormorant: {
+        birdName: "Cormorant",
+        outlineImageSrc: "assets/images/cm-outline.png",
+        finishedImageSrc: "assets/images/cm-final.png",
+        funFact: "Fun fact... Cormorants dive underwater to catch food. That's why you'll often see them standing like this, to dry their wings out after diving.",
+        quiz: [
+            {
+                question: "What size is the bird?",
+                genre: "size",
+                imageSrc: "assets/images/cm-size.png",
+                options: ["Smaller than 30 cm", "Between 30cm and 50cm", "Between 80cm and 100cm", "Larger than 100cm"],
+                correctAnswer: "Between 80cm and 100cm",
+            },
+            {
+                question: "What colour is the bird?",
+                genre: "colour",
+                imageSrc: "assets/images/cm-colour.png",
+                options: ["Blacky-Brown and White", "Yellow, Green and Grey", "Brown, White and Red", "Bluey-Yellow and White"],
+                correctAnswer: "Blacky-Brown and White",
+            },
+            {
+                question: "What is the bird doing?",
+                genre: "location",
+                imageSrc: "assets/images/cm-action.png",
+                options: ["Perching on a feeder", "Perching on a rooftop", "Perching beside water", "Perching in a tree"],
+                correctAnswer: "Perching beside water",
+            },
+            {
+                question: "What distinctive feature does this bird have?",
+                genre: "features",
+                imageSrc: "assets/images/cm-feature.png",
+                options: ["A fan shaped tail", "A wing-outstretched posture", "A short chunky beak", "A one-legged stance"],
+                correctAnswer: "A wing-outstretched posture",
+            },
+        ],
+    },
+    magpie: {
+        birdName: "Magpie",
+        outlineImageSrc: "assets/images/mp-outline.png",
+        finishedImageSrc: "assets/images/mp-final.png",
+        funFact: "Fun fact... Magpies possess an extremely long tail. In fact, a magpie’s tail is often roughly the same length as its entire body.",
+        quiz: [
+            {
+                question: "What size is the bird?",
+                genre: "size",
+                imageSrc: "assets/images/mp-size.png",
+                options: ["Smaller than 30 cm", "Between 30cm and 50cm", "Between 80cm and 100cm", "Larger than 100cm"],
+                correctAnswer: "Between 30cm and 50cm",
+            },
+            {
+                question: "What colour is the bird?",
+                genre: "colour",
+                imageSrc: "assets/images/mp-colour.png",
+                options: ["Brown, White and Red", "Yellow, Red and Brown", "Brown, Black and Grey", "Black, Blue and White"],
+                correctAnswer: "Black, Blue and White",
+            },
+            {
+                question: "What is the bird doing?",
+                genre: "location",
+                imageSrc: "assets/images/mp-action.png",
+                options: ["Perching beside water", "Swimming in a pond", "Flying out of a tree", "Flying above the sea"],
+                correctAnswer: "Flying out of a tree",
+            },
+            {
+                question: "What distinctive feature does this bird have?",
+                genre: "features",
+                imageSrc: "assets/images/mp-feature.png",
+                options: ["Long iridescent blue-green tail feathers", "A green head with a black eye stripe", "A black head and a red breast", "An orange-yellow beak"],
+                correctAnswer: "Long iridescent blue-green tail feathers",
+            },
+        ],
+    },
+    goldfinch: {
+        birdName: "Goldfinch",
+        outlineImageSrc: "assets/images/gf-outline.png",
+        finishedImageSrc: "assets/images/gf-final.png",
+        funFact: "Did you know... The collective name for these highly colourful birds is a 'charm', is derived from old English and refers to the goldfinches’ twittering song.",
+        quiz: [
+            {
+                question: "What size is the bird?",
+                genre: "size",
+                imageSrc: "assets/images/gf-size.png",
+                options: ["Smaller than 20 cm", "Between 20cm and 30cm", "Between 30cm and 50cm", "Larger than 50cm"],
+                correctAnswer: "Smaller than 20 cm",
+            },
+            {
+                question: "What colour is the bird?",
+                genre: "colour",
+                imageSrc: "assets/images/gf-colour.png",
+                options: ["Green, White, Brown, and Yellow", "Black, Grey, White and Brown", "Black, Brown, White and Yellow", "Blue-Grey, Red and Brown"],
+                correctAnswer: "Black, Brown, White and Yellow",
+            },
+            {
+                question: "What is the bird doing?",
+                genre: "location",
+                imageSrc: "assets/images/gf-action.png",
+                options: ["Singing on a rooftop", "Nesting beside water", "Feeding on the ground", "Hiding in a reedbed"],
+                correctAnswer: "Singing on a rooftop",
+            },
+            {
+                question: "What distinctive feature does this bird have?",
+                genre: "features",
+                imageSrc: "assets/images/gf-feature.png",
+                options: ["A wing-outstretched posture", "A golden eye ring", "A long black neck", "A bright red face"],
+                correctAnswer: "A bright red face",
+            },
+        ],
+    },
+};
 
 //Game Object
 
@@ -60,7 +198,6 @@ let game = {
 //Global Variables
 
 let selectedBird;
-let i;
 
 //Functions
 
@@ -261,188 +398,49 @@ function startNewGame() {
     $(".collection-view").children("div").children().addClass("bird-select");
 }
 
-//Question Bank
+// Wait for the DOM to finish loading before running the game
+// Content from maths prooject
+// Get the button elements and add event listeners to them
 
-const questionBank = {
-    blackbird: {
-        birdName: "Blackbird",
-        outlineImageSrc: "assets/images/bb-outline.png",
-        finishedImageSrc: "assets/images/bb-final.png",
-        funFact: "Did you know... Male blackbirds (such as this one) live up to their name but, confusingly, female blackbirds are brown with a yellow-brownish beak",
-        quiz: [
-            {
-                question: "What size is the bird?",
-                genre: "size",
-                imageSrc: "assets/images/bb-size.png",
-                options: ["Smaller than 20 cm", "Between 20cm and 30cm", "Between 30cm and 50cm", "Larger than 50cm"],
-                correctAnswer: "Between 20cm and 30cm",
-            },
-            {
-                question: "What colour is the bird?",
-                genre: "colour",
-                imageSrc: "assets/images/bb-colour.png",
-                options: ["Black", "White", "Green", "Blue"],
-                correctAnswer: "Black",
-            },
-            {
-                question: "What is the bird doing?",
-                genre: "location",
-                imageSrc: "assets/images/bb-action.png",
-                options: ["Clinging to a tree trunk", "Wading through shallow water", "Feeding on the ground", "Flying in a flock"],
-                correctAnswer: "Feeding on the ground",
-            },
-            {
-                question: "What distinctive feature does the bird have?",
-                genre: "features",
-                imageSrc: "assets/images/bb-feature.png",
-                options: ["A red chest", "An orange-yellow beak", "A spotted back", "Large crest feathers"],
-                correctAnswer: "An orange-yellow beak",
-            },
-        ],
-    },
-    blueTit: {
-        birdName: "Blue Tit",
-        outlineImageSrc: "assets/images/bt-outline.png",
-        finishedImageSrc: "assets/images/bt-final.png",
-        funFact: "Did you know... Blue tits are extremely social birds. They can be spotted in flocks of up to 20 strong and are happy to feed alongside other bird species.",
-        quiz: [
-            {
-                question: "What size is the bird?",
-                genre: "size",
-                imageSrc: "assets/images/bt-size.png",
-                options: ["Smaller than 20 cm", "Between 20cm and 30cm", "Between 30cm and 50cm", "Larger than 50cm"],
-                correctAnswer: "Smaller than 20 cm",
-            },
-            {
-                question: "What colour is the bird?",
-                genre: "colour",
-                imageSrc: "assets/images/bt-colour.png",
-                options: ["Red, Brown and Yellow", "Brown, Blue and White", "Blue, Green and Yellow", "Red, Grey and Black"],
-                correctAnswer: "Blue, Green and Yellow",
-            },
-            {
-                question: "What is the bird doing?",
-                genre: "location",
-                imageSrc: "assets/images/bt-action.png",
-                options: ["Moving through a dense bush", "Building a nest beside water", "Flying high above a field", "Perching on a feeder with a flock"],
-                correctAnswer: "Perching on a feeder with a flock",
-            },
-            {
-                question: "What distinctive feature does this bird have?",
-                genre: "features",
-                imageSrc: "assets/images/bt-feature.png",
-                options: ["A blue head with a black eye stripe", "Long red legs and a red beak", "A grey head and an orange breast", "A long hooked beak"],
-                correctAnswer: "A blue head with a black eye stripe",
-            },
-        ],
-    },
-    cormorant: {
-        birdName: "Cormorant",
-        outlineImageSrc: "assets/images/cm-outline.png",
-        finishedImageSrc: "assets/images/cm-final.png",
-        funFact: "Fun fact... Cormorants dive underwater to catch food. That's why you'll often see them standing like this, to dry their wings out after diving.",
-        quiz: [
-            {
-                question: "What size is the bird?",
-                genre: "size",
-                imageSrc: "assets/images/cm-size.png",
-                options: ["Smaller than 30 cm", "Between 30cm and 50cm", "Between 80cm and 100cm", "Larger than 100cm"],
-                correctAnswer: "Between 80cm and 100cm",
-            },
-            {
-                question: "What colour is the bird?",
-                genre: "colour",
-                imageSrc: "assets/images/cm-colour.png",
-                options: ["Blacky-Brown and White", "Yellow, Green and Grey", "Brown, White and Red", "Bluey-Yellow and White"],
-                correctAnswer: "Blacky-Brown and White",
-            },
-            {
-                question: "What is the bird doing?",
-                genre: "location",
-                imageSrc: "assets/images/cm-action.png",
-                options: ["Perching on a feeder", "Perching on a rooftop", "Perching beside water", "Perching in a tree"],
-                correctAnswer: "Perching beside water",
-            },
-            {
-                question: "What distinctive feature does this bird have?",
-                genre: "features",
-                imageSrc: "assets/images/cm-feature.png",
-                options: ["A fan shaped tail", "A wing-outstretched posture", "A short chunky beak", "A one-legged stance"],
-                correctAnswer: "A wing-outstretched posture",
-            },
-        ],
-    },
-    magpie: {
-        birdName: "Magpie",
-        outlineImageSrc: "assets/images/mp-outline.png",
-        finishedImageSrc: "assets/images/mp-final.png",
-        funFact: "Fun fact... Magpies possess an extremely long tail. In fact, a magpie’s tail is often roughly the same length as its entire body.",
-        quiz: [
-            {
-                question: "What size is the bird?",
-                genre: "size",
-                imageSrc: "assets/images/mp-size.png",
-                options: ["Smaller than 30 cm", "Between 30cm and 50cm", "Between 80cm and 100cm", "Larger than 100cm"],
-                correctAnswer: "Between 30cm and 50cm",
-            },
-            {
-                question: "What colour is the bird?",
-                genre: "colour",
-                imageSrc: "assets/images/mp-colour.png",
-                options: ["Brown, White and Red", "Yellow, Red and Brown", "Brown, Black and Grey", "Black, Blue and White"],
-                correctAnswer: "Black, Blue and White",
-            },
-            {
-                question: "What is the bird doing?",
-                genre: "location",
-                imageSrc: "assets/images/mp-action.png",
-                options: ["Perching beside water", "Swimming in a pond", "Flying out of a tree", "Flying above the sea"],
-                correctAnswer: "Flying out of a tree",
-            },
-            {
-                question: "What distinctive feature does this bird have?",
-                genre: "features",
-                imageSrc: "assets/images/mp-feature.png",
-                options: ["Long iridescent blue-green tail feathers", "A green head with a black eye stripe", "A black head and a red breast", "An orange-yellow beak"],
-                correctAnswer: "Long iridescent blue-green tail feathers",
-            },
-        ],
-    },
-    goldfinch: {
-        birdName: "Goldfinch",
-        outlineImageSrc: "assets/images/gf-outline.png",
-        finishedImageSrc: "assets/images/gf-final.png",
-        funFact: "Did you know... The collective name for these highly colourful birds is a 'charm', is derived from old English and refers to the goldfinches’ twittering song.",
-        quiz: [
-            {
-                question: "What size is the bird?",
-                genre: "size",
-                imageSrc: "assets/images/gf-size.png",
-                options: ["Smaller than 20 cm", "Between 20cm and 30cm", "Between 30cm and 50cm", "Larger than 50cm"],
-                correctAnswer: "Smaller than 20 cm",
-            },
-            {
-                question: "What colour is the bird?",
-                genre: "colour",
-                imageSrc: "assets/images/gf-colour.png",
-                options: ["Green, White, Brown, and Yellow", "Black, Grey, White and Brown", "Black, Brown, White and Yellow", "Blue-Grey, Red and Brown"],
-                correctAnswer: "Black, Brown, White and Yellow",
-            },
-            {
-                question: "What is the bird doing?",
-                genre: "location",
-                imageSrc: "assets/images/gf-action.png",
-                options: ["Singing on a rooftop", "Nesting beside water", "Feeding on the ground", "Hiding in a reedbed"],
-                correctAnswer: "Singing on a rooftop",
-            },
-            {
-                question: "What distinctive feature does this bird have?",
-                genre: "features",
-                imageSrc: "assets/images/gf-feature.png",
-                options: ["A wing-outstretched posture", "A golden eye ring", "A long black neck", "A bright red face"],
-                correctAnswer: "A bright red face",
-            },
-        ],
-    },
-};
+document.addEventListener("DOMContentLoaded", function () {
+    let buttons = document.getElementsByTagName("button");
 
+    for (let button of buttons) {
+        button.addEventListener("click", function () {
+            if (this.getAttribute("button-command") === "start-new-game") {
+                startNewGame();
+            } else if (this.getAttribute("button-command") === "submit-bird") {
+                if ($(".bird-select").hasClass("highlight")) {
+                    submitBird();
+                } else {
+                    alert("Please select a bird.");
+                }
+            } else if (this.getAttribute("button-command") === "submit-answer") {
+                if ($(".highlight-answer-option").text()) {
+                    game.submittedTurnAnswer = $(".highlight-answer-option").text();
+                    checkAnswer(game.submittedTurnAnswer, game.turnNumber);
+                } else {
+                    alert("Please select an answer.");
+                }
+            } else if (this.getAttribute("button-command") === "start-next-round") {
+                if (game.roundNumber <= 5) {
+                    startNewRound();
+                } else {
+                    showFinalResults();
+                }
+            } else if (this.getAttribute("button-command") === "play-again") {
+                $("#game-box").fadeOut(1000, function () {
+                    $("#end-game-box").addClass("d-none");
+                    resetImages();
+                });
+            }
+        });
+    }
+});
+
+// Highlight class for Answer Options
+
+$(".answer-btn").on("click", function () {
+    $(".answer-btn").removeClass("highlight-answer-option");
+    $(this).addClass("highlight-answer-option");
+});
