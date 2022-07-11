@@ -10,7 +10,11 @@ document.addEventListener("DOMContentLoaded", function () {
             if (this.getAttribute("button-command") === "start-new-game") {
                 startNewGame();
             } else if (this.getAttribute("button-command") === "submit-bird") {
-                submitBird();
+                if ($(".bird-select").hasClass("highlight")) {
+                    submitBird();
+                } else {
+                    alert("Please select a bird.");
+                }
             } else if (this.getAttribute("button-command") === "submit-answer") {
                 if ($(".highlight-answer-option").text()) {
                     game.submittedTurnAnswer = $(".highlight-answer-option").text();
@@ -188,6 +192,7 @@ function submitBird() {
 
 /** Allows user to select a bird. Will only allow to select one bird, and must select a bird to be able to proceed.*/
 function pickBirdEvent() {
+    $("#submit-bird").addClass("disabled");
     $(".bird-select").click(function () {
         if ($(this).hasClass("bird-select")) {
             $(".bird-select").removeClass("highlight");
