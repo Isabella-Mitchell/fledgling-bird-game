@@ -1,6 +1,6 @@
 //From "Google Geocode API & JavaScript Tutorial" on Youtube by Traversy Media
 //Setting up event listener for event
-var locationForm = document.getElementById("location-form");
+let locationForm = document.getElementById("location-form");
 //listen for submit
 locationForm.addEventListener("submit", geocode);
 
@@ -23,6 +23,8 @@ function getData(lat, lng, dist, cb) {
         if (this.readyState == 4 && this.status == 200) {
             cb(JSON.parse(this.responseText));
         }
+        console.log(this.readyState)
+        console.log(this.status);
     };
 }
 
@@ -90,10 +92,16 @@ function geocode(e) {
             },
         })
         .then(function (response) {
-            locationLat = response.data.results[0].geometry.location.lat;
-            locationLng = response.data.results[0].geometry.location.lng;
-            locationLat = Math.floor(locationLat * 100) / 100;
-            locationLng = Math.floor(locationLng * 100) / 100;
+            console.log(response);
+            if(response.data.status != "ZERO_RESULTS"){
+                locationLat = response.data.results[0].geometry.location.lat;
+                locationLng = response.data.results[0].geometry.location.lng;
+                locationLat = Math.floor(locationLat * 100) / 100;
+                locationLng = Math.floor(locationLng * 100) / 100;
+            } else {
+                alert("please enter a valid address");
+            }
+
 
             //distance
             var selectDistance = document.getElementById("distance-select");
