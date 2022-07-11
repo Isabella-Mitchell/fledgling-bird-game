@@ -300,21 +300,35 @@ function checkAnswer(x, y) {
     callNextTurn();
 }
 
+function showQuestionAnswersScreen() {
+    $("#questions-box").removeClass("d-none");
+    $("#turn-box").removeClass("d-none");
+}
+
+function setQuestionAnswers(i) {
+    //move below out into own function?
+    $(".answer-btn").removeClass("highlight-answer-option");
+    $("#question-image").html(`<img src="${game.currentBirdQuiz[i].imageSrc}">`);
+    $("#question-text").text(`${game.currentBirdQuiz[i].question}`);
+    $("#answer-option-1").text(`${game.currentBirdQuiz[i].options[0]}`);
+    $("#answer-option-2").text(`${game.currentBirdQuiz[i].options[1]}`);
+    $("#answer-option-3").text(`${game.currentBirdQuiz[i].options[2]}`);
+    $("#answer-option-4").text(`${game.currentBirdQuiz[i].options[3]}`);
+}
+
+function hideBirdCollectionScreen() {
+    $("#bird-collection").addClass("d-none");
+    $("#bird-collection-screen").addClass("d-none");
+    $("#submit-bird-button-box").addClass("d-none");
+}
+
 /** Round of the game. Shows turn questions and changes image for each turn.*/
 function gameRound(i) {
-    $(".answer-btn").removeClass("highlight-answer-option");
     $("#game-box").fadeOut(500, function () {
-        $("#bird-collection").addClass("d-none");
-        $("#game-info-box").addClass("d-none");
-        $("#submit-bird-button-box").addClass("d-none");
-        $("#question-image").html(`<img src="${game.currentBirdQuiz[i].imageSrc}">`);
-        $("#question-text").text(`${game.currentBirdQuiz[i].question}`);
-        $("#answer-option-1").text(`${game.currentBirdQuiz[i].options[0]}`);
-        $("#answer-option-2").text(`${game.currentBirdQuiz[i].options[1]}`);
-        $("#answer-option-3").text(`${game.currentBirdQuiz[i].options[2]}`);
-        $("#answer-option-4").text(`${game.currentBirdQuiz[i].options[3]}`);
-        $("#questions-box").removeClass("d-none");
-        $("#turn-box").removeClass("d-none");
+        hideBirdCollectionScreen();
+        setQuestionAnswers(i);
+        showQuestionAnswersScreen();
+        //watch out if the below loads ok
         $("#game-box").fadeIn(1000);
     });
 }
@@ -341,33 +355,41 @@ function pickBirdEvent() {
     });
 }
 
+function hideHowToPlayBox() {
+    $("#how-to-play-box").removeClass("d-none");
+}
+
+function hideQuestionAnswerScreen() {
+    $("#turn-box").addClass("d-none");
+    $(".icons").children().removeClass("green").removeClass("red").addClass("black");
+    $("#turn-results-box").addClass("d-none");
+}
+
+function showBirdCollectionScreen(){
+    //remove gameinital load screen line out?
+    $("#game-initial-load-screen").addClass("d-none");
+    $("#bird-collection").removeClass("d-none");
+    $("#bird-collection-screen").removeClass("d-none");
+    $("#game-round-number").text(game.roundNumber);
+    $("#submit-bird-button-box").removeClass("d-none");
+    $("#game-box").fadeIn(1000, pickBirdEvent());
+}
+
+function loadRoundView() {
+    //not sure hideHowToPlay should be called
+    hideHowToPlayBox();
+    showBirdCollectionScreen();
+    hideQuestionAnswerScreen();
+}
+
 /** Start new round Animation - loads birds*/
 function startNewRound() {
     game.currentBird = [];
     game.currentBirdQuiz = [];
     game.turnNumber = 0;
     game.turnScore = 0;
-    $("#game-box").fadeOut(500, function () {
-        $("#how-to-play-box").removeClass("d-none");
-        $("#bird-collection").removeClass("d-none");
-        $("#game-info-box").removeClass("d-none");
-        $("#turn-box").addClass("d-none");
-        $(".icons").children().removeClass("green").removeClass("red").addClass("black");
-        $("#turn-results-box").addClass("d-none");
-        $("#game-info-box").html(
-            `<div class="row centered-row">
-                <div class="col-12">
-                    <p>Round ${game.roundNumber}/5</p>
-                </div>
-            </div>
-            <div class="row centered-row">
-                <div class="col-12">
-                    <h3>Pick your bird</h3>
-                </div>
-            </div>`
-        );
-        $("#submit-bird-button-box").removeClass("d-none");
-        $("#game-box").fadeIn(1000, pickBirdEvent());
+    $("#game-box").fadeOut(500, function() {
+        loadRoundView();
     });
 }
 
@@ -378,8 +400,14 @@ function resetImages() {
     $("#cormorant").attr("src", Question_Bank.cormorant.outlineImageSrc);
     $("#magpie").attr("src", Question_Bank.magpie.outlineImageSrc);
     $("#goldfinch").attr("src", Question_Bank.goldfinch.outlineImageSrc);
-    startNewGame();
 }
+
+
+/** Adds select class to all images*/
+function addBirdSelectClass() {
+    $(".collection-view").children("div").children().addClass("bird-select");
+}
+    
 
 /** Resets Game object. Is called by start new Game.*/
 function resetGame() {
@@ -389,58 +417,88 @@ function resetGame() {
     game.turnNumber = 0;
     game.roundNumber = 1;
     game.submittedTurnAnswer = "";
+}
+
+function playAgain() {
+    $("#end-game-box").addClass("d-none");
+    resetImages();
+    //removed startNewgame from reset images function. Refactor so this function is not needed?
+    startNewGame();
+}
+
+/** Starts new game.*/
+function startNewGame() {
+    resetGame();
+    addBirdSelectClass();
+    //check if this works - was in reset game fucntion
     startNewRound();
 }
 
-/** Starts new game. Adds select class to all images*/
-function startNewGame() {
-    resetGame();
-    $(".collection-view").children("div").children().addClass("bird-select");
+/** 
+ * Adds the highlight-answer-option class to the clicked answer option button, and removes it from the other answer option buttons.
+ * Function is called when an answer option button is clicked.
+*/
+function resetHighlightedAnswer(answer) {
+    $(".answer-btn").removeClass("highlight-answer-option");
+    $(answer).addClass("highlight-answer-option");
 }
 
-// Wait for the DOM to finish loading before running the game
-// Content from maths prooject
-// Get the button elements and add event listeners to them
+function addCorrectButtonAction(buttonClicked) {
+    if (buttonClicked.getAttribute("button-command") === "start-new-game") {
+        startNewGame();
+    } else if (buttonClicked.getAttribute("button-command") === "submit-bird") {
+        if ($(".bird-select").hasClass("highlight")) {
+            submitBird();
+        } else {
+            //change alert
+            alert("Please select a bird.");
+        }
+    } else if (buttonClicked.getAttribute("button-command") === "submit-answer") {
+        if ($(".highlight-answer-option").text()) {
+            game.submittedTurnAnswer = $(".highlight-answer-option").text();
+            checkAnswer(game.submittedTurnAnswer, game.turnNumber);
+        } else {
+            //change alert
+            alert("Please select an answer.");
+        }
+    } else if (buttonClicked.getAttribute("button-command") === "start-next-round") {
+        if (game.roundNumber <= 5) {
+            startNewRound();
+        } else {
+            showFinalResults();
+        }
+    } else if (buttonClicked.getAttribute("button-command") === "play-again") {
+        $("#game-box").fadeOut(1000, function(){
+            //further test is I can remove function and it fades properly
+            playAgain();
+        });
+    }
+}
 
-document.addEventListener("DOMContentLoaded", function () {
+/** 
+ * Adds event listeners to game buttons.
+ * Function is called when DOM content is loaded
+*/
+function addEventListeners() {
     let buttons = document.getElementsByTagName("button");
 
     for (let button of buttons) {
-        button.addEventListener("click", function () {
-            if (this.getAttribute("button-command") === "start-new-game") {
-                startNewGame();
-            } else if (this.getAttribute("button-command") === "submit-bird") {
-                if ($(".bird-select").hasClass("highlight")) {
-                    submitBird();
-                } else {
-                    alert("Please select a bird.");
-                }
-            } else if (this.getAttribute("button-command") === "submit-answer") {
-                if ($(".highlight-answer-option").text()) {
-                    game.submittedTurnAnswer = $(".highlight-answer-option").text();
-                    checkAnswer(game.submittedTurnAnswer, game.turnNumber);
-                } else {
-                    alert("Please select an answer.");
-                }
-            } else if (this.getAttribute("button-command") === "start-next-round") {
-                if (game.roundNumber <= 5) {
-                    startNewRound();
-                } else {
-                    showFinalResults();
-                }
-            } else if (this.getAttribute("button-command") === "play-again") {
-                $("#game-box").fadeOut(1000, function () {
-                    $("#end-game-box").addClass("d-none");
-                    resetImages();
-                });
-            }
+        button.addEventListener("click", function() {
+            addCorrectButtonAction(this);
         });
     }
-});
+}
 
-// Highlight class for Answer Options
+/** 
+ * Wait for the DOM to finish loading before running the game
+ * Get the button elements and add event listeners to them
+*/
+document.addEventListener("DOMContentLoaded", addEventListeners());
 
-$(".answer-btn").on("click", function () {
-    $(".answer-btn").removeClass("highlight-answer-option");
-    $(this).addClass("highlight-answer-option");
+/** 
+ * Event happens on click of an answer option button. 
+ * Calls a function to add the highlight-answer-option class to the clicked answer option button, and remove it from other answer option buttons.
+*/
+$(".answer-btn").on("click", function(){
+    resetHighlightedAnswer(this);
 });
