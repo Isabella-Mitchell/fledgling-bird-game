@@ -200,7 +200,7 @@ let selectedBird;
 
 //Functions
 
-function giveGameFeedback() {
+function setFinalResultsFeedback() {
     let finalResultsFeedback;
     if (game.score >= 15) {
         finalResultsFeedback = "Congratulations, you can now identify these common British birds";
@@ -217,7 +217,7 @@ function setFinalResultsScreen() {
     $("#end-game-screen").removeClass("d-none");
     hideQuestionAnswerScreen() 
     $("#final-game-score").text(game.score);
-    $("#final-results-feedback").text(giveGameFeedback());
+    $("#final-results-feedback").text(setFinalResultsFeedback());
     $("#end-game-button-box").removeClass("d-none");
 }
 

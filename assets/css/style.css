@@ -108,6 +108,10 @@ nav {
   padding-bottom: 5px;
 }
 
+#answer-submit-alert {
+  color:#eb534c
+}
+
 /*--------------------Images */
 
 .title-image img {
