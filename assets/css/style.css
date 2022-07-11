@@ -108,8 +108,9 @@ nav {
   padding-bottom: 5px;
 }
 
-#answer-submit-alert {
-  color:#eb534c
+.alert {
+  color:#eb534c;
+  margin: 0 10px 0 10px;
 }
 
 /*--------------------Images */

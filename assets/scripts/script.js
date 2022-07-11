@@ -149,7 +149,7 @@ const Question_Bank = {
         birdName: "Goldfinch",
         outlineImageSrc: "assets/images/gf-outline.png",
         finishedImageSrc: "assets/images/gf-final.png",
-        funFact: "Did you know... The collective name for these highly colourful birds is a 'charm', is derived from old English and refers to the goldfinches’ twittering song.",
+        funFact: "Did you know... The collective name for these highly colourful birds is a 'charm'. The term is derived from old English and refers to the goldfinches’ twittering song.",
         quiz: [
             {
                 question: "What size is the bird?",
@@ -310,7 +310,6 @@ function setQuestionAnswers(i) {
     //move below out into own function?
     let currentBirdQuiz = game.currentBird.quiz[i];
     $(".answer-btn").removeClass("highlight-answer-option");
-    $("#answer-submit-alert").addClass("d-none")
     $("#question-image").html(`<img src="${currentBirdQuiz.imageSrc}">`);
     $("#question-text").text(`${currentBirdQuiz.question}`);
     $("#answer-option-1").text(`${currentBirdQuiz.options[0]}`);
@@ -352,6 +351,7 @@ function pickBirdEvent() {
             $(".bird-select").removeClass("highlight");
             $(this).addClass("highlight");
             $("#submit-bird").removeClass("disabled");
+            $("#submit-bird-alert").addClass("d-none")
         } else {
             $("#submit-bird").addClass("disabled");
         }
@@ -443,6 +443,7 @@ function startNewGame() {
 function resetHighlightedAnswer(answer) {
     $(".answer-btn").removeClass("highlight-answer-option");
     $(answer).addClass("highlight-answer-option");
+    $("#answer-submit-alert").addClass("d-none")
 }
 
 function addCorrectButtonAction(buttonClicked) {
@@ -453,7 +454,7 @@ function addCorrectButtonAction(buttonClicked) {
             submitBird();
         } else {
             //change alert
-            alert("Please select a bird.");
+            $("#submit-bird-alert").removeClass("d-none")
         }
     } else if (buttonClicked.getAttribute("button-command") === "submit-answer") {
         if ($(".highlight-answer-option").text()) {

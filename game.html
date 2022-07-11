@@ -130,8 +130,13 @@
                 </div>
 
                 <!--Submit Bird Button Box -->
-                <div id="submit-bird-button-box" class="d-none row centered-row">
-                    <button type="button" button-command="submit-bird" id="submit-bird" class="btn btn-outline-dark btn-margin disabled">Select</button>
+                <div id="submit-bird-button-box" class="d-none">
+                    <div class="row justify-content-center">
+                        <p id="submit-bird-alert" class="d-none small alert">Please select a bird</p>
+                    </div>
+                    <div class="row justify-content-center">
+                        <button type="button" button-command="submit-bird" id="submit-bird" class="btn btn-outline-dark btn-margin disabled">Select</button>
+                    </div>
                 </div>
 
                 <!--End Game Screen -->
@@ -181,7 +186,7 @@
                                 </div>
                             </div>
                             <div class="row justify-content-center justify-content-lg-start">
-                                <p id="answer-submit-alert" class="d-none small">Please select an answer</p>
+                                <p id="answer-submit-alert" class="d-none small alert">Please select an answer</p>
                             </div>
                             <div class="row justify-content-center justify-content-lg-start">
                                 <button type="button" button-command="submit-answer" class="btn btn-success submit-btn">Submit</button>
