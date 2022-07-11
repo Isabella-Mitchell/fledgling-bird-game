@@ -124,6 +124,7 @@ nav {
 #question-image {
   display:inline-block;
   max-width: 400px;
+  min-height: 200px;
 }
 
 #question-image img {

@@ -187,7 +187,6 @@ const Question_Bank = {
 
 let game = {
     currentBird: [],
-    currentBirdQuiz: [],
     roundNumber: 1,
     score: 0,
     turnScore: 0,
@@ -290,8 +289,9 @@ function addScore() {
  * */
 function checkTurnAnswer(x, y) {
     //Variable to select score success indicicator icon relevant to turn question
-    let iconColour = document.getElementById(game.currentBirdQuiz[y].genre);
-    if (x === game.currentBirdQuiz[y].correctAnswer) {
+    let currentBirdQuiz = game.currentBird.quiz[y];
+    let iconColour = document.getElementById(currentBirdQuiz.genre);
+    if (x === currentBirdQuiz.correctAnswer) {
         $(iconColour).removeClass("black").addClass("green");
         addScore();
     } else {
@@ -308,14 +308,15 @@ function showQuestionAnswersScreen() {
 
 function setQuestionAnswers(i) {
     //move below out into own function?
+    let currentBirdQuiz = game.currentBird.quiz[i];
     $(".answer-btn").removeClass("highlight-answer-option");
     $("#answer-submit-alert").addClass("d-none")
-    $("#question-image").html(`<img src="${game.currentBirdQuiz[i].imageSrc}">`);
-    $("#question-text").text(`${game.currentBirdQuiz[i].question}`);
-    $("#answer-option-1").text(`${game.currentBirdQuiz[i].options[0]}`);
-    $("#answer-option-2").text(`${game.currentBirdQuiz[i].options[1]}`);
-    $("#answer-option-3").text(`${game.currentBirdQuiz[i].options[2]}`);
-    $("#answer-option-4").text(`${game.currentBirdQuiz[i].options[3]}`);
+    $("#question-image").html(`<img src="${currentBirdQuiz.imageSrc}">`);
+    $("#question-text").text(`${currentBirdQuiz.question}`);
+    $("#answer-option-1").text(`${currentBirdQuiz.options[0]}`);
+    $("#answer-option-2").text(`${currentBirdQuiz.options[1]}`);
+    $("#answer-option-3").text(`${currentBirdQuiz.options[2]}`);
+    $("#answer-option-4").text(`${currentBirdQuiz.options[3]}`);
 }
 
 function hideBirdCollectionScreen() {
@@ -326,13 +327,13 @@ function hideBirdCollectionScreen() {
 
 /** Round of the game. Shows turn questions and changes image for each turn.*/
 function gameRound(i) {
-    $("#game-box").fadeOut(500, function () {
+    $("#game-box").fadeTo(500, 0, function () {
         hideBirdCollectionScreen();
         setQuestionAnswers(i);
         //the below doesn't need to be done every turn
         showQuestionAnswersScreen();
         //watch out if the below loads ok
-        $("#game-box").fadeIn(1000);
+        $("#game-box").fadeTo(1000, 1);
     });
 }
 
@@ -340,7 +341,6 @@ function gameRound(i) {
 function submitBird() {
     selectedBird = document.getElementsByClassName("highlight");
     game.currentBird = Question_Bank[selectedBird[0].id];
-    game.currentBirdQuiz = Question_Bank[selectedBird[0].id].quiz;
     gameRound(game.turnNumber);
 }
 
@@ -415,7 +415,6 @@ function addBirdSelectClass() {
 /** Resets Game object. Is called by start new Game.*/
 function resetGame() {
     game.currentBird = [];
-    game.currentBirdQuiz = [];
     game.score = 0;
     game.turnNumber = 0;
     game.roundNumber = 1;
