@@ -9,7 +9,7 @@ let locationLat;
 let locationLng;
 
 //alert
-let alert = document.getElementById("alert");
+let userAlert = document.getElementById("alert");
 
 //eBird API code - from star wars walk through
 const baseURL = "https://api.ebird.org/v2/data/obs/geo/recent?";
@@ -25,13 +25,10 @@ function getData(lat, lng, dist, cb) {
     xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             cb(JSON.parse(this.responseText));
-            alert.classList.add("d-none");
+            userAlert.classList.add("d-none");
         } else if (this.status > 200) {
-            console.log("status greater than 200");
-            alert.classList.remove("d-none");
+            userAlert.classList.remove("d-none");
         }
-        console.log(this.readyState)
-        console.log(this.status);
     };
 }
 
@@ -91,8 +88,7 @@ function geocode(e) {
     e.preventDefault();
 
     let location = document.getElementById("location-input").value;
-    axios
-        .get("https://maps.googleapis.com/maps/api/geocode/json", {
+    axios.get("https://maps.googleapis.com/maps/api/geocode/json", {
             params: {
                 address: location,
                 key: "AIzaSyBoEklUcMdWIgoqZw1hY09NGnBUW9hzTVQ",
@@ -106,7 +102,7 @@ function geocode(e) {
                 locationLat = Math.floor(locationLat * 100) / 100;
                 locationLng = Math.floor(locationLng * 100) / 100;
             } else {
-                alert("please enter a valid address");
+                userAlert.classList.remove("d-none");
             }
 
 
@@ -126,6 +122,6 @@ function geocode(e) {
 
         .catch(function (error) {
             console.log(error);
-            alert.classList.remove("d-none");
+            userAlert.classList.remove("d-none");
         });
 }
