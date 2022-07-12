@@ -12,20 +12,19 @@ let locationLng;
 let userAlert = document.getElementById("alert");
 
 //eBird API code - from star wars walk through
-const baseURL = "https://api.ebird.org/v2/data/obs/geo/recent?";
-const apiKey = "&key=u5345apoosps";
+const BASE_URL = "https://api.ebird.org/v2/data/obs/geo/recent?";
+const API_KEY = "&key=u5345apoosps";
 
 /** Gets Data using eBird API - from star wars walk through*/
 function getData(lat, lng, dist, cb) {
     let xhr = new XMLHttpRequest();
 
-    xhr.open("GET", baseURL + "lat=" + lat + "&lng=" + lng + "&dist=" + dist + apiKey);
+    xhr.open("GET", BASE_URL + "lat=" + lat + "&lng=" + lng + "&dist=" + dist + API_KEY);
     xhr.send();
 
     xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             cb(JSON.parse(this.responseText));
-            userAlert.classList.add("d-none");
         } else if (this.status > 200) {
             userAlert.classList.remove("d-none");
         }
@@ -46,37 +45,45 @@ function getTableHeaders() {
 /**Builds table rows using data from eBird API
  *Calls getData function. Passes in user supplied Lat, Lng, Distance and Callback function.*/
 function writeToDocument(lat, lng, distance) {
-    var el = document.getElementById("data");
+    userAlert.classList.add("d-none");
+    let el = document.getElementById("data");
     el.innerHTML = "";
 
     getData(lat, lng, distance, function (data) {
-        var tableRows = [];
-        //console.dir(data);
-        let tableHeaders = getTableHeaders();
+        console.log(data.length);
+        console.dir(data);
+        if(data.length === 0){
+            userAlert.classList.remove("d-none");
+        }
+        else {
+            let tableRows = [];
+            let tableHeaders = getTableHeaders();
 
-        data.forEach(function (item) {
-            let dataRow = [];
+            data.forEach(function (item) {
+                let dataRow = [];
 
-            let rowData1 = item.comName.toString();
-            let truncatedData1 = rowData1.substring(0, 30);
-            dataRow.push(`<td>${truncatedData1}</td>`);
+                let rowData1 = item.comName.toString();
+                let truncatedData1 = rowData1.substring(0, 30);
+                dataRow.push(`<td>${truncatedData1}</td>`);
 
-            let rowData2 = item.locName.toString();
-            let truncatedData2 = rowData2.substring(0, 30);
-            dataRow.push(`<td>${truncatedData2}</td>`);
+                let rowData2 = item.locName.toString();
+                let truncatedData2 = rowData2.substring(0, 30);
+                dataRow.push(`<td>${truncatedData2}</td>`);
 
-            let rowData3 = item.howMany;
-            let truncatedData3 = rowData3;
-            dataRow.push(`<td>${truncatedData3}</td>`);
+                let rowData3 = item.howMany;
+                let truncatedData3 = rowData3;
+                dataRow.push(`<td>${truncatedData3}</td>`);
 
-            let rowData4 = item.obsDt.toString();
-            let truncatedData4 = rowData4.substring(0, 30);
-            dataRow.push(`<td>${truncatedData4}</td>`);
+                let rowData4 = item.obsDt.toString();
+                let truncatedData4 = rowData4.substring(0, 30);
+                dataRow.push(`<td>${truncatedData4}</td>`);
 
-            tableRows.push(`<tr>${dataRow}</tr>`);
-        });
+                tableRows.push(`<tr>${dataRow}</tr>`);
+            });
 
-        el.innerHTML = `<table>${tableHeaders}${tableRows}</table>`.replace(/,/g, "");
+            el.innerHTML = `<table>${tableHeaders}${tableRows}</table>`.replace(/,/g, "");
+        }
+        
     });
 }
 
@@ -95,7 +102,7 @@ function geocode(e) {
             },
         })
         .then(function (response) {
-            console.log(response);
+            //console.log(response);
             if(response.data.status != "ZERO_RESULTS"){
                 locationLat = response.data.results[0].geometry.location.lat;
                 locationLng = response.data.results[0].geometry.location.lng;
