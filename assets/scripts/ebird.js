@@ -31,7 +31,7 @@ function getData(lat, lng, dist, cb) {
 /**Builds table headers - from Code Institute Star Wars API Tutorial
  *Edited to supply user-friendly table headers, for only certain object properties*/
 function getTableHeaders() {
-    var tableHeaders = [];
+    let tableHeaders = [];
     tableHeaders.push(`<th>Bird Observed</th>`);
     tableHeaders.push(`<th>Location Observed</th>`);
     tableHeaders.push(`<th>No. Observed</th>`);
@@ -83,7 +83,7 @@ function geocode(e) {
     //prevent actual submit
     e.preventDefault();
 
-    var location = document.getElementById("location-input").value;
+    let location = document.getElementById("location-input").value;
     axios
         .get("https://maps.googleapis.com/maps/api/geocode/json", {
             params: {
@@ -104,20 +104,17 @@ function geocode(e) {
 
 
             //distance
-            var selectDistance = document.getElementById("distance-select");
-            var distance = selectDistance.options[selectDistance.selectedIndex].value;
+            let selectDistance = document.getElementById("distance-select");
+            let distance = selectDistance.options[selectDistance.selectedIndex].value;
 
             //calls writeToDocument function
             writeToDocument(locationLat, locationLng, distance);
 
             //Outputs formatted address to page
-            var formattedAddress = response.data.results[0].formatted_address;
-            var formattedAddressOutput = `
-                <ul class="list-group">
-                    <li class="list-group-item"><strong>Address Entered: </strong>${formattedAddress}</li>
-                </ul>
-            `;
-            document.getElementById("formatted-address").innerHTML = formattedAddressOutput;
+            let formattedAddress = response.data.results[0].formatted_address;
+            let addressEnteredBox = document.getElementById("address-entered-box");
+            addressEnteredBox.classList.remove("d-none");
+            document.getElementById("formatted-address").textContent = formattedAddress;
         })
 
         .catch(function (error) {
