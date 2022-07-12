@@ -8,6 +8,9 @@ locationForm.addEventListener("submit", geocode);
 let locationLat;
 let locationLng;
 
+//alert
+let alert = document.getElementById("alert");
+
 //eBird API code - from star wars walk through
 const baseURL = "https://api.ebird.org/v2/data/obs/geo/recent?";
 const apiKey = "&key=u5345apoosps";
@@ -22,6 +25,10 @@ function getData(lat, lng, dist, cb) {
     xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             cb(JSON.parse(this.responseText));
+            alert.classList.add("d-none");
+        } else if (this.status > 200) {
+            console.log("status greater than 200");
+            alert.classList.remove("d-none");
         }
         console.log(this.readyState)
         console.log(this.status);
@@ -48,26 +55,26 @@ function writeToDocument(lat, lng, distance) {
     getData(lat, lng, distance, function (data) {
         var tableRows = [];
         //console.dir(data);
-        var tableHeaders = getTableHeaders();
+        let tableHeaders = getTableHeaders();
 
         data.forEach(function (item) {
-            var dataRow = [];
+            let dataRow = [];
 
-            var rowData = item.comName.toString();
-            var truncatedData = rowData.substring(0, 30);
-            dataRow.push(`<td>${truncatedData}</td>`);
+            let rowData1 = item.comName.toString();
+            let truncatedData1 = rowData1.substring(0, 30);
+            dataRow.push(`<td>${truncatedData1}</td>`);
 
-            var rowData = item.locName.toString();
-            var truncatedData = rowData.substring(0, 30);
-            dataRow.push(`<td>${truncatedData}</td>`);
+            let rowData2 = item.locName.toString();
+            let truncatedData2 = rowData2.substring(0, 30);
+            dataRow.push(`<td>${truncatedData2}</td>`);
 
-            var rowData = item.howMany;
-            var truncatedData = rowData;
-            dataRow.push(`<td>${truncatedData}</td>`);
+            let rowData3 = item.howMany;
+            let truncatedData3 = rowData3;
+            dataRow.push(`<td>${truncatedData3}</td>`);
 
-            var rowData = item.obsDt.toString();
-            var truncatedData = rowData.substring(0, 30);
-            dataRow.push(`<td>${truncatedData}</td>`);
+            let rowData4 = item.obsDt.toString();
+            let truncatedData4 = rowData4.substring(0, 30);
+            dataRow.push(`<td>${truncatedData4}</td>`);
 
             tableRows.push(`<tr>${dataRow}</tr>`);
         });
@@ -119,5 +126,6 @@ function geocode(e) {
 
         .catch(function (error) {
             console.log(error);
+            alert.classList.remove("d-none");
         });
 }
