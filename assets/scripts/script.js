@@ -1,6 +1,6 @@
 //Question Bank
 
-const Question_Bank = {
+const QUESTION_BANK = {
     blackbird: {
         birdName: "Blackbird",
         outlineImageSrc: "assets/images/bb-outline.png",
@@ -339,7 +339,7 @@ function gameRound(i) {
 /** function run after submitbird button clicked. Gets ID of bird selected and puts content into Game Object. Calls initial gameRound function*/
 function submitBird() {
     selectedBird = document.getElementsByClassName("highlight");
-    game.currentBird = Question_Bank[selectedBird[0].id];
+    game.currentBird = QUESTION_BANK[selectedBird[0].id];
     gameRound(game.turnNumber);
 }
 
@@ -398,11 +398,11 @@ function startNewRound() {
 
 /** Resets images if user chooses to play again Calls start new game*/
 function resetImages() {
-    $("#blackbird").attr("src", Question_Bank.blackbird.outlineImageSrc);
-    $("#blueTit").attr("src", Question_Bank.blueTit.outlineImageSrc);
-    $("#cormorant").attr("src", Question_Bank.cormorant.outlineImageSrc);
-    $("#magpie").attr("src", Question_Bank.magpie.outlineImageSrc);
-    $("#goldfinch").attr("src", Question_Bank.goldfinch.outlineImageSrc);
+    $("#blackbird").attr("src", QUESTION_BANK.blackbird.outlineImageSrc);
+    $("#blueTit").attr("src", QUESTION_BANK.blueTit.outlineImageSrc);
+    $("#cormorant").attr("src", QUESTION_BANK.cormorant.outlineImageSrc);
+    $("#magpie").attr("src", QUESTION_BANK.magpie.outlineImageSrc);
+    $("#goldfinch").attr("src", QUESTION_BANK.goldfinch.outlineImageSrc);
 }
 
 
