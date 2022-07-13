@@ -346,9 +346,9 @@ Click [Here](https://docs.github.com/en/github-ae@latest/get-started/quickstart/
 
 -   [Code Institute](https://codeinstitute.net/): I referred to lessons and source code from Code Institute's Web Application Development course. I sourced code for the footer social icons from the CV Project, and referred to the code from ..
 
-- Youtube Video (to finish)
+- [Youtube Video: Google Geocode API & JavaScript Tutorial by Traversy Media](https://www.youtube.com/watch?v=pRiQeo17u6c)
 
-- Postman
+- [eBird API 2.0 Documentation](https://documenter.getpostman.com/view/664302/S1ENwy59)
 
 - Google Maps documentation
 
