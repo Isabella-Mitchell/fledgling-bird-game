@@ -1,4 +1,3 @@
-//From "Google Geocode API & JavaScript Tutorial" on Youtube by Traversy Media
 //Setting up event listener for event
 let locationForm = document.getElementById("location-form");
 //listen for submit
@@ -30,9 +29,15 @@ function getData(lat, lng, dist, cb) {
         }
     };
 }
+
+function showTable() {
+  let myTable = document.getElementById("my-table");
+  myTable.classList.remove("d-none");
+}
   
   function loadTableData(data) {
     const table = document.getElementById("tableBody");
+    showTable();
     //console.log(data.length);
     //console.dir(data);
     if(data.length === 0){
