@@ -30,62 +30,47 @@ function getData(lat, lng, dist, cb) {
         }
     };
 }
+  
+  function loadTableData(data) {
+    const table = document.getElementById("tableBody");
+    //console.log(data.length);
+    //console.dir(data);
+    if(data.length === 0){
+        userAlert.classList.remove("d-none");
+    } else {
+      data.forEach(function (item) {
+        let row = table.insertRow();
 
-/**Builds table headers - from Code Institute Star Wars API Tutorial
- *Edited to supply user-friendly table headers, for only certain object properties*/
-function getTableHeaders() {
-    let tableHeaders = [];
-    tableHeaders.push(`<th>Bird Observed</th>`);
-    tableHeaders.push(`<th>Location Observed</th>`);
-    tableHeaders.push(`<th>No. Observed</th>`);
-    tableHeaders.push(`<th>Date Observed</th>`);
-    return `<tr>${tableHeaders}</tr>`;
-}
+        let birdNameCell = row.insertCell(0);
+        let birdNameData = item.comName.toString();
+        let birdNameDataTrunc = birdNameData.substring(0, 30);
+        birdNameCell.innerHTML = birdNameDataTrunc;
 
-/**Builds table rows using data from eBird API
- *Calls getData function. Passes in user supplied Lat, Lng, Distance and Callback function.*/
-function writeToDocument(lat, lng, distance) {
+        let locationObsCell = row.insertCell(1);
+        let locationObsData = item.locName.toString();
+        let locationObsDataTrunc = locationObsData.substring(0, 30);
+        locationObsCell.innerHTML = locationObsDataTrunc;
+
+        let numberObsCell = row.insertCell(2);
+        let numberObsData = item.howMany;
+        numberObsCell.innerHTML = numberObsData;
+
+        let dateObsCell = row.insertCell(3);
+        let dateObsData = item.obsDt.toString();
+        let dateObsDataTrunc = dateObsData.substring(0, 30);
+        dateObsCell.innerHTML = dateObsDataTrunc;
+      });
+    }
+  };
+
+  function writeToDocument(lat, lng, distance) {
     userAlert.classList.add("d-none");
-    let el = document.getElementById("data");
-    el.innerHTML = "";
-
+    
     getData(lat, lng, distance, function (data) {
-        console.log(data.length);
-        console.dir(data);
-        if(data.length === 0){
-            userAlert.classList.remove("d-none");
-        }
-        else {
-            let tableRows = [];
-            let tableHeaders = getTableHeaders();
-
-            data.forEach(function (item) {
-                let dataRow = [];
-
-                let rowData1 = item.comName.toString();
-                let truncatedData1 = rowData1.substring(0, 30);
-                dataRow.push(`<td>${truncatedData1}</td>`);
-
-                let rowData2 = item.locName.toString();
-                let truncatedData2 = rowData2.substring(0, 30);
-                dataRow.push(`<td>${truncatedData2}</td>`);
-
-                let rowData3 = item.howMany;
-                let truncatedData3 = rowData3;
-                dataRow.push(`<td>${truncatedData3}</td>`);
-
-                let rowData4 = item.obsDt.toString();
-                let truncatedData4 = rowData4.substring(0, 30);
-                dataRow.push(`<td>${truncatedData4}</td>`);
-
-                tableRows.push(`<tr>${dataRow}</tr>`);
-            });
-
-            el.innerHTML = `<table>${tableHeaders}${tableRows}</table>`.replace(/,/g, "");
-        }
+        loadTableData(data);
+    }
+  )};
         
-    });
-}
 
 /**From "Google Geocode API & JavaScript Tutorial" on Youtube by Traversy Media
  *Added in Maths Floor to round to 2 decimal places
