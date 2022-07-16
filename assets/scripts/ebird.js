@@ -20,8 +20,9 @@ function resetTable() {
 }
 
 /** 
- * Gets Data from eBird using REST API
- * Returns error for a bad request
+ * Gets Data from eBird using REST API.
+ * Requires user supplied distance radius and geocoded latitude and longtitute.
+ * Returns error for a bad request.
  * */
 function getEbirdData(lat, lng, dist, cb) {
     let xhr = new XMLHttpRequest();
@@ -81,20 +82,34 @@ function showTable() {
     }
   };
 
-  function writeToDocument(lat, lng, distance) {
+  /** 
+ * Hides user alerts if any have appeared from their last input
+ * */
+  function hideAlerts() {
     requestUserAlert.classList.add("d-none");
     addressUserAlert.classList.add("d-none");
     resultsUserAlert.classList.add("d-none");
-    
+  }
+
+   /** 
+ * Passes user supplied distance radius and geocoded latitude and longtitute into eBird API
+ * calls getEbirdData, which sends the API request to eBird
+ * Once data is returned, the callback function populates the HTML table with table data
+ * */
+  function passUserInputIntoEbirdAPI(lat, lng, distance) {
+    hideAlerts();
     getEbirdData(lat, lng, distance, function (data) {
         loadTableData(data);
     }
   )};
         
 
-/**From "Google Geocode API & JavaScript Tutorial" on Youtube by Traversy Media
- *Added in Maths Floor to round to 2 decimal places
- *Calls Write to Document Function. Passes in Lat, Lang and Distance*/
+/**
+ * Uses Google Maps Geocoding Service to return coordinates for user entered address
+ * Uses Maths Floor to round to 2 decimal places, required for the eBird API
+ * Returns error if address is not recognised.
+ * Calls passUserInputIntoEbirdAPI Function. Passes in Lat, Lang and Distance
+ * */
 function geocodeUserAddressInput(e) {
     //prevent actual submit
     e.preventDefault();
@@ -107,7 +122,6 @@ function geocodeUserAddressInput(e) {
             },
         })
         .then(function (response) {
-            //console.log(response);
             if(response.data.status != "ZERO_RESULTS"){
                 locationLat = response.data.results[0].geometry.location.lat;
                 locationLng = response.data.results[0].geometry.location.lng;
@@ -123,8 +137,8 @@ function geocodeUserAddressInput(e) {
             let selectDistance = document.getElementById("distance-select");
             let distance = selectDistance.options[selectDistance.selectedIndex].value;
 
-            //calls writeToDocument function
-            writeToDocument(locationLat, locationLng, distance);
+            //calls passUserInputIntoEbirdAPI function
+            passUserInputIntoEbirdAPI(locationLat, locationLng, distance);
 
             //Outputs formatted address to page
             let formattedAddress = response.data.results[0].formatted_address;
@@ -140,13 +154,11 @@ function geocodeUserAddressInput(e) {
         });
 }
 
-//alerts
+//User alerts in case something errors
 let requestUserAlert = document.getElementById("alert-request-error");
 let addressUserAlert = document.getElementById("alert-address-error");
 let resultsUserAlert = document.getElementById("alert-results-error");
-let alerts = document.getElementsByClassName("alert");
 
-//Setting up event listener for event
+//Event listener for user pressing submit
 let locationForm = document.getElementById("location-form");
-//listen for submit
 locationForm.addEventListener("submit", geocodeUserAddressInput);
