@@ -108,9 +108,11 @@ nav {
   padding-bottom: 5px;
 }
 
-.alert {
+.alerts {
   color:#eb534c;
   margin: 0 10px 0 10px;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
 /*--------------------Images */

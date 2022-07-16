@@ -26,35 +26,39 @@ The Row Gallery website has been tested using the following methods:
 
 ## W3C HTML Validator
 
-The Fledgling website passed all tests using the W3C HTML Validator tool
+The Fledgling website passed all tests using the [W3C HTML](https://validator.w3.org/) Validator tool
 
 ### Landing Page
-<h2 align="center"><img src=""></h2>
+<h2 align="center"><img src="assets/readme/html-validation-home.jpg"></h2>
 
 ### Game Page
-<h2 align="center"><img src=""></h2>
+<h2 align="center"><img src="assets/readme/html-validation-game.jpg"></h2>
 
 ### Sightings Page
-<h2 align="center"><img src=""></h2>
+<h2 align="center"><img src="assets/readme/html-validation-sightings.jpg"></h2>
 
 ## W3C CSS Validator
 
-The Fledgling website passed all tests using the W3C CSS Validator tool
-<h2 align="center"><img src=""></h2>
+The Fledgling website passed all tests using the [W3C CSS](https://jigsaw.w3.org/css-validator/) Validator tool
+<h2 align="center"><img src="assets/readme/css-validation.jpg"></h2>
 
 ## JSHINT Javascript Code Quality Tool
 
-EDIT
+The Fledgling website showed some errors using the [JSHint](https://jshint.com/) Javascript validation tool. See unresolved bugs.
 
-https://jshint.com/
+### eBird.js
+<h2 align="center"><img src="assets/readme/eBird-validation.jpg"></h2>
+
+### script.js
+<h2 align="center"><img src="assets/readme/script-validation.jpg"></h2>
 
 # Lighthouse
 
 ### Lighthouse Report for Landing Page (Desktop)
-<h2 align="center"><img src=""></h2>
+<h2 align="center"><img src="assets/readme.home-page-desktop-lighthouse.jpg"></h2>
 
 ### Lighthouse Report for Landing Page (Mobile)
-<h2 align="center"><img src=""></h2>
+<h2 align="center"><img src="assets/readme.home-page-mobile-lighthouse.jpg"></h2>
 
 I used the Lighthouse reports in Google Developer Tools to examine the pages of the website for the following
 - Performace
@@ -62,20 +66,24 @@ I used the Lighthouse reports in Google Developer Tools to examine the pages of 
 - Best Practices 
 - SEO
 
-EDIT All Pages performed well (scored 97 and above) in:
+All Pages performed well (scored 95 and above) in:
 - Performance, Accessibility, Best Practices and SEO on Desktop
 - Accessibility, Best Practices and SEO on Mobile
 
-EDIT Some Pages did not perform as well (scored 85 and above) in:
+In some tests the game page did not perform as well (scored 79 and above) in:
 - Performance on mobile
 
-EDIT Lighthouse recommends saving images in next-gen formats and eliminating render-blocking resources to improve performance on mobile. (Detailed in [Unresolved Bugs](#unresolved) section)
+Lighthouse recommends eliminating render-blocking resources to improve performance on mobile. (Detailed in [Unresolved Bugs](#unresolved) section)
 
 # A11y Color Contrast Accessibility Checker
 
 All website pages were tested using the A11y Color Contrast Accessibility Checker and no automated colour contrast issues were found.
 
-<h2 align="center"><img src=""></h2>
+<h2 align="center"><img src="assets/readme/colour-contrast-index.jpg"></h2>
+
+<h2 align="center"><img src="assets/readme/colour-contrast-game.jpg"></h2>
+
+<h2 align="center"><img src="assets/readme/colour-contrast-sightings.jpg"></h2>
 
 # Browser Compatibility
 
