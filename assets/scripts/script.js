@@ -200,6 +200,8 @@ let selectedBird;
 
 //Functions
 
+
+/** Decides what feedback should be given at end of game based on user score*/
 function setFinalResultsFeedback() {
     let finalResultsFeedback;
     if (game.score >= 15) {
@@ -212,6 +214,7 @@ function setFinalResultsFeedback() {
     return finalResultsFeedback;
 }
 
+/** Sets the end of game screen with user's final results and feedback*/
 function setFinalResultsScreen() {
     $("#bird-collection").removeClass("d-none");
     $("#end-game-screen").removeClass("d-none");
@@ -235,7 +238,7 @@ function removeCompletedBird() {
     $(".highlight").removeClass("bird-select").removeClass("highlight").attr("src", game.currentBird.finishedImageSrc);
 }
 
-/** Provides the end of round feedback based on score from 4 turns. Takes turn score and current bird as parameters*/
+/** Decides the appropriate end of round feedback based on score from 4 turns. Takes turn score and current bird as parameters*/
 function giveRoundFeedback(a, b) {
     if (a >= 4) {
         $("#feedback").text(`Congratulations, you correctly identified a ${b}`);
@@ -248,6 +251,7 @@ function giveRoundFeedback(a, b) {
     }
 }
 
+/** Changes the Game Box to the end of turn screen by hiding questions screen and displays the round score, finished bird image and fun fact.*/
 function setRoundResults() {
     $("#question-image").html(`<img src="${game.currentBird.finishedImageSrc}">`);
     $("#questions-box").addClass("d-none");
@@ -257,7 +261,7 @@ function setRoundResults() {
     giveRoundFeedback(game.turnScore, game.currentBird.birdName);
 }
 
-/** Changes the Game Box to the end of turn screen and displays the round score, finished bird image and fun fact.*/
+/** Sets up end of round results page. Calls function to set up screen*/
 function showRoundResults() {
     $("#game-box").fadeOut(500, function () {
         setRoundResults();
@@ -283,9 +287,9 @@ function addScore() {
     game.turnScore = game.turnScore + 1;
 }
 
-/** Prompted by button click. Checks user answer against bird object. Changes score indicator icon colour, calls addScore if correct.
+/** 
+ * Prompted by button click. Checks user answer against bird object. Changes score indicator icon colour, calls addScore if correct.
  * Calls callNextTurn function
- * Counts turn number, calls showRoundResults after 4 questions.
  * */
 function checkTurnAnswer(x, y) {
     //Variable to select score success indicicator icon relevant to turn question
@@ -297,7 +301,6 @@ function checkTurnAnswer(x, y) {
     } else {
         $(iconColour).removeClass("black").addClass("red");
     }
-    //split the below out
     callNextTurn();
 }
 
@@ -424,7 +427,6 @@ function resetGame() {
 function playAgain() {
     $("#end-game-button-box").addClass("d-none");
     resetImages();
-    //removed startNewgame from reset images function. Refactor so this function is not needed?
     startNewGame();
 }
 
@@ -432,7 +434,6 @@ function playAgain() {
 function startNewGame() {
     resetGame();
     addBirdSelectClass();
-    //check if this works - was in reset game fucntion
     startNewRound();
 }
 
@@ -446,6 +447,9 @@ function resetHighlightedAnswer(answer) {
     $("#answer-submit-alert").addClass("d-none")
 }
 
+/** 
+ * Defines what action should happen when a button is clicked.
+*/
 function addCorrectButtonAction(buttonClicked) {
     if (buttonClicked.getAttribute("button-command") === "start-new-game") {
         startNewGame();
