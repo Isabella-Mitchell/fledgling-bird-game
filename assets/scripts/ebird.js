@@ -6,20 +6,20 @@ const API_KEY = "&key=u5345apoosps";
 const tableBody = document.getElementById("tableBody");
 const myTable = document.getElementById("my-table");
 
-/**Variables for geocoding address function. 
+/**Variables for geocoding address function.
  * Store Lat and Lang to be passed into eBird function
  * */
 let locationLat;
 let locationLng;
 
-/** 
+/**
  * Resets the table, clearing data from eBird API.
  * */
 function resetTable() {
-  tableBody.innerHTML = "";
+    tableBody.innerHTML = "";
 }
 
-/** 
+/**
  * Gets Data from eBird using REST API.
  * Requires user supplied distance radius and geocoded latitude and longtitute.
  * Returns error for a bad request.
@@ -40,69 +40,68 @@ function getEbirdData(lat, lng, dist, cb) {
     };
 }
 
-/** 
+/**
  * Shows table on page which is hidden when the page first loads.
  * */
 function showTable() {
-  myTable.classList.remove("d-none");
+    myTable.classList.remove("d-none");
 }
 
-/** 
+/**
  * Populates table with data requesting from the eBird using an API.
  * Will show error the user if their search returns 0 results
  * */
-  function loadTableData(data) {
+function populateTableWithData(data) {
     resetTable();
-    if(data.length === 0){
+    if (data.length === 0) {
         resultsUserAlert.classList.remove("d-none");
     } else {
-      showTable();
-      data.forEach(function (item) {
-        let row = tableBody.insertRow();
+        showTable();
+        data.forEach(function (item) {
+            let row = tableBody.insertRow();
 
-        let birdNameCell = row.insertCell(0);
-        let birdNameData = item.comName.toString();
-        let birdNameDataTrunc = birdNameData.substring(0, 30);
-        birdNameCell.innerHTML = birdNameDataTrunc;
+            let birdNameCell = row.insertCell(0);
+            let birdNameData = item.comName.toString();
+            let birdNameDataTrunc = birdNameData.substring(0, 30);
+            birdNameCell.innerHTML = birdNameDataTrunc;
 
-        let locationObsCell = row.insertCell(1);
-        let locationObsData = item.locName.toString();
-        let locationObsDataTrunc = locationObsData.substring(0, 30);
-        locationObsCell.innerHTML = locationObsDataTrunc;
+            let locationObsCell = row.insertCell(1);
+            let locationObsData = item.locName.toString();
+            let locationObsDataTrunc = locationObsData.substring(0, 30);
+            locationObsCell.innerHTML = locationObsDataTrunc;
 
-        let numberObsCell = row.insertCell(2);
-        let numberObsData = item.howMany;
-        numberObsCell.innerHTML = numberObsData;
+            let numberObsCell = row.insertCell(2);
+            let numberObsData = item.howMany;
+            numberObsCell.innerHTML = numberObsData;
 
-        let dateObsCell = row.insertCell(3);
-        let dateObsData = item.obsDt.toString();
-        let dateObsDataTrunc = dateObsData.substring(0, 30);
-        dateObsCell.innerHTML = dateObsDataTrunc;
-      });
+            let dateObsCell = row.insertCell(3);
+            let dateObsData = item.obsDt.toString();
+            let dateObsDataTrunc = dateObsData.substring(0, 30);
+            dateObsCell.innerHTML = dateObsDataTrunc;
+        });
     }
-  };
+}
 
-  /** 
+/**
  * Hides user alerts if any have appeared from their last input
  * */
-  function hideAlerts() {
+function hideAlerts() {
     requestUserAlert.classList.add("d-none");
     addressUserAlert.classList.add("d-none");
     resultsUserAlert.classList.add("d-none");
-  }
+}
 
-   /** 
+/**
  * Passes user supplied distance radius and geocoded latitude and longtitute into eBird API
  * calls getEbirdData, which sends the API request to eBird
  * Once data is returned, the callback function populates the HTML table with table data
  * */
-  function passUserInputIntoEbirdAPI(lat, lng, distance) {
+function passUserInputIntoEbirdAPI(lat, lng, distance) {
     hideAlerts();
     getEbirdData(lat, lng, distance, function (data) {
-        loadTableData(data);
-    }
-  )};
-        
+        populateTableWithData(data);
+    });
+}
 
 /**
  * Uses Google Maps Geocoding Service to return coordinates for user entered address
@@ -115,14 +114,15 @@ function geocodeUserAddressInput(e) {
     e.preventDefault();
 
     let location = document.getElementById("location-input").value;
-    axios.get("https://maps.googleapis.com/maps/api/geocode/json", {
+    axios
+        .get("https://maps.googleapis.com/maps/api/geocode/json", {
             params: {
                 address: location,
                 key: "AIzaSyBoEklUcMdWIgoqZw1hY09NGnBUW9hzTVQ",
             },
         })
         .then(function (response) {
-            if(response.data.status != "ZERO_RESULTS"){
+            if (response.data.status != "ZERO_RESULTS") {
                 locationLat = response.data.results[0].geometry.location.lat;
                 locationLng = response.data.results[0].geometry.location.lng;
                 locationLat = Math.floor(locationLat * 100) / 100;
@@ -131,7 +131,6 @@ function geocodeUserAddressInput(e) {
                 addressUserAlert.classList.remove("d-none");
                 resetTable();
             }
-
 
             //distance
             let selectDistance = document.getElementById("distance-select");
