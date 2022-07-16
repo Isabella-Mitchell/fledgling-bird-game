@@ -1,21 +1,29 @@
-//Setting up event listener for event
-let locationForm = document.getElementById("location-form");
-//listen for submit
-locationForm.addEventListener("submit", geocode);
-
-//Variables for input
-let locationLat;
-let locationLng;
-
-//alert
-let userAlert = document.getElementById("alert");
-
-//eBird API code - from star wars walk through
+//Global variables storing URL and API_KEY for eBird API
 const BASE_URL = "https://api.ebird.org/v2/data/obs/geo/recent?";
 const API_KEY = "&key=u5345apoosps";
 
-/** Gets Data using eBird API - from star wars walk through*/
-function getData(lat, lng, dist, cb) {
+//Global variables for storing table elements
+const tableBody = document.getElementById("tableBody");
+const myTable = document.getElementById("my-table");
+
+/**Variables for geocoding address function. 
+ * Store Lat and Lang to be passed into eBird function
+ * */
+let locationLat;
+let locationLng;
+
+/** 
+ * Resets the table, clearing data from eBird API.
+ * */
+function resetTable() {
+  tableBody.innerHTML = "";
+}
+
+/** 
+ * Gets Data from eBird using REST API
+ * Returns error for a bad request
+ * */
+function getEbirdData(lat, lng, dist, cb) {
     let xhr = new XMLHttpRequest();
 
     xhr.open("GET", BASE_URL + "lat=" + lat + "&lng=" + lng + "&dist=" + dist + API_KEY);
@@ -25,26 +33,31 @@ function getData(lat, lng, dist, cb) {
         if (this.readyState == 4 && this.status == 200) {
             cb(JSON.parse(this.responseText));
         } else if (this.status > 200) {
-            userAlert.classList.remove("d-none");
+            requestUserAlert.classList.remove("d-none");
+            resetTable();
         }
     };
 }
 
+/** 
+ * Shows table on page which is hidden when the page first loads.
+ * */
 function showTable() {
-  let myTable = document.getElementById("my-table");
   myTable.classList.remove("d-none");
 }
-  
+
+/** 
+ * Populates table with data requesting from the eBird using an API.
+ * Will show error the user if their search returns 0 results
+ * */
   function loadTableData(data) {
-    const table = document.getElementById("tableBody");
-    showTable();
-    //console.log(data.length);
-    //console.dir(data);
+    resetTable();
     if(data.length === 0){
-        userAlert.classList.remove("d-none");
+        resultsUserAlert.classList.remove("d-none");
     } else {
+      showTable();
       data.forEach(function (item) {
-        let row = table.insertRow();
+        let row = tableBody.insertRow();
 
         let birdNameCell = row.insertCell(0);
         let birdNameData = item.comName.toString();
@@ -69,9 +82,11 @@ function showTable() {
   };
 
   function writeToDocument(lat, lng, distance) {
-    userAlert.classList.add("d-none");
+    requestUserAlert.classList.add("d-none");
+    addressUserAlert.classList.add("d-none");
+    resultsUserAlert.classList.add("d-none");
     
-    getData(lat, lng, distance, function (data) {
+    getEbirdData(lat, lng, distance, function (data) {
         loadTableData(data);
     }
   )};
@@ -80,7 +95,7 @@ function showTable() {
 /**From "Google Geocode API & JavaScript Tutorial" on Youtube by Traversy Media
  *Added in Maths Floor to round to 2 decimal places
  *Calls Write to Document Function. Passes in Lat, Lang and Distance*/
-function geocode(e) {
+function geocodeUserAddressInput(e) {
     //prevent actual submit
     e.preventDefault();
 
@@ -99,7 +114,8 @@ function geocode(e) {
                 locationLat = Math.floor(locationLat * 100) / 100;
                 locationLng = Math.floor(locationLng * 100) / 100;
             } else {
-                userAlert.classList.remove("d-none");
+                addressUserAlert.classList.remove("d-none");
+                resetTable();
             }
 
 
@@ -119,6 +135,18 @@ function geocode(e) {
 
         .catch(function (error) {
             console.log(error);
-            userAlert.classList.remove("d-none");
+            addressUserAlert.classList.remove("d-none");
+            resetTable();
         });
 }
+
+//alerts
+let requestUserAlert = document.getElementById("alert-request-error");
+let addressUserAlert = document.getElementById("alert-address-error");
+let resultsUserAlert = document.getElementById("alert-results-error");
+let alerts = document.getElementsByClassName("alert");
+
+//Setting up event listener for event
+let locationForm = document.getElementById("location-form");
+//listen for submit
+locationForm.addEventListener("submit", geocodeUserAddressInput);
