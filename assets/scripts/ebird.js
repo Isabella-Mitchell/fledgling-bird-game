@@ -1,22 +1,30 @@
-//From "Google Geocode API & JavaScript Tutorial" on Youtube by Traversy Media
-//Setting up event listener for event
-let locationForm = document.getElementById("location-form");
-//listen for submit
-locationForm.addEventListener("submit", geocode);
-
-//Variables for input
-let locationLat;
-let locationLng;
-
-//alert
-let userAlert = document.getElementById("alert");
-
-//eBird API code - from star wars walk through
+//Global variables storing URL and API_KEY for eBird API
 const BASE_URL = "https://api.ebird.org/v2/data/obs/geo/recent?";
 const API_KEY = "&key=u5345apoosps";
 
-/** Gets Data using eBird API - from star wars walk through*/
-function getData(lat, lng, dist, cb) {
+//Global variables for storing table elements
+const tableBody = document.getElementById("tableBody");
+const myTable = document.getElementById("my-table");
+
+/**Variables for geocoding address function.
+ * Store Lat and Lang to be passed into eBird function
+ * */
+let locationLat;
+let locationLng;
+
+/**
+ * Resets the table, clearing data from eBird API.
+ * */
+function resetTable() {
+    tableBody.innerHTML = "";
+}
+
+/**
+ * Gets Data from eBird using REST API.
+ * Requires user supplied distance radius and geocoded latitude and longtitute.
+ * Returns error for a bad request.
+ * */
+function getEbirdData(lat, lng, dist, cb) {
     let xhr = new XMLHttpRequest();
 
     xhr.open("GET", BASE_URL + "lat=" + lat + "&lng=" + lng + "&dist=" + dist + API_KEY);
@@ -26,99 +34,110 @@ function getData(lat, lng, dist, cb) {
         if (this.readyState == 4 && this.status == 200) {
             cb(JSON.parse(this.responseText));
         } else if (this.status > 200) {
-            userAlert.classList.remove("d-none");
+            requestUserAlert.classList.remove("d-none");
+            resetTable();
         }
     };
 }
 
-/**Builds table headers - from Code Institute Star Wars API Tutorial
- *Edited to supply user-friendly table headers, for only certain object properties*/
-function getTableHeaders() {
-    let tableHeaders = [];
-    tableHeaders.push(`<th>Bird Observed</th>`);
-    tableHeaders.push(`<th>Location Observed</th>`);
-    tableHeaders.push(`<th>No. Observed</th>`);
-    tableHeaders.push(`<th>Date Observed</th>`);
-    return `<tr>${tableHeaders}</tr>`;
+/**
+ * Shows table on page which is hidden when the page first loads.
+ * */
+function showTable() {
+    myTable.classList.remove("d-none");
 }
 
-/**Builds table rows using data from eBird API
- *Calls getData function. Passes in user supplied Lat, Lng, Distance and Callback function.*/
-function writeToDocument(lat, lng, distance) {
-    userAlert.classList.add("d-none");
-    let el = document.getElementById("data");
-    el.innerHTML = "";
+/**
+ * Populates table with data requesting from the eBird using an API.
+ * Will show error the user if their search returns 0 results
+ * */
+function populateTableWithData(data) {
+    resetTable();
+    if (data.length === 0) {
+        resultsUserAlert.classList.remove("d-none");
+    } else {
+        showTable();
+        data.forEach(function (item) {
+            let row = tableBody.insertRow();
 
-    getData(lat, lng, distance, function (data) {
-        console.log(data.length);
-        console.dir(data);
-        if(data.length === 0){
-            userAlert.classList.remove("d-none");
-        }
-        else {
-            let tableRows = [];
-            let tableHeaders = getTableHeaders();
+            let birdNameCell = row.insertCell(0);
+            let birdNameData = item.comName.toString();
+            let birdNameDataTrunc = birdNameData.substring(0, 30);
+            birdNameCell.innerHTML = birdNameDataTrunc;
 
-            data.forEach(function (item) {
-                let dataRow = [];
+            let locationObsCell = row.insertCell(1);
+            let locationObsData = item.locName.toString();
+            let locationObsDataTrunc = locationObsData.substring(0, 30);
+            locationObsCell.innerHTML = locationObsDataTrunc;
 
-                let rowData1 = item.comName.toString();
-                let truncatedData1 = rowData1.substring(0, 30);
-                dataRow.push(`<td>${truncatedData1}</td>`);
+            let numberObsCell = row.insertCell(2);
+            let numberObsData = item.howMany;
+            numberObsCell.innerHTML = numberObsData;
 
-                let rowData2 = item.locName.toString();
-                let truncatedData2 = rowData2.substring(0, 30);
-                dataRow.push(`<td>${truncatedData2}</td>`);
+            let dateObsCell = row.insertCell(3);
+            let dateObsData = item.obsDt.toString();
+            let dateObsDataTrunc = dateObsData.substring(0, 30);
+            dateObsCell.innerHTML = dateObsDataTrunc;
+        });
+    }
+}
 
-                let rowData3 = item.howMany;
-                let truncatedData3 = rowData3;
-                dataRow.push(`<td>${truncatedData3}</td>`);
+/**
+ * Hides user alerts if any have appeared from their last input
+ * */
+function hideAlerts() {
+    requestUserAlert.classList.add("d-none");
+    addressUserAlert.classList.add("d-none");
+    resultsUserAlert.classList.add("d-none");
+}
 
-                let rowData4 = item.obsDt.toString();
-                let truncatedData4 = rowData4.substring(0, 30);
-                dataRow.push(`<td>${truncatedData4}</td>`);
-
-                tableRows.push(`<tr>${dataRow}</tr>`);
-            });
-
-            el.innerHTML = `<table>${tableHeaders}${tableRows}</table>`.replace(/,/g, "");
-        }
-        
+/**
+ * Passes user supplied distance radius and geocoded latitude and longtitute into eBird API
+ * calls getEbirdData, which sends the API request to eBird
+ * Once data is returned, the callback function populates the HTML table with table data
+ * */
+function passUserInputIntoEbirdAPI(lat, lng, distance) {
+    hideAlerts();
+    getEbirdData(lat, lng, distance, function (data) {
+        populateTableWithData(data);
     });
 }
 
-/**From "Google Geocode API & JavaScript Tutorial" on Youtube by Traversy Media
- *Added in Maths Floor to round to 2 decimal places
- *Calls Write to Document Function. Passes in Lat, Lang and Distance*/
-function geocode(e) {
+/**
+ * Uses Google Maps Geocoding Service to return coordinates for user entered address
+ * Uses Maths Floor to round to 2 decimal places, required for the eBird API
+ * Returns error if address is not recognised.
+ * Calls passUserInputIntoEbirdAPI Function. Passes in Lat, Lang and Distance
+ * */
+function geocodeUserAddressInput(e) {
     //prevent actual submit
     e.preventDefault();
 
     let location = document.getElementById("location-input").value;
-    axios.get("https://maps.googleapis.com/maps/api/geocode/json", {
+    axios
+        .get("https://maps.googleapis.com/maps/api/geocode/json", {
             params: {
                 address: location,
                 key: "AIzaSyBoEklUcMdWIgoqZw1hY09NGnBUW9hzTVQ",
             },
         })
         .then(function (response) {
-            //console.log(response);
-            if(response.data.status != "ZERO_RESULTS"){
+            if (response.data.status != "ZERO_RESULTS") {
                 locationLat = response.data.results[0].geometry.location.lat;
                 locationLng = response.data.results[0].geometry.location.lng;
                 locationLat = Math.floor(locationLat * 100) / 100;
                 locationLng = Math.floor(locationLng * 100) / 100;
             } else {
-                userAlert.classList.remove("d-none");
+                addressUserAlert.classList.remove("d-none");
+                resetTable();
             }
-
 
             //distance
             let selectDistance = document.getElementById("distance-select");
             let distance = selectDistance.options[selectDistance.selectedIndex].value;
 
-            //calls writeToDocument function
-            writeToDocument(locationLat, locationLng, distance);
+            //calls passUserInputIntoEbirdAPI function
+            passUserInputIntoEbirdAPI(locationLat, locationLng, distance);
 
             //Outputs formatted address to page
             let formattedAddress = response.data.results[0].formatted_address;
@@ -129,6 +148,16 @@ function geocode(e) {
 
         .catch(function (error) {
             console.log(error);
-            userAlert.classList.remove("d-none");
+            addressUserAlert.classList.remove("d-none");
+            resetTable();
         });
 }
+
+//User alerts in case something errors
+let requestUserAlert = document.getElementById("alert-request-error");
+let addressUserAlert = document.getElementById("alert-address-error");
+let resultsUserAlert = document.getElementById("alert-results-error");
+
+//Event listener for user pressing submit
+let locationForm = document.getElementById("location-form");
+locationForm.addEventListener("submit", geocodeUserAddressInput);
