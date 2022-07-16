@@ -218,7 +218,7 @@ function setFinalResultsFeedback() {
 function setFinalResultsScreen() {
     $("#bird-collection").removeClass("d-none");
     $("#end-game-screen").removeClass("d-none");
-    hideQuestionAnswerScreen() 
+    hideQuestionAnswerScreen(); 
     $("#final-game-score").text(game.score);
     $("#final-results-feedback").text(setFinalResultsFeedback());
     $("#end-game-button-box").removeClass("d-none");
@@ -354,7 +354,7 @@ function pickBirdEvent() {
             $(".bird-select").removeClass("highlight");
             $(this).addClass("highlight");
             $("#submit-bird").removeClass("disabled");
-            $("#submit-bird-alert").addClass("d-none")
+            $("#submit-bird-alert").addClass("d-none");
         } else {
             $("#submit-bird").addClass("disabled");
         }
@@ -444,37 +444,37 @@ function startNewGame() {
 function resetHighlightedAnswer(answer) {
     $(".answer-btn").removeClass("highlight-answer-option");
     $(answer).addClass("highlight-answer-option");
-    $("#answer-submit-alert").addClass("d-none")
+    $("#answer-submit-alert").addClass("d-none");
 }
 
 /** 
  * Defines what action should happen when a button is clicked.
 */
 function addCorrectButtonAction(buttonClicked) {
-    if (buttonClicked.getAttribute("button-command") === "start-new-game") {
+    if (buttonClicked.getAttribute("data-button-command") === "start-new-game") {
         startNewGame();
-    } else if (buttonClicked.getAttribute("button-command") === "submit-bird") {
+    } else if (buttonClicked.getAttribute("data-button-command") === "submit-bird") {
         if ($(".bird-select").hasClass("highlight")) {
             submitBird();
         } else {
             //change alert
-            $("#submit-bird-alert").removeClass("d-none")
+            $("#submit-bird-alert").removeClass("d-none");
         }
-    } else if (buttonClicked.getAttribute("button-command") === "submit-answer") {
+    } else if (buttonClicked.getAttribute("data-button-command") === "submit-answer") {
         if ($(".highlight-answer-option").text()) {
             game.submittedTurnAnswer = $(".highlight-answer-option").text();
             checkTurnAnswer(game.submittedTurnAnswer, game.turnNumber);
         } else {
             //change alert
-            $("#answer-submit-alert").removeClass("d-none")
+            $("#answer-submit-alert").removeClass("d-none");
         }
-    } else if (buttonClicked.getAttribute("button-command") === "start-next-round") {
+    } else if (buttonClicked.getAttribute("data-button-command") === "start-next-round") {
         if (game.roundNumber <= 5) {
             startNewRound();
         } else {
             showFinalResults();
         }
-    } else if (buttonClicked.getAttribute("button-command") === "play-again") {
+    } else if (buttonClicked.getAttribute("data-button-command") === "play-again") {
         $("#game-box").fadeOut(1000, function(){
             //further test is I can remove function and it fades properly
             playAgain();
