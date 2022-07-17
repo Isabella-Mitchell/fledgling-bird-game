@@ -282,14 +282,21 @@ I also personally tested the website on iPhone 12, iPhone 11, iPad Pro 2nd Gener
     - I googled the issue and realised that custom attributes need to start with data.  
     - I updated the attributes to ‘data-button-command' and the code passed the validator without error.  
 
-## Unresolved (to finish)
+## Unresolved
 
-- Lighthouse improve performance 
+- Lighthouse 
+    - There are suggestions from Lighthouse that I could follow to improve performance of my page load time. 
 
-- jshint - Ebird script One undefined variable -117	axios 
+- JSHint Validator 
+    - I have two errors from my JSHint validator.
 
-- Table issue - https://stackoverflow.com/questions/52919972/how-can-i-populate-a-table-with-javascript 
+- Sightings Table
+    - I'm still relying on Javascript to build the table for the sightings data using the addRow() method. My mentor advised me it's against best practices to do this.
 
-- Game screen still jumps – I added in... 
+- Round content/ images "jumping"
+    - If the images fail to load quickly, then the content "jumps" around. I have tried to minimise the impact of this using CSS, but there is still more I could do. 
+
+- Google Maps Geocoding Service
+    - I cannot add approiate restrictions to the Google Maps Geocoding Service. This should be changed to the Google Maps Javascript API.
 
 Back to [README.md](/README.md#testing)

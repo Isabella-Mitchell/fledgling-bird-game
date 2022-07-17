@@ -290,29 +290,27 @@
 <h2 align="center"><img src="assets/readme/error-if-not-proper-address-entered.jpg"></h2>
 <h2 align="center"><img src="assets/readme/error-if-address-too-broad-or-no-results.jpg"></h2>
 
-## Features Left to Implement (to finish)
+## Features Left to Implement
 
 ### Game Play  
 
-- More birds... 
+- I would like to add an alert when a user is going to exit the page to inform them that they will lose their game progress. This would prevent them from accidentally exiting the page. If this was in place, then I could link the Sightings page  to the Game page nav bar. 
 
-- Warning if user leaves game screen  
+- I would like to explore ways to make the gameplay more accessible to visually impaired users. At present, as a picture game, it is not well-suited to those who rely on screen-readers. 
 
-- Select bird – add magnifiying glass over birds to select. Remove need for submit button (see peer review) 
+- If I were to develop the game further, I would add more birds. So the user could play mutliple time and play different birds each time. 
 
-- cache images (slow loading first time play) 
-
-- Not accessible to people who are visually impered 
+- I would explore ways to make the images load or cache more quickly. When a user first plays, they can experience some jumping of content (see unresolved bugs), especially if they’re on a slow internet connection. I explore ways to prevent this from happening. 
 
 ### Sightings 
 
-- The eBird API allows more search parameters. E.g. you can search or filter results by bird name. So I include more search options for the user, to return more specific results. 
+- I would like to offer more filtering/ search options to the user. The eBird API allows more search parameters, e.g. you can search or filter results by bird name. So, I include more search options for the user, to return more specific results. 
 
-- I feel this page would benefit from more visuals... 
+- I feel the sightings page would benefit from visuals/ images. I would explore ways to make the page more visual, or make it easier for users to find images. For example, I could create a hyperlink from every bird name which would conduct and image search for that bird and open it in a new tab. 
 
-- Table isn’t great on mobile 
+- The tabular data isn’t as well presented on mobile as it is on desktop. I would use media queries to make the presentation more suitable to smaller screen sizes.  
 
-- Better Google Maps API
+- To further develop the project, I would use the Google Maps Javascript API rather than the Google Maps Geocoding Service. This would allow me to apply more restrictions to my API. (See resolved bugs) 
 
 # Technologies Used
 
@@ -444,33 +442,32 @@ $ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
 
 Click [Here](https://docs.github.com/en/github-ae@latest/get-started/quickstart/fork-a-repo) for the GitHub quick start guide with images and more detailed explanations of the above process.
 
-# Credits (to finish)
+# Credits
 
 ## Code
 
--   [Bootstrap4](https://getbootstrap.com/docs/4.4/getting-started/introduction/): Bootstrap Library was used throughout the project mainly to make site responsive using the Bootstrap Grid System. I sourced code from the Bootstrap documentation when building ....
+- [Bootstrap4](https://getbootstrap.com/docs/4.4/getting-started/introduction/): Bootstrap Library was used throughout the project mainly to make site responsive using the Bootstrap Grid System. I sourced code from the Bootstrap documentation when building ....
 
--   [Code Institute](https://codeinstitute.net/): I referred to lessons and source code from Code Institute's Web Application Development course. I sourced code for the footer social icons from the CV Project, and referred to the code from ..
+- [Code Institute](https://codeinstitute.net/): I referred to lessons and source code from Code Institute's Web Application Development course. I sourced code for the footer social icons from the CV Project, and referred to the code from the Start Wars API module, the Love Maths Project and the CV Project (google maps API).
 
-- [Youtube Video: Google Geocode API & JavaScript Tutorial by Traversy Media](https://www.youtube.com/watch?v=pRiQeo17u6c)
+- [Youtube Video: Google Geocode API & JavaScript Tutorial by Traversy Media](https://www.youtube.com/watch?v=pRiQeo17u6c): I followed this tutorial to set up the Google Maps Geocoding Service API.
 
-- [eBird API 2.0 Documentation](https://documenter.getpostman.com/view/664302/S1ENwy59)
+- [eBird API 2.0 Documentation](https://documenter.getpostman.com/view/664302/S1ENwy59): I referred to this documentation while setting up the eBird API.
 
-- Ipad image stretching - https://stackoverflow.com/questions/57516373/image-stretching-in-flexbox-in-safari 
+- [Stack Overflow Article](https://stackoverflow.com/questions/57516373/image-stretching-in-flexbox-in-safari): I referred to this article to help me fix a bug which caused images to distort on iPad. 
 
-- credit Google Geocode API & JavaScript Tutorial 
+- [Stack Overflow Article](https://stackoverflow.com/questions/52919972/how-can-i-populate-a-table-with-javascript): I referred to this article to help me build the table without using template literals.
 
-- Table issue - https://stackoverflow.com/questions/52919972/how-can-i-populate-a-table-with-javascript 
-
-- Google Maps documentation
-
-- Stack Overflow
+- [Google Maps API Documentation](https://developers.google.com/maps/documentation): I referred to this documentation to while setting up the Google Maps API.
 
 ## Content
 
 - I referred to the following websites for bird facts and image references.
+  - [RSPB Bird Identifier Tool](https://www.rspb.org.uk/birds-and-wildlife/wildlife-guides/identify-a-bird/): I used this tool to help me decide which questions to include in my game. The game takes inspiration from tools like this one.
+  - [RSPB Birds A-Z](https://www.rspb.org.uk/birds-and-wildlife/wildlife-guides/bird-a-z/): I used images on the RSPB website as the basis of my illustrations and to inspire the question answers and fun facts 
+  - [Country Living Article](https://www.countryliving.com/uk/wildlife/countryside/a36158435/garden-birds-homebase-home-for-all-campaign/): This helped me decide which birds to include in my game
 
-- The tabular data is sourced from eBird.
+- The tabular data is sourced from [eBird](https://ebird.org/home).
 
 ## Media
 
@@ -480,11 +477,11 @@ Click [Here](https://docs.github.com/en/github-ae@latest/get-started/quickstart/
 
 - Thank you to my mentor Akshat Garg and cover mentor Rohit Sharma for helpful feedback, industry insights and recommended tools.
 
-Thank you to fellow Code Institute students/ alumni ... for participating in the peer code review. Thank you to my family for manually testing the website and for feedback.
+- Thank you to fellow Code Institute students/ alumni ... for participating in the peer code review. Thank you to my family for manually testing the website and for feedback.
 
-Thank you to the Code Institute London Community for their encouragement and technical support.
+- Thank you to the Code Institute London Community for their encouragement and technical support.
 
-Thank you to the tutors and staff at Code Institute for their support.
+- Thank you to the tutors and staff at Code Institute for their support.
 
 Please note this is a personal project. This website is purely for the sake of the developer's portfolio and not for public consumption.
 
