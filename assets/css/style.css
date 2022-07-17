@@ -72,14 +72,14 @@ nav {
 /*--------------------Game */
 
 #question-text{
+  font-size: x-large;
   margin: 10px;
 }
 
 .answer-btn {
   color: #212529;
   margin: 10px;
-  max-width: 200px;
-  min-width: 200px;
+  width: 280px;
   border-radius: 5px;
   background-color: white;
   border-width: 1px;
@@ -91,11 +91,6 @@ nav {
 .submit-btn {
   margin: 10px;
   padding: 10px 20px 10px 20px;
-}
-
-.icons span {
-  font-size: 24px;
-  margin: 10px;
 }
 
 #results-text {
@@ -130,8 +125,6 @@ nav {
 
 #question-image {
   display:inline-block;
-  max-width: 400px;
-  min-height: 200px;
 }
 
 #question-image img {
@@ -284,9 +277,23 @@ footer .row {
   }
 }
 
+@media(max-width: 768px) {
+  #question-image {
+    max-width: 200px;
+  }
+  .icons span {
+    font-size: 18px;
+    margin: 10px;
+  }
+}
+
 @media(min-width: 768px) {
-  .question-image {
-    max-width: 300px;
+  #question-image {
+    max-width: 400px;
+  }
+  .icons span {
+    font-size: 24px;
+    margin: 10px;
   }
 }
 
@@ -306,5 +313,10 @@ footer .row {
   }
 }
 
+@media(min-width: 768px) {
+  .answer-btn {
+    max-width: 200px;
+  }
+}
 
 
