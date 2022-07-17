@@ -200,7 +200,7 @@ let selectedBird;
 
 //Functions
 
-/** 
+/**
  * Decides what feedback should be given at end of game based on user score
  * */
 function setFinalResultsFeedback() {
@@ -215,23 +215,23 @@ function setFinalResultsFeedback() {
     return finalResultsFeedback;
 }
 
-/** 
+/**
  * Sets the end of game screen with user's final results and feedback
  * */
 function setFinalResultsScreen() {
     $("#bird-collection").removeClass("d-none");
     $("#end-game-screen").removeClass("d-none");
-    hideQuestionAnswerScreen(); 
+    hideQuestionAnswerScreen();
     $("#final-game-score").text(game.score);
     $("#final-results-feedback").text(setFinalResultsFeedback());
     $("#end-game-button-box").removeClass("d-none");
 }
 
-/** 
+/**
  * Shows the user's final results at end of game in the end game box
  * */
 function showFinalResults() {
-    $("#game-box").fadeOut(500, function() {
+    $("#game-box").fadeOut(500, function () {
         setFinalResultsScreen();
         $("#game-box").fadeIn(1000);
     });
@@ -245,7 +245,7 @@ function removeCompletedBird() {
 }
 
 /**
- * Decides the appropriate end of round feedback based on score from 4 turns. 
+ * Decides the appropriate end of round feedback based on score from 4 turns.
  * Takes turn score and current bird as parameters
  * */
 function giveRoundFeedback(a, b) {
@@ -272,7 +272,7 @@ function setRoundResults() {
     giveRoundFeedback(game.turnScore, game.currentBird.birdName);
 }
 
-/** 
+/**
  * Sets up end of round results page. Calls function to set up screen
  * */
 function showRoundResults() {
@@ -284,8 +284,8 @@ function showRoundResults() {
 }
 
 /** Prompted by check answer. Counts turn number, calls gameRound or calls showRoundResults after 4 questions.
- * 
-*/
+ *
+ */
 function callNextTurn() {
     game.turnNumber = game.turnNumber + 1;
     if (game.turnNumber < 4) {
@@ -296,7 +296,7 @@ function callNextTurn() {
     }
 }
 
-/** 
+/**
  * Adds the score to the Turn score (out of 4) and the game score (out of 20)
  * */
 function addScore() {
@@ -304,7 +304,7 @@ function addScore() {
     game.turnScore = game.turnScore + 1;
 }
 
-/** 
+/**
  * Prompted by button click. Checks user answer against bird object. Changes score indicator icon colour, calls addScore if correct.
  * Declares Variable to select score success indicicator icon relevant to turn question
  * Calls callNextTurn function
@@ -358,7 +358,7 @@ function gameRound(i) {
     });
 }
 
-/** 
+/**
  * function run after submitbird button clicked. Gets ID of bird selected and puts content into Game Object. Calls initial gameRound function
  * */
 function submitBird() {
@@ -367,7 +367,7 @@ function submitBird() {
     gameRound(game.turnNumber);
 }
 
-/** 
+/**
  * Allows user to select a bird. Will only allow to select one bird, and must select a bird to be able to proceed.
  * */
 function pickBirdEvent() {
@@ -397,7 +397,7 @@ function hideQuestionAnswerScreen() {
 }
 
 /** Shows the Select Bird Screen*/
-function showBirdCollectionScreen(){
+function showBirdCollectionScreen() {
     $("#game-initial-load-screen").addClass("d-none");
     $("#bird-collection").removeClass("d-none");
     $("#bird-collection-screen").removeClass("d-none");
@@ -419,7 +419,7 @@ function startNewRound() {
     game.currentBirdQuiz = [];
     game.turnNumber = 0;
     game.turnScore = 0;
-    $("#game-box").fadeOut(500, function() {
+    $("#game-box").fadeOut(500, function () {
         loadRoundView();
     });
 }
@@ -433,12 +433,10 @@ function resetImages() {
     $("#goldfinch").attr("src", QUESTION_BANK.goldfinch.outlineImageSrc);
 }
 
-
 /** Adds select class to all images*/
 function addBirdSelectClass() {
     $(".collection-view").children("div").children().addClass("bird-select");
 }
-    
 
 /** Resets Game object. Is called by start new Game.*/
 function resetGame() {
@@ -463,19 +461,19 @@ function startNewGame() {
     startNewRound();
 }
 
-/** 
+/**
  * Adds the highlight-answer-option class to the clicked answer option button, and removes it from the other answer option buttons.
  * Function is called when an answer option button is clicked.
-*/
+ */
 function resetHighlightedAnswer(answer) {
     $(".answer-btn").removeClass("highlight-answer-option");
     $(answer).addClass("highlight-answer-option");
     $("#answer-submit-alert").addClass("d-none");
 }
 
-/** 
+/**
  * Defines what action should happen when a button is clicked.
-*/
+ */
 function addCorrectButtonAction(buttonClicked) {
     if (buttonClicked.getAttribute("data-button-command") === "start-new-game") {
         startNewGame();
@@ -499,36 +497,36 @@ function addCorrectButtonAction(buttonClicked) {
             showFinalResults();
         }
     } else if (buttonClicked.getAttribute("data-button-command") === "play-again") {
-        $("#game-box").fadeOut(1000, function(){
+        $("#game-box").fadeOut(1000, function () {
             playAgain();
         });
     }
 }
 
-/** 
+/**
  * Adds event listeners to game buttons.
  * Function is called when DOM content is loaded
-*/
+ */
 function addEventListeners() {
     let buttons = document.getElementsByTagName("button");
 
     for (let button of buttons) {
-        button.addEventListener("click", function() {
+        button.addEventListener("click", function () {
             addCorrectButtonAction(this);
         });
     }
 }
 
-/** 
+/**
  * Wait for the DOM to finish loading before running the game
  * Get the button elements and add event listeners to them
-*/
+ */
 document.addEventListener("DOMContentLoaded", addEventListeners());
 
-/** 
- * Event happens on click of an answer option button. 
+/**
+ * Event happens on click of an answer option button.
  * Calls a function to add the highlight-answer-option class to the clicked answer option button, and remove it from other answer option buttons.
-*/
-$(".answer-btn").on("click", function(){
+ */
+$(".answer-btn").on("click", function () {
     resetHighlightedAnswer(this);
 });
