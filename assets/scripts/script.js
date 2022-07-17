@@ -200,8 +200,9 @@ let selectedBird;
 
 //Functions
 
-
-/** Decides what feedback should be given at end of game based on user score*/
+/** 
+ * Decides what feedback should be given at end of game based on user score
+ * */
 function setFinalResultsFeedback() {
     let finalResultsFeedback;
     if (game.score >= 15) {
@@ -214,7 +215,9 @@ function setFinalResultsFeedback() {
     return finalResultsFeedback;
 }
 
-/** Sets the end of game screen with user's final results and feedback*/
+/** 
+ * Sets the end of game screen with user's final results and feedback
+ * */
 function setFinalResultsScreen() {
     $("#bird-collection").removeClass("d-none");
     $("#end-game-screen").removeClass("d-none");
@@ -224,8 +227,9 @@ function setFinalResultsScreen() {
     $("#end-game-button-box").removeClass("d-none");
 }
 
-
-/** Shows the user's final results at end of game in the end game box*/
+/** 
+ * Shows the user's final results at end of game in the end game box
+ * */
 function showFinalResults() {
     $("#game-box").fadeOut(500, function() {
         setFinalResultsScreen();
@@ -233,12 +237,17 @@ function showFinalResults() {
     });
 }
 
-/** Removes a class from the bird image. Stops the user being able to select the same bird twice*/
+/**
+ * Removes a class from the bird image. Stops the user being able to select the same bird twice
+ * */
 function removeCompletedBird() {
     $(".highlight").removeClass("bird-select").removeClass("highlight").attr("src", game.currentBird.finishedImageSrc);
 }
 
-/** Decides the appropriate end of round feedback based on score from 4 turns. Takes turn score and current bird as parameters*/
+/**
+ * Decides the appropriate end of round feedback based on score from 4 turns. 
+ * Takes turn score and current bird as parameters
+ * */
 function giveRoundFeedback(a, b) {
     if (a >= 4) {
         $("#feedback").text(`Congratulations, you correctly identified a ${b}`);
@@ -251,7 +260,9 @@ function giveRoundFeedback(a, b) {
     }
 }
 
-/** Changes the Game Box to the end of turn screen by hiding questions screen and displays the round score, finished bird image and fun fact.*/
+/** Changes the Game Box to the end of turn screen by hiding questions screen.
+ * Then displays the round score, finished bird image and fun fact.
+ * */
 function setRoundResults() {
     $("#question-image").html(`<img src="${game.currentBird.finishedImageSrc}">`);
     $("#questions-box").addClass("d-none");
@@ -261,7 +272,9 @@ function setRoundResults() {
     giveRoundFeedback(game.turnScore, game.currentBird.birdName);
 }
 
-/** Sets up end of round results page. Calls function to set up screen*/
+/** 
+ * Sets up end of round results page. Calls function to set up screen
+ * */
 function showRoundResults() {
     $("#game-box").fadeOut(500, function () {
         setRoundResults();
@@ -270,7 +283,9 @@ function showRoundResults() {
     removeCompletedBird();
 }
 
-/** Prompted by check answer. Counts turn number, calls gameRound or calls showRoundResults after 4 questions.*/
+/** Prompted by check answer. Counts turn number, calls gameRound or calls showRoundResults after 4 questions.
+ * 
+*/
 function callNextTurn() {
     game.turnNumber = game.turnNumber + 1;
     if (game.turnNumber < 4) {
@@ -281,7 +296,9 @@ function callNextTurn() {
     }
 }
 
-/** Adds the score to the Turn score (out of 4) and the game score (out of 20) */
+/** 
+ * Adds the score to the Turn score (out of 4) and the game score (out of 20)
+ * */
 function addScore() {
     game.score = game.score + 1;
     game.turnScore = game.turnScore + 1;
@@ -289,10 +306,10 @@ function addScore() {
 
 /** 
  * Prompted by button click. Checks user answer against bird object. Changes score indicator icon colour, calls addScore if correct.
+ * Declares Variable to select score success indicicator icon relevant to turn question
  * Calls callNextTurn function
  * */
 function checkTurnAnswer(x, y) {
-    //Variable to select score success indicicator icon relevant to turn question
     let currentBirdQuiz = game.currentBird.quiz[y];
     let iconColour = document.getElementById(currentBirdQuiz.genre);
     if (x === currentBirdQuiz.correctAnswer) {
@@ -304,13 +321,14 @@ function checkTurnAnswer(x, y) {
     callNextTurn();
 }
 
+/** Shows question and answer screen*/
 function showQuestionAnswersScreen() {
     $("#questions-box").removeClass("d-none");
     $("#round-box").removeClass("d-none");
 }
 
+/** Sets the question and answers for each turn based on the QUESTION_BANK*/
 function setQuestionAnswers(i) {
-    //move below out into own function?
     let currentBirdQuiz = game.currentBird.quiz[i];
     $(".answer-btn").removeClass("highlight-answer-option");
     $("#question-image").html(`<img src="${currentBirdQuiz.imageSrc}">`);
@@ -321,6 +339,7 @@ function setQuestionAnswers(i) {
     $("#answer-option-4").text(`${currentBirdQuiz.options[3]}`);
 }
 
+/** Hides Bird Submit screen*/
 function hideBirdCollectionScreen() {
     $("#bird-collection").addClass("d-none");
     $("#bird-collection-screen").addClass("d-none");
@@ -339,14 +358,18 @@ function gameRound(i) {
     });
 }
 
-/** function run after submitbird button clicked. Gets ID of bird selected and puts content into Game Object. Calls initial gameRound function*/
+/** 
+ * function run after submitbird button clicked. Gets ID of bird selected and puts content into Game Object. Calls initial gameRound function
+ * */
 function submitBird() {
     selectedBird = document.getElementsByClassName("highlight");
     game.currentBird = QUESTION_BANK[selectedBird[0].id];
     gameRound(game.turnNumber);
 }
 
-/** Allows user to select a bird. Will only allow to select one bird, and must select a bird to be able to proceed.*/
+/** 
+ * Allows user to select a bird. Will only allow to select one bird, and must select a bird to be able to proceed.
+ * */
 function pickBirdEvent() {
     $("#submit-bird").addClass("disabled");
     $(".bird-select").click(function () {
@@ -361,18 +384,20 @@ function pickBirdEvent() {
     });
 }
 
-function hideHowToPlayBox() {
+/** Shows How To Play Button in the nav bar */
+function showHowToPlayBox() {
     $("#how-to-play-box").removeClass("d-none");
 }
 
+/** Hides the quesution and Answer screen*/
 function hideQuestionAnswerScreen() {
     $("#round-box").addClass("d-none");
     $(".icons").children().removeClass("green").removeClass("red").addClass("black");
     $("#round-results-box").addClass("d-none");
 }
 
+/** Shows the Select Bird Screen*/
 function showBirdCollectionScreen(){
-    //remove gameinital load screen line out?
     $("#game-initial-load-screen").addClass("d-none");
     $("#bird-collection").removeClass("d-none");
     $("#bird-collection-screen").removeClass("d-none");
@@ -381,9 +406,9 @@ function showBirdCollectionScreen(){
     $("#game-box").fadeIn(1000, pickBirdEvent());
 }
 
+/** Loads the round view, showing select bird screen and hiding other screens*/
 function loadRoundView() {
-    //not sure hideHowToPlay should be called
-    hideHowToPlayBox();
+    showHowToPlayBox();
     showBirdCollectionScreen();
     hideQuestionAnswerScreen();
 }
@@ -424,13 +449,14 @@ function resetGame() {
     game.submittedTurnAnswer = "";
 }
 
+/** Called when user chooses to play again. Resets images and calls start new game function. */
 function playAgain() {
     $("#end-game-button-box").addClass("d-none");
     resetImages();
     startNewGame();
 }
 
-/** Starts new game.*/
+/** Starts new game. Calls functions to reset game, add bird select class and start new round*/
 function startNewGame() {
     resetGame();
     addBirdSelectClass();
@@ -457,7 +483,6 @@ function addCorrectButtonAction(buttonClicked) {
         if ($(".bird-select").hasClass("highlight")) {
             submitBird();
         } else {
-            //change alert
             $("#submit-bird-alert").removeClass("d-none");
         }
     } else if (buttonClicked.getAttribute("data-button-command") === "submit-answer") {
@@ -465,7 +490,6 @@ function addCorrectButtonAction(buttonClicked) {
             game.submittedTurnAnswer = $(".highlight-answer-option").text();
             checkTurnAnswer(game.submittedTurnAnswer, game.turnNumber);
         } else {
-            //change alert
             $("#answer-submit-alert").removeClass("d-none");
         }
     } else if (buttonClicked.getAttribute("data-button-command") === "start-next-round") {
@@ -476,7 +500,6 @@ function addCorrectButtonAction(buttonClicked) {
         }
     } else if (buttonClicked.getAttribute("data-button-command") === "play-again") {
         $("#game-box").fadeOut(1000, function(){
-            //further test is I can remove function and it fades properly
             playAgain();
         });
     }
