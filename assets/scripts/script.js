@@ -487,6 +487,7 @@ function resetGame() {
  * */
 function playAgain() {
     $("#end-game-button-box").addClass("d-none");
+    $("#end-game-screen").addClass("d-none");
     resetImages();
     startNewGame();
 }
