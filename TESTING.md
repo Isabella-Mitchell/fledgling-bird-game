@@ -15,7 +15,7 @@ The Row Gallery website has been tested using the following methods:
         - [Game User](#game-user)
         - [Business Owner](#business-owner)
 - [Manual Testing](#manual-testing)
-        - [Home Page](#home-page)
+        - [Landing Page](#landing-page)
         - [Game Page](#game-page)
         - [Sightings Page](#sightings-page)
 - [Peer Review](#peer-review)
@@ -219,8 +219,36 @@ I also personally tested the website on iPhone 12, iPhone 11, iPad Pro 2nd Gener
 
 # Manual Testing
 
-## All Pages
+## Landing Page
+
+    - Social links in the footer have been tested and proven to work
+    - The main navigation buttons have been tested and proven to work
 
 ## Game Page
+
+    - The How To Play modal has been tested and proven to open and close as desired.
+    - The game play as been extensively tested, with all buttons and clickable elements behave as expected.
+    - If the user presses the select button without having selected a bird, an error message appears. The game will not continue until they have selected a bird.
+    - If the user presses the submit button without having selected a answer, an error message appears. The game will not continue until they have selected an answer.
+    - At the end of the game, the button to ‘Play Again’ and ‘Find Sightings Near Me’ have been tested and shown to work.
+    - The website title link back to the landing page has been tested and proven to work.
+    - Social links in the footer have been tested and proven to work
  
 ## Sightings Page
+
+    - The Learn More modal has been tested and proven to open and close as desired.
+    - The Address input form has been extensively tested and behaves as expected. This involves passing in incorrect data to see what errors occur.
+    - If there is an issue with the API, e.g. the server returns a 400 error message, then an appropriate error message appears: “Oops...Something went wrong. Please try again or contact the website administrator”
+    - If the user has not entered an address, then an appropriate error message appears: “That address is not recognised. Please try again with a different address.”
+    - If the user enters an address which is not recognised by google maps, then both these error message appear.
+    - If the user enters an address which is too broad for the eBird API (e.g. a Continent name), or a location with no sightings, then an appropriate error message appears: “There are no results for that address. Please try again with a different address or increase your search radius”
+    - The website title link back to the landing page has been tested and proven to work.
+    - Social links in the footer have been tested and proven to work
+
+# Peer Review
+
+# Bugs
+
+## Resolved
+
+## Unresolved
