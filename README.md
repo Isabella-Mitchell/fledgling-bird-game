@@ -18,9 +18,43 @@
 
 # Table of Contents  
 
+## Contents
+- [User experience](#user-experience)
+  * [User Stories](#user-stories)
+    + [Novice Bird Watcher](#novice-bird-watcher)
+    + [Intermediate/ Advanced Bird Watchers](#intermediate-advanced-bird-watchers)
+    + [Game Users](#business-owners)
+    + [Business Owners](#business-owners)
+- [Design](#design)
+  + [Colour Scheme](#colour-scheme)
+  + [Typography](#typography)
+  + [Imagery](#imagery)
+  + [Icons](#icons)
+- [Wireframes](#wireframes)
+- [Features](#features)
+  + [Landing Page Features](#landing-page-features)
+  + [Game Page Features](#game-page-features)
+  + [Sightings Page Features](#sightings-page-features)
+  + [Future Features](#future-features)
+- [Technologies used](#technologies-used)
+  + [Languages Used](#languages-used)
+  + [Frameworks Libraries and Programs](#frameworks-libraries-and-programs)
+  + [Application Programming Interface (API's)](#application-programming-interface-apis)
+- [Testing](#testing)
+- [Deployment](#deployment)
+  + [Creating a Gitpod Workspace](#creating-a-gitpod-workspace)
+  + [GitHub Pages](#github-pages)
+  + [Forking the GitHub Repository](#forking-the-github-repository)
+  + [Making a Local Clone](#making-a-local-clone)
+- [Credits](#credits)
+  + [Code](#code)
+  + [Media](#media)
+  + [Content](#content)
+  + [Acknowledgements](#acknowledgements)
+
 # User Experience
 
-## User stories
+## User Stories
 
 ### Novice Bird Watcher
 
@@ -115,7 +149,7 @@
 
 - The footer also features social media links and copyright information. 
 
-## Game Features
+## Game Page Features
 
 ### Nav Bar
 
@@ -205,7 +239,7 @@
 
 - The user can then choose to play again to beat their score, or else move to the bird sightings page. 
 
-## Sightings Screen 
+## Sightings Page Features
 
 ### Nav Bar 
 
@@ -229,7 +263,7 @@
 
 ### Page Title 
 
-<h2 align="center"><img src="assets/readme/sightings-screen.jpg"></h2>
+<h2 align="center"><img src="assets/readme/sighting-screen.jpg"></h2>
 
 - This makes it clear to the user what the search bar does. I originally imagined the user looking for sightings close to where they live. However, I wanted to keep it clear that you can look for sightings anywhere in the world (where the data is available). 
 
@@ -324,11 +358,11 @@
     - The eBird API returns recent bird sighting data local to the coordinates provided. 
 
 # Testing
-- Please refer TO DO for more information on testing of the fledgling website.
+- Please refer [here](TESTING.md) for more information on testing of the fledgling website.
 
 # Deployment
 
-## Creating a Gitpod workspace
+## Creating a Gitpod Workspace
 
 The project was created in Gitpod using the Code Institute Gitpod Full Template using these steps:
 
