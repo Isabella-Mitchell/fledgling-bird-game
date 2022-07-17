@@ -260,7 +260,8 @@ function giveRoundFeedback(a, b) {
     }
 }
 
-/** Changes the Game Box to the end of turn screen by hiding questions screen.
+/** 
+ * Changes the Game Box to the end of turn screen by hiding questions screen.
  * Then displays the round score, finished bird image and fun fact.
  * */
 function setRoundResults() {
@@ -283,8 +284,8 @@ function showRoundResults() {
     removeCompletedBird();
 }
 
-/** Prompted by check answer. Counts turn number, calls gameRound or calls showRoundResults after 4 questions.
- *
+/** 
+ * Prompted by check answer. Counts turn number, calls gameRound or calls showRoundResults after 4 questions.
  */
 function callNextTurn() {
     game.turnNumber = game.turnNumber + 1;
@@ -321,13 +322,17 @@ function checkTurnAnswer(x, y) {
     callNextTurn();
 }
 
-/** Shows question and answer screen*/
+/** 
+ * Shows question and answer screen by removing d-none class from question-box and round-box html elements
+ * */
 function showQuestionAnswersScreen() {
     $("#questions-box").removeClass("d-none");
     $("#round-box").removeClass("d-none");
 }
 
-/** Sets the question and answers for each turn based on the QUESTION_BANK*/
+/** 
+ * Sets the question and answers for each turn based on the QUESTION_BANK
+ * */
 function setQuestionAnswers(i) {
     let currentBirdQuiz = game.currentBird.quiz[i];
     $(".answer-btn").removeClass("highlight-answer-option");
@@ -339,27 +344,30 @@ function setQuestionAnswers(i) {
     $("#answer-option-4").text(`${currentBirdQuiz.options[3]}`);
 }
 
-/** Hides Bird Submit screen*/
+/** 
+ * Hides Bird Submit screen by adding a d-none class to bird images, text and button
+ * */
 function hideBirdCollectionScreen() {
     $("#bird-collection").addClass("d-none");
     $("#bird-collection-screen").addClass("d-none");
     $("#submit-bird-button-box").addClass("d-none");
 }
 
-/** Round of the game. Shows turn questions and changes image for each turn.*/
+/** 
+ * Round of the game. Shows turn questions and changes image for each turn.
+ * */
 function gameRound(i) {
     $("#game-box").fadeTo(500, 0, function () {
         hideBirdCollectionScreen();
         setQuestionAnswers(i);
-        //the below doesn't need to be done every turn
         showQuestionAnswersScreen();
-        //watch out if the below loads ok
         $("#game-box").fadeTo(1000, 1);
     });
 }
 
 /**
- * function run after submitbird button clicked. Gets ID of bird selected and puts content into Game Object. Calls initial gameRound function
+ * function run after submitbird button clicked. 
+ * Gets ID of bird selected and puts content into Game Object. Calls initial gameRound function
  * */
 function submitBird() {
     selectedBird = document.getElementsByClassName("highlight");
@@ -368,7 +376,8 @@ function submitBird() {
 }
 
 /**
- * Allows user to select a bird. Will only allow to select one bird, and must select a bird to be able to proceed.
+ * Allows user to select a bird. 
+ * Will only allow to select one bird, and must select a bird to be able to proceed.
  * */
 function pickBirdEvent() {
     $("#submit-bird").addClass("disabled");
@@ -384,19 +393,33 @@ function pickBirdEvent() {
     });
 }
 
-/** Shows How To Play Button in the nav bar */
+/** 
+ * Shows How To Play Button in the nav bar by removing d-none class from element
+ * */
 function showHowToPlayBox() {
     $("#how-to-play-box").removeClass("d-none");
 }
 
-/** Hides the quesution and Answer screen*/
-function hideQuestionAnswerScreen() {
-    $("#round-box").addClass("d-none");
+/**
+* Resets the score inidcator colours back to black.
+*/
+function resetScoreIndicatorColour() {
     $(".icons").children().removeClass("green").removeClass("red").addClass("black");
-    $("#round-results-box").addClass("d-none");
 }
 
-/** Shows the Select Bird Screen*/
+/** 
+ * Hides the quesution and Answer screen by adding d-none to the round box and results box
+ * calls function to reset score indicator colours
+*/
+function hideQuestionAnswerScreen() {
+    $("#round-box").addClass("d-none");
+    $("#round-results-box").addClass("d-none");
+    resetScoreIndicatorColour();
+}
+
+/** 
+ * Shows the Select Bird Screen by removing d-none class to HTML elements
+ * */
 function showBirdCollectionScreen() {
     $("#game-initial-load-screen").addClass("d-none");
     $("#bird-collection").removeClass("d-none");
@@ -406,14 +429,18 @@ function showBirdCollectionScreen() {
     $("#game-box").fadeIn(1000, pickBirdEvent());
 }
 
-/** Loads the round view, showing select bird screen and hiding other screens*/
+/** 
+ * Loads the round view, showing select bird screen and hiding other screens
+ * */
 function loadRoundView() {
     showHowToPlayBox();
     showBirdCollectionScreen();
     hideQuestionAnswerScreen();
 }
 
-/** Start new round Animation - loads birds*/
+/** 
+ * Start new round Animation - loads birds
+ * */
 function startNewRound() {
     game.currentBird = [];
     game.currentBirdQuiz = [];
@@ -424,7 +451,9 @@ function startNewRound() {
     });
 }
 
-/** Resets images if user chooses to play again Calls start new game*/
+/** 
+ * Resets images if user chooses to play again Calls start new game
+ * */
 function resetImages() {
     $("#blackbird").attr("src", QUESTION_BANK.blackbird.outlineImageSrc);
     $("#blueTit").attr("src", QUESTION_BANK.blueTit.outlineImageSrc);
@@ -433,12 +462,16 @@ function resetImages() {
     $("#goldfinch").attr("src", QUESTION_BANK.goldfinch.outlineImageSrc);
 }
 
-/** Adds select class to all images*/
+/** 
+ * Adds select class to all images
+ * */
 function addBirdSelectClass() {
     $(".collection-view").children("div").children().addClass("bird-select");
 }
 
-/** Resets Game object. Is called by start new Game.*/
+/** 
+ * Resets Game object. Is called by start new Game.
+ * */
 function resetGame() {
     game.currentBird = [];
     game.score = 0;
@@ -447,14 +480,18 @@ function resetGame() {
     game.submittedTurnAnswer = "";
 }
 
-/** Called when user chooses to play again. Resets images and calls start new game function. */
+/** 
+ * Called when user chooses to play again. Resets images and calls start new game function.
+ * */
 function playAgain() {
     $("#end-game-button-box").addClass("d-none");
     resetImages();
     startNewGame();
 }
 
-/** Starts new game. Calls functions to reset game, add bird select class and start new round*/
+/** 
+ * Starts new game. Calls functions to reset game, add bird select class and start new round
+ * */
 function startNewGame() {
     resetGame();
     addBirdSelectClass();
