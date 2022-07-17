@@ -282,4 +282,14 @@ I also personally tested the website on iPhone 12, iPhone 11, iPad Pro 2nd Gener
     - I googled the issue and realised that custom attributes need to start with data.  
     - I updated the attributes to ‘data-button-command' and the code passed the validator without error.  
 
-## Unresolved
+## Unresolved (to finish)
+
+- Lighthouse improve performance 
+
+- jshint - Ebird script One undefined variable -117	axios 
+
+- Table issue - https://stackoverflow.com/questions/52919972/how-can-i-populate-a-table-with-javascript 
+
+- Game screen still jumps – I added in... 
+
+Back to [README.md](/README.md#testing)

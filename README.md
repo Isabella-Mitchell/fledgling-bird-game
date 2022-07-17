@@ -70,7 +70,7 @@
 
 *These are users who already engage in bird watching. They know bird identification techniques and can identify several or many common British birds. These users may also be international and not know common British birds.*
 
-* As an intermediate/ advanced bird watcher, I would like to be engaged through pleasing illustrations. 
+* As an intermediate/ advanced bird watcher, I would like to be engaged in the content.
 * As an intermediate/ advanced bird watcher, I would like to see the names of bird sightings near me, plus locations, dates and number observed. 
 * As an intermediate/ advanced bird watcher, I would like to know where the bird watching data is sourced from. 
 * As an intermediate/ advanced bird watcher who is not familiar with British birds, I would like to learn about a few common British birds. 
@@ -290,7 +290,29 @@
 <h2 align="center"><img src="assets/readme/error-if-not-proper-address-entered.jpg"></h2>
 <h2 align="center"><img src="assets/readme/error-if-address-too-broad-or-no-results.jpg"></h2>
 
-## Features Left to Implement 
+## Features Left to Implement (to finish)
+
+### Game Play  
+
+- More birds... 
+
+- Warning if user leaves game screen  
+
+- Select bird – add magnifiying glass over birds to select. Remove need for submit button (see peer review) 
+
+- cache images (slow loading first time play) 
+
+- Not accessible to people who are visually impered 
+
+### Sightings 
+
+- The eBird API allows more search parameters. E.g. you can search or filter results by bird name. So I include more search options for the user, to return more specific results. 
+
+- I feel this page would benefit from more visuals... 
+
+- Table isn’t great on mobile 
+
+- Better Google Maps API
 
 # Technologies Used
 
@@ -422,7 +444,7 @@ $ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
 
 Click [Here](https://docs.github.com/en/github-ae@latest/get-started/quickstart/fork-a-repo) for the GitHub quick start guide with images and more detailed explanations of the above process.
 
-# Credits
+# Credits (to finish)
 
 ## Code
 
@@ -434,14 +456,36 @@ Click [Here](https://docs.github.com/en/github-ae@latest/get-started/quickstart/
 
 - [eBird API 2.0 Documentation](https://documenter.getpostman.com/view/664302/S1ENwy59)
 
+- Ipad image stretching - https://stackoverflow.com/questions/57516373/image-stretching-in-flexbox-in-safari 
+
+- credit Google Geocode API & JavaScript Tutorial 
+
+- Table issue - https://stackoverflow.com/questions/52919972/how-can-i-populate-a-table-with-javascript 
+
 - Google Maps documentation
 
 - Stack Overflow
 
 ## Content
 
+- I referred to the following websites for bird facts and image references.
+
+- The tabular data is sourced from eBird.
+
 ## Media
+
+- I produced original illustrations for the website.
 
 # Acknowledgements
 
-- to finish
+- Thank you to my mentor Akshat Garg and cover mentor Rohit Sharma for helpful feedback, industry insights and recommended tools.
+
+Thank you to fellow Code Institute students/ alumni ... for participating in the peer code review. Thank you to my family for manually testing the website and for feedback.
+
+Thank you to the Code Institute London Community for their encouragement and technical support.
+
+Thank you to the tutors and staff at Code Institute for their support.
+
+Please note this is a personal project. This website is purely for the sake of the developer's portfolio and not for public consumption.
+
+Isabella Mitchell, 2022.
