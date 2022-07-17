@@ -519,7 +519,6 @@ function addCorrectButtonAction(buttonClicked) {
     } else if (buttonClicked.getAttribute("data-button-command") === "submit-bird") {
         if ($(".bird-select").hasClass("highlight")) {
             submitBird();
-            window.scrollTo(0, 0);
         } else {
             $("#submit-bird-alert").removeClass("d-none");
         }
@@ -527,21 +526,18 @@ function addCorrectButtonAction(buttonClicked) {
         if ($(".highlight-answer-option").text()) {
             game.submittedTurnAnswer = $(".highlight-answer-option").text();
             checkTurnAnswer(game.submittedTurnAnswer, game.turnNumber);
-            window.scrollTo(0, 0);
         } else {
             $("#answer-submit-alert").removeClass("d-none");
         }
     } else if (buttonClicked.getAttribute("data-button-command") === "start-next-round") {
         if (game.roundNumber <= 5) {
             startNewRound();
-            window.scrollTo(0, 0);
         } else {
             showFinalResults();
         }
     } else if (buttonClicked.getAttribute("data-button-command") === "play-again") {
         $("#game-box").fadeOut(1000, function () {
             playAgain();
-            window.scrollTo(0, 0);
         });
     }
 }
