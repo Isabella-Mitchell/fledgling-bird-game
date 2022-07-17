@@ -89,6 +89,8 @@
 
 ### Centered Landing Page Format with Buttons
 
+<h2 align="center"><img src="assets/readme/landing-page-design.jpg"></h2>
+
 - I decided to use a centered landing page format as I wanted this page to be clean and have a strong impact.  
 
 - The landing page displays the website title ‘Fledgling’ and a compelling Call To Action; ‘hone your bird watching skills’. 
@@ -96,6 +98,8 @@
 - For this reason, I have not also included a navigation bar on this page. Instead, there are large, eye-catching buttons to the two other website pages are present in the center of the page.  
 
 ### Footer (Same on all pages)
+
+<h2 align="center"><img src="assets/readme/footer.jpg"></h2>
 
 - The footer that appears on the Landing Page is the same as every other page on the website, which helps keep the website consistent.  
 
@@ -106,6 +110,8 @@
 ## Game Features
 
 ### Nav Bar
+
+<h2 align="center"><img src="assets/readme/nav-bar-game.jpg"></h2>
 
 - The nav bar is the same colour as the footer, helping to frame the page and keep the website looking simple and consistent. The website title links back to the landing page. 
 
@@ -119,17 +125,21 @@
 
 ### How To Play Modal
 
+<h2 align="center"><img src="assets/readme/game-modal.jpg"></h2>
+
 - I decided to put the game instructions into a modal so that the user could access them anytime during gameplay without losing their progress. I created this using Bootstrap. 
 
 - The information presented is concise and bullet-pointed for easy reading. There is a close button at the top and the bottom of the modal, so the user can exit easily on any device size. 
 
 ### Start Game Screen 
 
+<h2 align="center"><img src="assets/readme/buttons-game.jpg"></h2>
+
 - This is the screen that loads when the game page is first loaded or refreshed. When the player clicks Start Game, then the game begins.  
 
 - The purpose of the game is to correctly answer questions to identify the 5 birds outlined. 
 
-### Round Screen 
+### Select Bird Screen 
 
 - This is the appearance of the page at the start of each round. 
 
@@ -137,11 +147,15 @@
 
 - The ‘selected’ bird is framed by a green border. 
 
-- The Select button only becomes live when the user selects a bird. The user cannot select more than one bird at once. This means the user cannot break the game. 
+- The Select button only becomes live when the user selects a bird. An error message will appear if they press the select button without selecting a bird. The user cannot select more than one bird at once. This means the user cannot break the game. 
 
 - The user cannot select a bird they have already completed, which means the user must attempt every bird once before the game ends. 
 
- ### Turn Screen 
+<h2 align="center"><img src="assets/readme/error-select-bird.jpg"></h2>
+
+ ### Round Screen 
+
+ <h2 align="center"><img src="assets/readme/question-view.jpg"></h2>
 
 - There will be 4 turns in each round. During each turn, the image of the bird changes, and there is a multiple-choice question about the new image shown. 
 
@@ -155,7 +169,13 @@
 
 - After each turn, the success indicator icons will change colour, depending on whether they got the question right or wrong. 
 
+<h2 align="center"><img src="assets/readme/error-select-answer.jpg"></h2>
+
+<h2 align="center"><img src="assets/readme/colour-icons.jpg"></h2>
+
 ### End of Round Screen 
+
+<h2 align="center"><img src="assets/readme/end-round-score.jpg"></h2>
 
 - Once the user has completed the round, they will get shown their score the round, and the bird’s identity will be revealed. 
 
@@ -167,6 +187,8 @@
 
 ### End Of Game Screen 
 
+<h2 align="center"><img src="assets/readme/end-game-score-feedback.jpg"></h2>
+
 - Once the user has completed the final round, all the birds will be identified and their overall score for the game will be shown. 
 
 - Depending on how well they did, they will get a different message. If they did well, then they are congratulated. If they did not do well, then it is suggested they could play again and improve their score. 
@@ -177,15 +199,17 @@
 
 ### Nav Bar 
 
+<h2 align="center"><img src="assets/readme/nav-bar-sightings.jpg"></h2>
+
 - The nav bar is consistent with that shown on the Game Screen. The website title links back to the landing page. 
 
 - There is a Learn More button in the nav bar. This provides the user with more information on where the bird sightings data is from, and further birdwatching resources. 
 
 - On smaller device sizes, the Nav Bar becomes a drop-down menu, which makes it compact while it remains user friendly. I created this using Bootstrap. 
 
-- *add game button? 
-
 ### Learn More Modal 
+
+<h2 align="center"><img src="assets/readme/more-info-modal.jpg"></h2>
 
 - I decided to put information about the sightings Data into a modal so that the user could access it anytime during their sightings searches without losing their current search. I created this using Bootstrap. 
 
@@ -201,6 +225,8 @@
 
 ### Local Bird Sightings List 
 
+<h2 align="center"><img src="assets/readme/sightings-page-table.jpg"></h2>
+
 - The user enters an address (street address, area, town, state or city), and selects a distance radius between 5 and 50 kilometers then presses Submit.  
 
 - I use the Google Geocoding API to turn the address provided into coordinates. These are then passed into the eBird API, along with the selected distance radius, to provide a list of recent local bird sightings. 
@@ -213,7 +239,10 @@
 
 - The search also returns the formatted address used in the search. This makes it clear to the user the address which is being used in the search. So, it is clear if they have incorrectly entered it. 
 
-- Add error? 
+- There are errors if the API doesn't work, if the address enetered is not recognised, or if there are no results for the address enetered.
+
+<h2 align="center"><img src="assets/readme/error-if-not-proper-address-entered.jpg"></h2>
+<h2 align="center"><img src="assets/readme/error-if-address-too-broad-or-no-results.jpg"></h2>
 
 ## Features Left to Implement 
 
@@ -286,6 +315,15 @@
 - Please refer TO DO for more information on testing of the fledgling website.
 
 # Deployment
+
+## Creating a Gitpod workspace
+
+The project was created in Gitpod using the Code Institute Gitpod Full Template using these steps:
+
+1. Log in to GitHub and go to the [Code Institute student template for Gitpod](https://github.com/Code-Institute-Org/gitpod-full-template)
+2. Click 'Use this Template' next to the Green Gitpod button.
+3. Add a repository name and click 'Create reposiory from template'.
+4. This will create a copy of the template in your own repository. Now you can click the green 'Gitpod' button to open a workspace in Gitpod.
 
 ## GitHub Pages
 

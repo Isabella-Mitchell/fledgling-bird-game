@@ -56,10 +56,10 @@ The Fledgling website showed some errors using the [JSHint](https://jshint.com/)
 # Lighthouse
 
 ### Lighthouse Report for Landing Page (Desktop)
-<h2 align="center"><img src="assets/readme.home-page-desktop-lighthouse.jpg"></h2>
+<h2 align="center"><img src="assets/readme/home-page-desktop-lighthouse.jpg"></h2>
 
 ### Lighthouse Report for Landing Page (Mobile)
-<h2 align="center"><img src="assets/readme.home-page-mobile-lighthouse.jpg"></h2>
+<h2 align="center"><img src="assets/readme/home-page-mobile-lighthouse.jpg"></h2>
 
 I used the Lighthouse reports in Google Developer Tools to examine the pages of the website for the following
 - Performace
@@ -94,7 +94,7 @@ The site was tested in Google Chrome and Safari on mobile and tablet.
 
 No issues arose during browser testing. CSS transitions worked on all browsers tested. 
 
-Appearance, functionality and responsiveness were largely consistent across browsers and devices. The only exception involved images stretching on iPad, which is an issue I've experienced before using Flex. (See Resolved Bugs)
+Appearance, functionality and responsiveness were largely consistent across browsers and devices. The only exception involved images stretching on iPad, which is an issue I've experienced before using Flex. (See [Resolved Bugs](#resolved))
 
 # Responsiveness
 
@@ -193,12 +193,12 @@ I also personally tested the website on iPhone 12, iPhone 11, iPad Pro 2nd Gener
     - Feedback is also provided. The type of feedback is decided based on the user’s score.
     - If the user has a low score at the end of the game, then they are encouraged to play again.
 
-    - As a game user, I would like indication of whether I am right or wrong.
+- As a game user, I would like indication of whether I am right or wrong.
     - There are score indicator items which appear each round. There is one indicator per question.
     - If the user gets a question right, the score indicator turns green
     - If the user gets a question wrong, the score indicator turns red. 
 
-    - As a game user, I would like the game to be playable on any device.
+- As a game user, I would like the game to be playable on any device.
     - The game is responsive and is playable on any device.
     - The ‘How to Play’ instructions open on a modal, so they can be accessed at any part of the game without refreshing the page. This functions on all device sizes.
 
@@ -221,34 +221,65 @@ I also personally tested the website on iPhone 12, iPhone 11, iPad Pro 2nd Gener
 
 ## Landing Page
 
-    - Social links in the footer have been tested and proven to work
-    - The main navigation buttons have been tested and proven to work
+- Social links in the footer have been tested and proven to work
+- The main navigation buttons have been tested and proven to work
 
 ## Game Page
 
-    - The How To Play modal has been tested and proven to open and close as desired.
-    - The game play as been extensively tested, with all buttons and clickable elements behave as expected.
-    - If the user presses the select button without having selected a bird, an error message appears. The game will not continue until they have selected a bird.
-    - If the user presses the submit button without having selected a answer, an error message appears. The game will not continue until they have selected an answer.
-    - At the end of the game, the button to ‘Play Again’ and ‘Find Sightings Near Me’ have been tested and shown to work.
-    - The website title link back to the landing page has been tested and proven to work.
-    - Social links in the footer have been tested and proven to work
+- The How To Play modal has been tested and proven to open and close as desired.
+- The game play as been extensively tested, with all buttons and clickable elements behave as expected.
+- If the user presses the select button without having selected a bird, an error message appears. The game will not continue until they have selected a bird.
+- If the user presses the submit button without having selected a answer, an error message appears. The game will not continue until they have selected an answer.
+- At the end of the game, the button to ‘Play Again’ and ‘Find Sightings Near Me’ have been tested and shown to work.
+- The website title link back to the landing page has been tested and proven to work.
+- Social links in the footer have been tested and proven to work
  
 ## Sightings Page
 
-    - The Learn More modal has been tested and proven to open and close as desired.
-    - The Address input form has been extensively tested and behaves as expected. This involves passing in incorrect data to see what errors occur.
-    - If there is an issue with the API, e.g. the server returns a 400 error message, then an appropriate error message appears: “Oops...Something went wrong. Please try again or contact the website administrator”
-    - If the user has not entered an address, then an appropriate error message appears: “That address is not recognised. Please try again with a different address.”
-    - If the user enters an address which is not recognised by google maps, then both these error message appear.
-    - If the user enters an address which is too broad for the eBird API (e.g. a Continent name), or a location with no sightings, then an appropriate error message appears: “There are no results for that address. Please try again with a different address or increase your search radius”
-    - The website title link back to the landing page has been tested and proven to work.
-    - Social links in the footer have been tested and proven to work
+- The Learn More modal has been tested and proven to open and close as desired.
+- The Address input form has been extensively tested and behaves as expected. This involves passing in incorrect data to see what errors occur.
+- If there is an issue with the API, e.g. the server returns a 400 error message, then an appropriate error message appears: “Oops...Something went wrong. Please try again or contact the website administrator”
+- If the user has not entered an address, then an appropriate error message appears: “That address is not recognised. Please try again with a different address.”
+- If the user enters an address which is not recognised by google maps, then both these error message appear.
+- If the user enters an address which is too broad for the eBird API (e.g. a Continent name), or a location with no sightings, then an appropriate error message appears: “There are no results for that address. Please try again with a different address or increase your search radius”
+- The website title link back to the landing page has been tested and proven to work.
+- Social links in the footer have been tested and proven to work
 
 # Peer Review
 
 # Bugs
 
 ## Resolved
+
+- Ipad Image Stretch 
+
+    - When viewing the website on iPad I noticed the images on the landing page and game page were being stretched. 
+    - I have experienced before using Flex, however I couldn’t resolve this bug the same way I had before due to the whole page layout using flex. 
+    - I found another solution on [Stack Overflow](https://stackoverflow.com/questions/57516373/image-stretching-in-flexbox-in-safari) which suggested this could be fixed by wrapping the image in the div. 
+    - I did this and the images displayed correctly. 
+
+- Google Maps API 
+
+    - To Geocode my user input, I am using a Google Maps API. I set up the Google Maps API successfully by following a Youtube tutorial. However, when I tried to put HTTP restrictions on it, it stopped working. 
+    - After further reading of the Google documentation, I realised that there are two Geocoding services that Google provides. You cannot put HTTP restrictions on the one I am using. I removed the restrictions and the API worked again.  
+    - I have limited my API key to only work with the Google Maps Geocoding service 
+    - I have set up Alerts and a budget to monitor usage of the API. 
+    - If I were to further develop this project, I would change to the Google Maps JavaScript API an use this to geocode the user input, as I could put restrictions on this. (See Unresolved Bugs) 
+
+- Bootstrap and jQuery Scripts 
+
+    - When I first put the jQuery script into my game script, I put it above the Bootstrap scripts. It did not function properly. 
+    - I reordered the scripts so that the jQuery script comes last, and it works properly. 
+
+- Submit bird button 
+
+    - This button functions by allowing the user to select a bird. At the start of each round, it appears disabled if no bird is selected, and appears enabled when a bird is selected. 
+    - While refactoring the code, I accidently edited the function so that button would not become disabled once it was enabled. I spotted this and corrected the code so the button behaves as desired. 
+
+- HTML game page validation 
+
+    - When I first validated my game page HTML, the validator came back with an error. “Attribute ‘button-command' not allowed on element button at this point” 
+    - I googled the issue and realised that custom attributes need to start with data.  
+    - I updated the attributes to ‘data-button-command' and the code passed the validator without error.  
 
 ## Unresolved
