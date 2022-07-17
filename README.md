@@ -2,6 +2,8 @@
 
 ## Milestone Project 2 - Interactive Front-End Site 
 
+<h2 align="center"><img src="assets/readme/fledgling-website-mockup.jpg"></h2>
+
 * Fledgling is an interactive website with the purpose of engaging people in birdwatching. It features a bird identification game, and it allows the user to generate lists of recent viewings local to an address they provide. The website has a clean, responsive design and playful illustrations, which make it visually appealing and functional on any device. 
 
 * This is my Milestone Project 2 submission for Code Institute's Diploma in Web Application Development course. My website features three pages and is built using technologies that I have learnt including HTML, CSS and JavaScript. 
@@ -59,6 +61,8 @@
 
 ### Colour Scheme
 
+<h2 align="center"><img src="assets/readme/colours.jpg"></h2>
+
 - A simple colour scheme has been used. The website aesthetic mirrors that of a book; the background is plain white which allows the colour illustrations and dark typography to stand out. 
 
 - The footer and nav bar share a background colour which is in keeping with the palette yet distinguishes these sections from the rest of the page. 
@@ -79,9 +83,13 @@
 
 ### Icons 
 
+<h2 align="center"><img src="assets/readme/colour-icons.jpg"></h2>
+
 - I used icons from Font Awesome as score indicators during each game round. They turn green or red depending on whether the user gets a question right or wrong. 
 
-# Wireframes (To add)
+# Wireframes
+
+- [View my wireframes in PDF form here](assets/wireframes/wireframes-fledgling.pdf).
 
 # Features
 
@@ -89,7 +97,7 @@
 
 ### Centered Landing Page Format with Buttons
 
-<h2 align="center"><img src="assets/readme/landing-page-design.jpg"></h2>
+<h2 align="center"><img src="assets/readme/landing-page.jpg"></h2>
 
 - I decided to use a centered landing page format as I wanted this page to be clean and have a strong impact.  
 
@@ -133,13 +141,15 @@
 
 ### Start Game Screen 
 
-<h2 align="center"><img src="assets/readme/buttons-game.jpg"></h2>
+<h2 align="center"><img src="assets/readme/game-page.jpg"></h2>
 
 - This is the screen that loads when the game page is first loaded or refreshed. When the player clicks Start Game, then the game begins.  
 
 - The purpose of the game is to correctly answer questions to identify the 5 birds outlined. 
 
 ### Select Bird Screen 
+
+<h2 align="center"><img src="assets/readme/select-bird-screen.jpg"></h2>
 
 - This is the appearance of the page at the start of each round. 
 
@@ -218,6 +228,8 @@
 - It was important to me to clearly credit eBird, as they do important work which anyone can get involved with, and their API allowed me to pull bird sighting data into my website. I also thought it important to link to further birdwatching resources, e.g. the RSPB website, as this is a great resource to learn more about birdwatching beyond the scope of my project. 
 
 ### Page Title 
+
+<h2 align="center"><img src="assets/readme/sightings-screen.jpg"></h2>
 
 - This makes it clear to the user what the search bar does. I originally imagined the user looking for sightings close to where they live. However, I wanted to keep it clear that you can look for sightings anywhere in the world (where the data is available). 
 
