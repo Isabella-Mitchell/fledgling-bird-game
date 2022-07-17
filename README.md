@@ -20,15 +20,15 @@
 
 ## User stories
 
-### Bird Watching Novices
+### Novice Bird Watcher
 
 *These are users who have never or rarely ever engaged in bird watching. They are aware of the concept but do not have any knowledge of bird identification techniques and can only identify a few common British birds.*
 
-* As a bird watching novice, I would like to learn bird identification techniques in a fun and engaging way. 
-* As a bird watching novice, I would like to be inspired through pleasing visuals and fun facts to become interested in the activity.  
-* As a bird watching novice, I would like to see whether there have been any bird sightings near me recently. 
-* As a bird watching novice, I would like to see the location where these birds have been sighted, so that I can learn of places where I could go bird spotting. 
-* As a bird watching novice, I would like all the terms used to be common knowledge and not specialist.
+* As a novice bird watcher, I would like to play a bird identification game so to learn about bird-watching in an engaging way. 
+* As a novice bird watcher, I would like to be inspired by pleasing visuals and fun facts about birds.
+* As a novice bird watcher, I would like to see whether there have been any bird sightings near me recently. 
+* As a novice bird watcher, I would like to see the location where these birds have been sighted, so that I can learn of places where I could go bird spotting. 
+* As a novice bird watcher, I would like all the terms used to be common knowledge and not specialist.
 
 ### Intermediate/ Advanced Bird Watchers 
 

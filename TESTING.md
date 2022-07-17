@@ -3,9 +3,6 @@
 The Row Gallery website has been tested using the following methods:
 - [Code Validation](#code-validation)
     - [W3C HTML Validator](#w3c-html-validator) 
-        -
-        -
-        -
     - [W3C CSS Validator](#w3c-css-validator)
     - [JSHINT Javascript Code Quality Tool](#jshint-javascript-code-quality-tool)
 - [Lighthouse](#lighthouse)
@@ -13,10 +10,14 @@ The Row Gallery website has been tested using the following methods:
 - [A11y Color Contrast Accessibility Checker](#a11y-color-contrast-accessibility-checker)
 - [Browser Compatibility](#browser-compatibility)
 - [Testing User Stories](#testing-user-stories)
-        -
-        -
-        -
+        - [Novice Bird Watcher](#novice-bird-watcher)
+        - [Intermediate/ Advanced Bird Watcher](#intermediate-advanced-bird-watcher)
+        - [Game User](#game-user)
+        - [Business Owner](#business-owner)
 - [Manual Testing](#manual-testing)
+        - [Home Page](#home-page)
+        - [Game Page](#game-page)
+        - [Sightings Page](#sightings-page)
 - [Peer Review](#peer-review)
 - [Bugs](#bugs)
     - [Resolved](#resolved)
@@ -93,9 +94,7 @@ The site was tested in Google Chrome and Safari on mobile and tablet.
 
 No issues arose during browser testing. CSS transitions worked on all browsers tested. 
 
-Appearance, functionality and responsiveness were largely consistent across browsers and devices. Exceptions include:
-- Image stretching on Ipad (see Resolved Bugs)
-- ...EDIT
+Appearance, functionality and responsiveness were largely consistent across browsers and devices. The only exception involved images stretching on iPad, which is an issue I've experienced before using Flex. (See Resolved Bugs)
 
 # Responsiveness
 
@@ -115,9 +114,108 @@ Responsivity tests were carried out using Google Chrome DevTools. Device screen 
 - Nest Hub
 - Nest Hub Max
 
-I also personally tested the website on iPhone 12, iPad Pro 2nd Generation, Dell XPS 15 laptop and a Dell widescreen monitor.
+I also personally tested the website on iPhone 12, iPhone 11, iPad Pro 2nd Generation, Dell XPS 15 laptop and a Dell widescreen monitor.
 
 # Testing User Stories
+
+## Novice Bird Watcher
+
+- As a novice bird watcher, I would like to play a bird identification game so to learn about bird-watching in an engaging way.
+    - On the landing page there is a button the user can click to ‘Play the Game’
+    - This takes the user to the game screen. They can choose to ‘Start the Game’ and learn ‘How To Play’
+    - The game involves multiple-choice questions about images of birds pictured. The player must identify which answer best describes the bird’s features.
+    - The same type of questions are asked in the same order, similar to how you would identify these birds in real life.
+    - The game makes the user engage by requiring them to interact with buttons and presenting them with options to choose from.
+
+- As a novice bird watcher, I would like to be inspired by pleasing visuals and fun facts about birds.
+
+    - On the landing page, there is a GIF which reflects the content of the gameplay.
+    - In the game, there are 5 birds to identify. Throughout the gameplay, different images appear to highlight different features of the birds.
+    - The illustrations are consistent in style and size, to keep the website looking visually clean and pleasing.
+    - The illustrations are responsive and can be viewed on any device size.
+    - Illustrations fade in and out through the use of CSS animations, to make the changing images appear visually pleasing and so they do not jolt.
+
+- As a novice bird watcher, I would like to see whether there have been any bird sightings near me recently.
+
+    - On the landing page, there is a button ‘Find Sightings Near You’ that takes user to the sightings page.
+    - This button also appears at the end of the game, so that users who finish the game can find sightings near them.
+    - There is an input box labelled ‘Enter An Address, so users can put in their address, or any address they choose, and select a distance radius.
+    - They click submit, and sightings near them are displayed in a table format.
+    - If there is an error, an error message appears.
+
+
+- As a novice bird watcher, I would like to see the location where these birds have been sighted, so that I can learn of places where I could go bird spotting.
+
+    - Within the bird sightings table, there is a location observed column. This provides the name of the location where the bird was spotted, e.g. a street or a park.
+    - This provides the user with an idea of popular bird-watching locations near their entered address.
+
+
+- As a novice bird watcher, I would like all the terms used to be common knowledge and not specialist.
+
+    - No specialist terms were used. I conducted a peer review to verify this.
+
+
+## Intermediate/ Advanced Bird Watcher
+
+- As an intermediate/ advanced bird watcher, I would like to be engaged in the content.
+
+    - On the landing page there is a button the user can click to ‘Play the Game’
+    - This takes the user to the game screen. They can choose to ‘Start the Game’ and learn ‘How To Play’
+    - The birds initially appear as outlines. Even though quite well-known birds have been used in the game, it’s not initially clear what birds they are.
+    - The player can still engage with the game to collect all the bird illustrations.
+
+- As an intermediate/ advanced bird watcher, I would like to see the names of bird sightings near me, plus locations, dates and number observed.
+
+    - On the landing page, there is a button ‘Find Sightings Near You’ that takes the user to the sightings page.
+    - This button also appears at the end of the game, so that users who finish the game can find sightings near them.
+    - There is an input box labelled ‘Enter An Address, so users can put in their address, or any address they choose, and select a distance radius.
+    - They click submit, and sightings near them are displayed in a table format.   
+    - Data provided includes Bird name, location observed, date observed and number observed.
+    - If there is an error, an error message appears.
+
+- As an intermediate/ advanced bird watcher, I would like to know where the bird-watching data is sourced from.
+
+    - There is a credit to the data source eBird on the page title with a link to their website. This is more prominent on smaller device sizes.
+    - There is also a link to ‘Learn More’ in the nav bar. This opens up a modal with further information about eBird and another link.
+
+- As an intermediate/ advanced bird watcher who is not familiar with British birds, I would like to learn about a few common British birds.
+
+    - On the landing page there is a button the user can click to ‘Play the Game’
+    - This takes the user to the game screen. They can choose to ‘Start the Game’ and learn ‘How To Play’
+    - The birds chosen for the game are common British birds. (See content credits)
+
+
+## Game User
+
+- As a game user, I would like to know my score, so I can replay and beat it.
+
+    - The user's score is shown at the end of each round (out of 4) and at the end of the game (out of 20).
+    - Feedback is also provided. The type of feedback is decided based on the user’s score.
+    - If the user has a low score at the end of the game, then they are encouraged to play again.
+
+    - As a game user, I would like indication of whether I am right or wrong.
+    - There are score indicator items which appear each round. There is one indicator per question.
+    - If the user gets a question right, the score indicator turns green
+    - If the user gets a question wrong, the score indicator turns red. 
+
+    - As a game user, I would like the game to be playable on any device.
+    - The game is responsive and is playable on any device.
+    - The ‘How to Play’ instructions open on a modal, so they can be accessed at any part of the game without refreshing the page. This functions on all device sizes.
+
+
+## Business Owner
+
+- As the business owner, I want my website to be accessible and user-friendly on any device.
+    - The website design is responsive so remains aesthetically pleasing and functional on all screen sizes. 
+    - It features semantic HTML tags, screen reader tags and aria tags for accessibility where possible. As it is a picture game, the game page is not very accessible for those with visual impairments. (See Features Left to Implement) 
+    - The pages also feature meta descriptions and alt-text which is beneficial for SEO.
+
+- As the business owner, I want to provide links to other websites where the user can learn more about bird watching and bird sightings.
+    - There are links and clear credits to eBird, who provide the Bird Sighting data
+    - The ‘Learn More’ modal on the sightings page also provides further bird watching resources. 
+
+- As the business owner, I want my website to feature links to my social media channels.
+    - There are links to social media channels in the footer bar, which appears on every page.
 
 # Manual Testing
 
