@@ -1,6 +1,6 @@
 //Question Bank
 
-const QUESTION_BANK = {
+const CONFIG = {
     blackbird: {
         birdName: "Blackbird",
         outlineImageSrc: "assets/images/bb-outline.png",
@@ -310,10 +310,10 @@ function addScore() {
  * Declares Variable to select score success indicicator icon relevant to turn question
  * Calls callNextTurn function
  * */
-function checkTurnAnswer(x, y) {
-    let currentBirdQuiz = game.currentBird.quiz[y];
+function checkTurnAnswer(submittedAnswer, turnNumber) {
+    let currentBirdQuiz = game.currentBird.quiz[turnNumber];
     let iconColour = document.getElementById(currentBirdQuiz.genre);
-    if (x === currentBirdQuiz.correctAnswer) {
+    if (submittedAnswer === currentBirdQuiz.correctAnswer) {
         $(iconColour).removeClass("black").addClass("green");
         addScore();
     } else {
@@ -330,18 +330,17 @@ function showQuestionAnswersScreen() {
     $("#round-box").removeClass("d-none");
 }
 
-/** 
- * Sets the question and answers for each turn based on the QUESTION_BANK
+/**
+ * Sets the question and answers for each turn based on the CONFIG
  * */
-function setQuestionAnswers(i) {
+ function setQuestionAnswers(i) {
     let currentBirdQuiz = game.currentBird.quiz[i];
     $(".answer-btn").removeClass("highlight-answer-option");
     $("#question-image").html(`<img src="${currentBirdQuiz.imageSrc}">`);
     $("#question-text").text(`${currentBirdQuiz.question}`);
-    $("#answer-option-1").text(`${currentBirdQuiz.options[0]}`);
-    $("#answer-option-2").text(`${currentBirdQuiz.options[1]}`);
-    $("#answer-option-3").text(`${currentBirdQuiz.options[2]}`);
-    $("#answer-option-4").text(`${currentBirdQuiz.options[3]}`);
+    for(let i = 0;i<currentBirdQuiz.options.length;i++) {
+        $(`#answer-option-${i+1}`).text(`${currentBirdQuiz.options[i]}`);
+    }
 }
 
 /** 
@@ -371,7 +370,7 @@ function gameRound(i) {
  * */
 function submitBird() {
     selectedBird = document.getElementsByClassName("highlight");
-    game.currentBird = QUESTION_BANK[selectedBird[0].id];
+    game.currentBird = CONFIG[selectedBird[0].id];
     gameRound(game.turnNumber);
 }
 
@@ -453,21 +452,22 @@ function startNewRound() {
     });
 }
 
-/** 
+/**
  * Resets images if user chooses to play again Calls start new game
  * */
+// TODO: update HTML
 function resetImages() {
-    $("#blackbird").attr("src", QUESTION_BANK.blackbird.outlineImageSrc);
-    $("#blueTit").attr("src", QUESTION_BANK.blueTit.outlineImageSrc);
-    $("#cormorant").attr("src", QUESTION_BANK.cormorant.outlineImageSrc);
-    $("#magpie").attr("src", QUESTION_BANK.magpie.outlineImageSrc);
-    $("#goldfinch").attr("src", QUESTION_BANK.goldfinch.outlineImageSrc);
+    const entries = Object.entries(CONFIG);
+    entries.forEach(eachEntry => {
+        const [birdId, birdConfig] = eachEntry;
+        $(`#${birdId}`).attr("src", eachEntry.outlineImageSrc);
+    });
 }
 
 /** 
  * Adds select class to all images
  * */
-function addBirdSelectClass() {
+function makeBirdsSelectable() {
     $(".collection-view").children("div").children().addClass("bird-select");
 }
 
@@ -497,7 +497,7 @@ function playAgain() {
  * */
 function startNewGame() {
     resetGame();
-    addBirdSelectClass();
+    makeBirdsSelectable();
     startNewRound();
 }
 
@@ -514,34 +514,46 @@ function resetHighlightedAnswer(answer) {
 /**
  * Defines what action should happen when a button is clicked.
  */
-function addCorrectButtonAction(buttonClicked) {
-    if (buttonClicked.getAttribute("data-button-command") === "start-new-game") {
-        startNewGame();
-    } else if (buttonClicked.getAttribute("data-button-command") === "submit-bird") {
-        if ($(".bird-select").hasClass("highlight")) {
-            submitBird();
-        } else {
-            $("#submit-bird-alert").removeClass("d-none");
+ function addCorrectButtonAction(buttonClicked) {
+    const buttonCommandType = buttonClicked.getAttribute("data-button-command");
+    switch(buttonCommandType) {
+        case "start-new-game":
+            startNewGame();
+            break;
+        case "submit-bird": {
+            if ($(".bird-select").hasClass("highlight")) {
+                submitBird();
+            } else {
+                $("#submit-bird-alert").removeClass("d-none");
+            }
+            break;
         }
-    } else if (buttonClicked.getAttribute("data-button-command") === "submit-answer") {
-        if ($(".highlight-answer-option").text()) {
-            game.submittedTurnAnswer = $(".highlight-answer-option").text();
-            checkTurnAnswer(game.submittedTurnAnswer, game.turnNumber);
-        } else {
-            $("#answer-submit-alert").removeClass("d-none");
+        case "submit-answer": {
+            if ($(".highlight-answer-option").text()) {
+                game.submittedTurnAnswer = $(".highlight-answer-option").text();
+                checkTurnAnswer(game.submittedTurnAnswer, game.turnNumber);
+            } else {
+                $("#answer-submit-alert").removeClass("d-none");
+            }
+            break;
         }
-    } else if (buttonClicked.getAttribute("data-button-command") === "start-next-round") {
-        if (game.roundNumber <= 5) {
-            startNewRound();
-        } else {
-            showFinalResults();
+        case "start-next-round": {
+            if (game.roundNumber <= 5) {
+                startNewRound();
+            } else {
+                showFinalResults();
+            }
+            break;
         }
-    } else if (buttonClicked.getAttribute("data-button-command") === "play-again") {
-        $("#game-box").fadeOut(1000, function () {
-            playAgain();
-        });
+        case "play-again": {
+            $("#game-box").fadeOut(1000, function () {
+                playAgain();
+            });
+        }
+        default:
+            break;
     }
-}
+ }
 
 /**
  * Adds event listeners to game buttons.
@@ -561,7 +573,7 @@ function addEventListeners() {
  * Wait for the DOM to finish loading before running the game
  * Get the button elements and add event listeners to them
  */
-document.addEventListener("DOMContentLoaded", addEventListeners());
+document.addEventListener("DOMContentLoaded", addEventListeners);
 
 /**
  * Event happens on click of an answer option button.
