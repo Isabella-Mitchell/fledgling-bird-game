@@ -247,6 +247,14 @@ I also personally tested the website on iPhone 12, iPhone 11, iPad Pro 2nd Gener
 
 # Peer Review
 
+- In the final stages of the project, I submitted the site for Peer Review by fellow students and alumni at Code Institute via Slack. I also asked for feedback on the Code Institute London WhatsApp group. This feedback was largely focused on the mobile experience. 
+
+- Feedback included changing the navigation on the start game screen so that it does not feature an empty burger menu. I resolved the former point by adding in the ‘View More Sightings’ button. I also added a ‘Play the Game’ button to the sightings page to make it easy for the user to navigate back. 
+
+- It was also suggested that I should make the screen automatically scroll up to the top during the game. I was not able to resolve this, but I made the image smaller and buttons wider on mobile view, so the user does not need to scroll as much (See unresolved bugs). 
+
+- I also asked a relative who works in technology for feedback on my project. This feedback was based on the desktop experience. Their feedback on the website and documentation was positive. They suggested I change the styling of the table to make it striped and thus more easily readable, which I have. They also suggested that I could remove the submit bird button, so clicking on a bird automatically submits the bird. I decided not to change this as it felt too late in the project, but it is something I will remember for future projects. 
+
 # Bugs
 
 ## Resolved
@@ -298,5 +306,8 @@ I also personally tested the website on iPhone 12, iPhone 11, iPad Pro 2nd Gener
 
 - Google Maps Geocoding Service
     - I cannot add approiate restrictions to the Google Maps Geocoding Service. This should be changed to the Google Maps Javascript API.
+
+- Game view on mobile should automatically scroll up to the top
+    - The game requires the user to scroll up and down on mobile. A resolution to this would improve user experience.
 
 Back to [README.md](/README.md#testing)
