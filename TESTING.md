@@ -221,10 +221,14 @@ I also personally tested the website on iPhone 12, iPhone 11, iPad Pro 2nd Gener
 
 ## Landing Page
 
+<h2 align="center"><img src="assets/readme/landing-page.jpg"></h2>
+
 - Social links in the footer have been tested and proven to work
 - The main navigation buttons have been tested and proven to work
 
 ## Game Page
+
+<h2 align="center"><img src="assets/readme/fledgling-game-screen.jpg"></h2>
 
 - The How To Play modal has been tested and proven to open and close as desired.
 - The game play as been extensively tested, with all buttons and clickable elements behave as expected.
@@ -235,6 +239,8 @@ I also personally tested the website on iPhone 12, iPhone 11, iPad Pro 2nd Gener
 - Social links in the footer have been tested and proven to work
  
 ## Sightings Page
+
+<h2 align="center"><img src="assets/readme/fledgling-sighting-screen.jpg"></h2>
 
 - The Learn More modal has been tested and proven to open and close as desired.
 - The Address input form has been extensively tested and behaves as expected. This involves passing in incorrect data to see what errors occur.
