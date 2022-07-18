@@ -3,6 +3,7 @@
 const CONFIG = {
     blackbird: {
         birdName: "Blackbird",
+        birdId: "blackbird",
         outlineImageSrc: "assets/images/bb-outline.png",
         finishedImageSrc: "assets/images/bb-final.png",
         funFact: "Did you know... Male blackbirds (such as this one) live up to their name but, confusingly, female blackbirds are brown with a yellow-brownish beak",
@@ -39,6 +40,7 @@ const CONFIG = {
     },
     blueTit: {
         birdName: "Blue Tit",
+        birdId: "blueTit",
         outlineImageSrc: "assets/images/bt-outline.png",
         finishedImageSrc: "assets/images/bt-final.png",
         funFact: "Did you know... Blue tits are extremely social birds. They can be spotted in flocks of up to 20 strong and are happy to feed alongside other bird species.",
@@ -75,6 +77,7 @@ const CONFIG = {
     },
     cormorant: {
         birdName: "Cormorant",
+        birdId: "cormorant",
         outlineImageSrc: "assets/images/cm-outline.png",
         finishedImageSrc: "assets/images/cm-final.png",
         funFact: "Fun fact... Cormorants dive underwater to catch food. That's why you'll often see them standing like this, to dry their wings out after diving.",
@@ -111,6 +114,7 @@ const CONFIG = {
     },
     magpie: {
         birdName: "Magpie",
+        birdId: "magpie",
         outlineImageSrc: "assets/images/mp-outline.png",
         finishedImageSrc: "assets/images/mp-final.png",
         funFact: "Fun fact... Magpies possess an extremely long tail. In fact, a magpie’s tail is often roughly the same length as its entire body.",
@@ -147,6 +151,7 @@ const CONFIG = {
     },
     goldfinch: {
         birdName: "Goldfinch",
+        birdId: "goldfinch",
         outlineImageSrc: "assets/images/gf-outline.png",
         finishedImageSrc: "assets/images/gf-final.png",
         funFact: "Did you know... The collective name for these highly colourful birds is a 'charm'. The term is derived from old English and refers to the goldfinches’ twittering song.",
@@ -453,15 +458,14 @@ function startNewRound() {
 }
 
 /**
- * Resets images if user chooses to play again Calls start new game
+ * Resets images if user chooses to play again
  * */
-// TODO: update HTML
-function resetImages() {
-    const entries = Object.entries(CONFIG);
-    entries.forEach(eachEntry => {
-        const [birdId, birdConfig] = eachEntry;
-        $(`#${birdId}`).attr("src", eachEntry.outlineImageSrc);
-    });
+ function resetImages() {
+    $("#blackbird").attr("src", CONFIG.blackbird.outlineImageSrc);
+    $("#blueTit").attr("src", CONFIG.blueTit.outlineImageSrc);
+    $("#cormorant").attr("src", CONFIG.cormorant.outlineImageSrc);
+    $("#magpie").attr("src", CONFIG.magpie.outlineImageSrc);
+    $("#goldfinch").attr("src", CONFIG.goldfinch.outlineImageSrc);
 }
 
 /** 
