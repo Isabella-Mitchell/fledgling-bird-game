@@ -28,7 +28,7 @@
 - [Design](#design)
   + [Colour Scheme](#colour-scheme)
   + [Typography](#typography)
-  + [Imagery](#imagery)
+  + [Imagery and Aesthetics](#imagery-and-aesthetics)
   + [Icons](#icons)
 - [Wireframes](#wireframes)
 - [Features](#features)
@@ -290,7 +290,7 @@
 <h2 align="center"><img src="assets/readme/error-if-not-proper-address-entered.jpg"></h2>
 <h2 align="center"><img src="assets/readme/error-if-address-too-broad-or-no-results.jpg"></h2>
 
-## Features Left to Implement
+## Future Features
 
 ### Game Play  
 
