@@ -505,7 +505,7 @@ function startNewGame() {
  * Adds the highlight-answer-option class to the clicked answer option button, and removes it from the other answer option buttons.
  * Function is called when an answer option button is clicked.
  */
-function resetHighlightedAnswer(answer) {
+function onQuizAnswerButtonClick(answer) {
     $(".answer-btn").removeClass("highlight-answer-option");
     $(answer).addClass("highlight-answer-option");
     $("#answer-submit-alert").addClass("d-none");
@@ -579,6 +579,6 @@ document.addEventListener("DOMContentLoaded", addEventListeners);
  * Event happens on click of an answer option button.
  * Calls a function to add the highlight-answer-option class to the clicked answer option button, and remove it from other answer option buttons.
  */
-$(".answer-btn").on("click", function () {
-    resetHighlightedAnswer(this);
+ $(".answer-btn").on("click", function () {
+    onQuizAnswerButtonClick(this);
 });
