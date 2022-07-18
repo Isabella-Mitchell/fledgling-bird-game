@@ -71,7 +71,7 @@ function populateTableWithData(data) {
             locationObsCell.innerHTML = locationObsDataTrunc;
 
             let numberObsCell = row.insertCell(2);
-            let numberObsData = item.howMany;
+            let numberObsData = item.howMany || '-';
             numberObsCell.innerHTML = numberObsData;
 
             let dateObsCell = row.insertCell(3);
