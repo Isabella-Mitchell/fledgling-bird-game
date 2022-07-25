@@ -113,44 +113,50 @@ function geocodeUserAddressInput(e) {
     //prevent actual submit
     e.preventDefault();
 
-    let location = document.getElementById("location-input").value;
-    axios
-        .get("https://maps.googleapis.com/maps/api/geocode/json", {
-            params: {
-                address: location,
-                key: "AIzaSyBoEklUcMdWIgoqZw1hY09NGnBUW9hzTVQ",
-            },
-        })
-        .then(function (response) {
-            if (response.data.status != "ZERO_RESULTS") {
-                locationLat = response.data.results[0].geometry.location.lat;
-                locationLng = response.data.results[0].geometry.location.lng;
-                locationLat = Math.floor(locationLat * 100) / 100;
-                locationLng = Math.floor(locationLng * 100) / 100;
-            } else {
+    if(document.getElementById("location-input").value){
+
+        let location = document.getElementById("location-input").value;
+        axios
+            .get("https://maps.googleapis.com/maps/api/geocode/json", {
+                params: {
+                    address: location,
+                    key: "AIzaSyBoEklUcMdWIgoqZw1hY09NGnBUW9hzTVQ",
+                },
+            })
+            .then(function (response) {
+                if (response.data.status != "ZERO_RESULTS") {
+                    locationLat = response.data.results[0].geometry.location.lat;
+                    locationLng = response.data.results[0].geometry.location.lng;
+                    locationLat = Math.floor(locationLat * 100) / 100;
+                    locationLng = Math.floor(locationLng * 100) / 100;
+                } else {
+                    addressUserAlert.classList.remove("d-none");
+                    resetTable();
+                }
+
+                //distance
+                let selectDistance = document.getElementById("distance-select");
+                let distance = selectDistance.options[selectDistance.selectedIndex].value;
+
+                //calls passUserInputIntoEbirdAPI function
+                passUserInputIntoEbirdAPI(locationLat, locationLng, distance);
+
+                //Outputs formatted address to page
+                let formattedAddress = response.data.results[0].formatted_address;
+                let addressEnteredBox = document.getElementById("address-entered-box");
+                addressEnteredBox.classList.remove("d-none");
+                document.getElementById("formatted-address").textContent = formattedAddress;
+            })
+
+            .catch(function (error) {
+                console.log(error);
                 addressUserAlert.classList.remove("d-none");
                 resetTable();
-            }
-
-            //distance
-            let selectDistance = document.getElementById("distance-select");
-            let distance = selectDistance.options[selectDistance.selectedIndex].value;
-
-            //calls passUserInputIntoEbirdAPI function
-            passUserInputIntoEbirdAPI(locationLat, locationLng, distance);
-
-            //Outputs formatted address to page
-            let formattedAddress = response.data.results[0].formatted_address;
-            let addressEnteredBox = document.getElementById("address-entered-box");
-            addressEnteredBox.classList.remove("d-none");
-            document.getElementById("formatted-address").textContent = formattedAddress;
-        })
-
-        .catch(function (error) {
-            console.log(error);
-            addressUserAlert.classList.remove("d-none");
-            resetTable();
-        });
+            });
+    } else {
+        addressUserAlert.classList.remove("d-none");
+        resetTable();
+    }
 }
 
 //User alerts in case something errors
