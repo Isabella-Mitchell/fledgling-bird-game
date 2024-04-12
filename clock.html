@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | fledgling</title>
+    <meta
+      name="description"
+      content="fledgling is an interactive website designed to engage people in birdwatching"
+    />
+    <meta
+      name="keywords"
+      content="bird, birdwatching, bird game, eBird, bird sightings, bird identification game"
+    />
+    <meta name="author" content="fledgling" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://kit.fontawesome.com/e4ffee1eee.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
+  </head>
+
+  <body>
+    <!--Nav - Sourced From Bootstrap Library-->
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+        <a class="navbar-brand" id="navbar-logo" href="index.html">fledgling</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarTogglerDemo02"
+          aria-controls="navbarTogglerDemo02"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarTogglerDemo02"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a
+                role="button"
+                class="btn btn-outline-dark btn-margin"
+                href="game.html"
+                >Play The Game</a
+              >
+            </li>
+            <li class="nav-item" id="sightings-button">
+              <a
+                role="button"
+                class="btn btn-outline-dark btn-margin"
+                href="sightings.html"
+                >Find Sightings Near You</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container center">
+      <div id="clock">00:00</div>
+      <button onclick="stopSound()" class="">Stop sound</button>
+    </div>
+  </body>
+
+  <!--Footer-->
+  <footer class="mt-auto d-flex align-self-end">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 text-sm-left">
+          <h3>fledgling</h3>
+          <p class="small mb-md-2">
+            An interactive website designed to engage people in birdwatching
+          </p>
+        </div>
+        <div class="col-sm-6 text-sm-right">
+          <ul class="list-inline social-links">
+            <li class="list-inline-item">
+              <a target="_blank" href="https://www.facebook.com">
+                <i class="fa-brands fa-facebook-square" aria-hidden="true"></i>
+                <span class="sr-only">Facebook</span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a target="_blank" href="https://twitter.com">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+                <span class="sr-only">Twitter</span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a target="_blank" href="https://www.instagram.com">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+                <span class="sr-only">Instagram</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-sm-6 text-sm-left">
+          <p class="small">Copyright © 2022 fledgling</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/scripts/clock.js"></script>
+</html>
