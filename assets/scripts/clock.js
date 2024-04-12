@@ -32,9 +32,9 @@ const CONFIG = {
   },
 };
 
-const sound = new Audio(
-  "https://www.freespecialeffects.co.uk/soundfx/animals/bird.wav"
-);
+// const sound = new Audio(
+//   "https://www.freespecialeffects.co.uk/soundfx/animals/bird.wav"
+// );
 const robinClip = new Audio("assets/sounds/robin-clip.mp3");
 // sound.loop = true;
 
@@ -76,6 +76,7 @@ function showTime() {
   //   let currentTime = hour + ":" + min + ":" + sec + " " + am_pm;
   let displayTime = hour + ":" + min + " " + am_pm;
   let chimeTime = min + ":" + sec;
+  let testChimeTime = sec;
 
   document.getElementById("clock").innerHTML = displayTime;
 
