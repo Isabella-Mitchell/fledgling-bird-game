@@ -58,6 +58,13 @@ h6,
   justify-content: center;
 }
 
+.centerTop {
+  display: flex;
+  justify-content: center;
+  min-height: 70vh;
+  padding-top: 20vh;
+}
+
 /*--------------------Nav Bar */
 
 nav {
