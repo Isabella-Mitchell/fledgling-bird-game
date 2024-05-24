@@ -1,42 +1,80 @@
+const robinClip = new Audio("assets/sounds/robin-clip.mp3");
+const blackbirdClip = new Audio("assets/sounds/blackbird-clip.mp3");
+const willowWarblerClip = new Audio("assets/sounds/willow-warbler-clip.mp3");
+const coalTitClip = new Audio("assets/sounds/coal-tit-clip.mp3");
+
 // to do - move config into shared repo
 const CONFIG = {
   blackbird: {
     birdName: "Blackbird",
     birdId: "blackbird",
+    sound: blackbirdClip,
     outlineImageSrc: "assets/images/bb-outline.png",
     finishedImageSrc: "assets/images/bb-final.png",
   },
-  blueTit: {
-    birdName: "Blue Tit",
-    birdId: "blueTit",
-    outlineImageSrc: "assets/images/bt-outline.png",
-    finishedImageSrc: "assets/images/bt-final.png",
+  robin: {
+    birdName: "Robin",
+    birdId: "robin",
+    sound: robinClip,
+    outlineImageSrc: "",
+    finishedImageSrc: "",
   },
-  cormorant: {
-    birdName: "Cormorant",
-    birdId: "cormorant",
-    outlineImageSrc: "assets/images/cm-outline.png",
-    finishedImageSrc: "assets/images/cm-final.png",
+  willowWarbler: {
+    birdName: "Willow Warbler",
+    birdId: "willowWarbler",
+    sound: willowWarblerClip,
+    outlineImageSrc: "",
+    finishedImageSrc: "",
   },
-  magpie: {
-    birdName: "Magpie",
-    birdId: "magpie",
-    outlineImageSrc: "assets/images/mp-outline.png",
-    finishedImageSrc: "assets/images/mp-final.png",
-  },
-  goldfinch: {
-    birdName: "Goldfinch",
-    birdId: "goldfinch",
-    outlineImageSrc: "assets/images/gf-outline.png",
-    finishedImageSrc: "assets/images/gf-final.png",
+  coalTit: {
+    birdName: "Coal Tit",
+    birdId: "coalTit",
+    sound: coalTitClip,
+    outlineImageSrc: "",
+    finishedImageSrc: "",
   },
 };
 
-// const sound = new Audio(
-//   "https://www.freespecialeffects.co.uk/soundfx/animals/bird.wav"
-// );
-const robinClip = new Audio("assets/sounds/robin-clip.mp3");
-// sound.loop = true;
+function shuffle(array) {
+  let currentIndex = array.length;
+  console.log(array);
+
+  // While there remain elements to shuffle...
+  while (currentIndex != 0) {
+    // Pick a remaining element...
+    let randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
+  return array;
+}
+
+let orderedBirdList = [];
+let randomisedBirdList = [];
+
+function populateRandomisedBirdList() {
+  for (const bird in CONFIG) {
+    orderedBirdList.push(CONFIG[bird]);
+  }
+  randomisedBirdList = shuffle(orderedBirdList);
+}
+
+function updateChimeDisplay(zeroIndexedHour) {
+  let currentbirdName = randomisedBirdList[zeroIndexedHour].birdName;
+  let nextbirdName = randomisedBirdList[zeroIndexedHour + 1].birdName;
+  $("#birdName").text(
+    `The current bird is ${currentbirdName}. The next bird is ${nextbirdName}`
+  );
+}
+
+function getBirdSound(zeroIndexedHour) {
+  return randomisedBirdList[zeroIndexedHour].sound;
+}
 
 // need to remove if not pressed
 function stopSound() {
@@ -45,12 +83,14 @@ function stopSound() {
 }
 
 function hourChime(hour) {
-  console.log("It's the hour of", hour);
   $("#stop-sound-button").removeClass("d-none");
-  robinClip.play();
+  const zeroIndexedHour = hour === 12 ? 0 : hour;
+  let chime = getBirdSound(zeroIndexedHour);
+  chime.play();
+  updateChimeDisplay(zeroIndexedHour);
   setTimeout(function () {
     $("#stop-sound-button").addClass("d-none");
-  }, 10000);
+  }, 7000);
 }
 
 setInterval(showTime, 1000);
@@ -76,11 +116,11 @@ function showTime() {
   //   let currentTime = hour + ":" + min + ":" + sec + " " + am_pm;
   let displayTime = hour + ":" + min + " " + am_pm;
   let chimeTime = min + ":" + sec;
-  let testChimeTime = sec;
+  // let testChimeTime = sec;
 
   document.getElementById("clock").innerHTML = displayTime;
 
-  if (chimeTime === "00:00") {
+  if (chimeTime === "00") {
     hourChime(hour);
   }
 }
@@ -106,6 +146,7 @@ function addCorrectButtonAction(buttonClicked) {
   switch (buttonCommandType) {
     case "start-clock":
       startClock();
+      populateRandomisedBirdList();
       break;
     default:
       break;
