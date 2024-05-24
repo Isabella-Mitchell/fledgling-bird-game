@@ -217,7 +217,7 @@ function showTime() {
 
   document.getElementById("clock").innerHTML = displayTime;
 
-  if (chimeTime === "00") {
+  if (chimeTime === "00:00") {
     hourChime(hour);
   }
 }
