@@ -1,7 +1,16 @@
-const robinClip = new Audio("assets/sounds/robin-clip.mp3");
 const blackbirdClip = new Audio("assets/sounds/blackbird-clip.mp3");
-const willowWarblerClip = new Audio("assets/sounds/willow-warbler-clip.mp3");
+const blackcapClip = new Audio("assets/sounds/blackcap-clip.mp3");
+const blueTitClip = new Audio("assets/sounds/blue-tit-clip.mp3");
+const chaffinchClip = new Audio("assets/sounds/chaffinch-clip.mp3");
+const chiffchaffClip = new Audio("assets/sounds/chiffchaff-clip.mp3");
 const coalTitClip = new Audio("assets/sounds/coal-tit-clip.mp3");
+const greatTitClip = new Audio("assets/sounds/great-tit-clip.mp3");
+const longTailedTitClip = new Audio("assets/sounds/long-tailed-tit-clip.mp3");
+const mistleThrushClip = new Audio("assets/sounds/mistle-thrush-clip.mp3");
+const robinClip = new Audio("assets/sounds/robin-clip.mp3");
+const willowWarblerClip = new Audio("assets/sounds/willow-warbler-clip.mp3");
+const wrenClip = new Audio("assets/sounds/wren-clip.mp3");
+const yellowhammerClip = new Audio("assets/sounds/yellowhammer-clip.mp3");
 
 // to do - move config into shared repo
 const CONFIG = {
@@ -30,6 +39,69 @@ const CONFIG = {
     birdName: "Coal Tit",
     birdId: "coalTit",
     sound: coalTitClip,
+    outlineImageSrc: "",
+    finishedImageSrc: "",
+  },
+  blackcap: {
+    birdName: "Blackcap",
+    birdId: "blackcap",
+    sound: blackcapClip,
+    outlineImageSrc: "",
+    finishedImageSrc: "",
+  },
+  blueTit: {
+    birdName: "Blue Tit",
+    birdId: "blueTit",
+    sound: blueTitClip,
+    outlineImageSrc: "",
+    finishedImageSrc: "",
+  },
+  chaffinch: {
+    birdName: "Chaffinch",
+    birdId: "chaffinch",
+    sound: chaffinchClip,
+    outlineImageSrc: "",
+    finishedImageSrc: "",
+  },
+  chiffchaff: {
+    birdName: "Chiffchaff",
+    birdId: "chiffchaff",
+    sound: chiffchaffClip,
+    outlineImageSrc: "",
+    finishedImageSrc: "",
+  },
+  greatTit: {
+    birdName: "Great Tit",
+    birdId: "greatTit",
+    sound: greatTitClip,
+    outlineImageSrc: "",
+    finishedImageSrc: "",
+  },
+  longTailedTit: {
+    birdName: "Long Tailed Tit",
+    birdId: "longTailedTit",
+    sound: longTailedTitClip,
+    outlineImageSrc: "",
+    finishedImageSrc: "",
+  },
+  mistleThrush: {
+    birdName: "Mistle Thrush",
+    birdId: "mistleThrush",
+    sound: mistleThrushClip,
+    outlineImageSrc: "",
+    finishedImageSrc: "",
+  },
+  wren: {
+    birdName: "Wren",
+    birdId: "wren",
+    sound: wrenClip,
+    outlineImageSrc: "",
+    finishedImageSrc: "",
+  },
+  yellowhammer: {
+    birdName: "Yellowhammer",
+    birdId: "yellowhammer",
+    sound: yellowhammerClip,
     outlineImageSrc: "",
     finishedImageSrc: "",
   },
@@ -73,13 +145,39 @@ function updateChimeDisplay(zeroIndexedHour) {
 }
 
 function getBirdSound(zeroIndexedHour) {
+  console.log(zeroIndexedHour);
+  console.log(randomisedBirdList[zeroIndexedHour]);
   return randomisedBirdList[zeroIndexedHour].sound;
 }
 
+// duplicate logic as showtime - should put hour in state
+function calcHour() {
+  let time = new Date();
+  let hour = time.getHours();
+  if (hour >= 12) {
+    if (hour > 12) hour -= 12;
+  } else if (hour == 0) {
+    hr = 12;
+  }
+  return hour;
+}
+
+// need to refactor - using shared logic - could set bird in state
 // need to remove if not pressed
 function stopSound() {
-  robinClip.pause();
+  let hour = calcHour();
+  const zeroIndexedHour = hour === 12 ? 0 : hour;
+  let chime = getBirdSound(zeroIndexedHour);
+  chime.pause();
   $("#stop-sound-button").addClass("d-none");
+}
+
+// need to refactor - using shared logic
+function playSound() {
+  let hour = calcHour();
+  const zeroIndexedHour = hour === 12 ? 0 : hour;
+  let chime = getBirdSound(zeroIndexedHour);
+  chime.play();
 }
 
 function hourChime(hour) {
@@ -109,14 +207,13 @@ function showTime() {
     am_pm = "am";
   }
 
-  hour = hour < 10 ? "0" + hour : hour;
+  displayHour = hour < 10 ? "0" + hour : hour;
   min = min < 10 ? "0" + min : min;
   sec = sec < 10 ? "0" + sec : sec;
 
   //   let currentTime = hour + ":" + min + ":" + sec + " " + am_pm;
-  let displayTime = hour + ":" + min + " " + am_pm;
+  let displayTime = displayHour + ":" + min + " " + am_pm;
   let chimeTime = min + ":" + sec;
-  // let testChimeTime = sec;
 
   document.getElementById("clock").innerHTML = displayTime;
 
