@@ -169,7 +169,6 @@ function stopSound() {
   const zeroIndexedHour = hour === 12 ? 0 : hour;
   let chime = getBirdSound(zeroIndexedHour);
   chime.pause();
-  $("#stop-sound-button").addClass("d-none");
 }
 
 // need to refactor - using shared logic
@@ -177,6 +176,7 @@ function playSound() {
   let hour = calcHour();
   const zeroIndexedHour = hour === 12 ? 0 : hour;
   let chime = getBirdSound(zeroIndexedHour);
+  updateChimeDisplay(zeroIndexedHour); // will update often?
   chime.play();
 }
 
